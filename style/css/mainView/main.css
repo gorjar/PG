@@ -1,3 +1,29 @@
 
 
 /*# sourceMappingURL=main.css.map */
+/*
+    Note: It is best to use a less version of this file ( see http://css2less.cc
+    For the media queries use @screen-sm-min instead of 768px.
+    For .omb_spanOr use @body-bg instead of white.
+*/
+
+.main{
+    margin: auto auto;
+    height: 100px;
+}
+
+.links{
+    margin: auto auto;
+    height: 150px;
+}
+
+.footer{
+
+    height: 50px;
+
+
+}
+
+.row{
+    text-align: center;
+}

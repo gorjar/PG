@@ -12,7 +12,7 @@ exports.config = {
         protractor_1.browser.resetUrl = 'file:///';
     },
     capabilities: {
-        browserName: 'chrome',
+        browserName: 'chrome'
     },
     directConnect: true,
     specs: ['tests/test_cases/main/todo-spec.js'],

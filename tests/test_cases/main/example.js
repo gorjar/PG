@@ -8,7 +8,7 @@ describe('angularjs homepage todo list', function () {
         protractor_1.browser.get('C:/Users/Maciej Galka/Desktop/DziennikOnline/GMO/templates/mainView/main.html');
     });
     it('should add a todo', function () {
-        expect(protractor_1.browser.getP);
-        console.log("gg");
+        var logo = protractor_1.element(protractor_1.by.id('login_button'));
+        expect(logo.getText()).toEqual('Login');
     });
 });

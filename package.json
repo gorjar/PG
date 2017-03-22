@@ -13,9 +13,7 @@
   "author": "JG",
   "license": "ISC",
   "dependencies": {
-
     "@types/jasmine": "^2.5.46",
-
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.0.0",
@@ -24,21 +22,14 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
     "load-grunt-tasks": "^3.5.2",
-
-    "protractor": "5.1.1",
     "time-grunt": "^1.4.0",
+    "protractor": "5.1.1",
     "typescript": "~2.0.8"
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.46",
-    "grunt-contrib-cssmin": "^1.0.2"
+    "grunt-contrib-cssmin": "^1.0.2",
+    "protractor-jasmine2-html-reporter": "0.0.7",
+    "protractor-jasmine2-screenshot-reporter": "^0.3.3"
   }
 }
-
-    "time-grunt": "^1.4.0"
-  },
-  "devDependencies": {
-    "grunt-contrib-cssmin": "^1.0.2"
-  }
-}
-

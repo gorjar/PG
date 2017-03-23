@@ -22,7 +22,9 @@ Uprawnienia użytkownika Student:
 - przeglądanie własnych raportów
  -przeglądanie planu zajęć
  
+Wszelkie instrukcje, wyniki zadań typu 'research' i opisy poszczególnych narzędzi wykorzystywanych przy tworzeniu aplikacji, dostępne są  w zakładce WIKI.
  
+-----------------------------------------------------------------------------------------------------------------------------
  
 Założenia
 RWD

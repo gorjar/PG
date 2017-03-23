@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="../../style/css/mainView/main.css">
     <script src="../../apps/app.js"></script>
 
+    <!-- Google Login API -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="672890997690-eer6plc2b09fp6sf8daovnlrsp81i7pd.apps.googleusercontent.com">
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -23,10 +27,10 @@
         </div>
     </div>
     <div class="main">
-        <button style="width: 40%; margin: auto auto" id="login_button" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            <h3 id="login_message">ZALOGUJ:</h3>
+            <div style="width: 40%;" class="g-signin2" id="login_button" data-onsuccess="onSignIn"></div>
+        </div>
     </div>
-
-
 
     <div class="links">
 

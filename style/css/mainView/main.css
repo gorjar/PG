@@ -8,12 +8,18 @@
 */
 
 .main{
-    margin: auto auto;
+   
+    margin:  auto auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100px;
     height: 100px;
 }
 
 .links{
-    margin: auto auto;
+    margin: auto;
     height: 150px;
 }
 

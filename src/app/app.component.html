@@ -1,6 +1,18 @@
-<ul>
-  <li><a routerLink="/">Home</a></li>
-  <li><a routerLink="/about">About</a></li>
-</ul>
-<hr/>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">eDziennik Lekcyjny</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/students">Uczniowie</a></li>
+      <li><a routerLink="/subjects">Przedmioty</a></li>
+      <li><a routerLink="/schedule">Plan zajęć</a></li>
+      <li><a routerLink="/settings">Ustawienia</a></li>
+      <li><a routerLink="/about">About</a></li>
+      <li><div class="g-signin2" id="login_button" data-onsuccess="onSignIn"></div></li>
+    </ul>
+  </div>
+</nav>
+
 <router-outlet></router-outlet>

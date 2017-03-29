@@ -7,11 +7,19 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { routing } from './app.routing';
 import { HomeComponent } from './home/home.component';
+import { StudentsComponent } from './students/students.component';
+import { SubjectsComponent } from './subjects/subjects.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { SettingsComponent } from './settings/settings.component';
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
-    HomeComponent
+    HomeComponent,
+    StudentsComponent,
+    SubjectsComponent,
+    ScheduleComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

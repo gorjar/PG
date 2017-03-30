@@ -4,14 +4,15 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="/">eDziennik Lekcyjny</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a id="students" routerLink="/students">Uczniowie</a></li>
-      <li><a id="subjects" routerLink="/subjects">Przedmioty</a></li>
-      <li><a id="schedule" routerLink="/schedule">Plan zajęć</a></li>
-      <li><a id="settings" routerLink="/settings">Ustawienia</a></li>
-      <li><a id="about" routerLink="/about">O aplikacji</a></li>
-      <li><div class="g-signin2" id="login_button" data-onsuccess="onSignIn"></div></li>
+    <ul id="nav1" class="nav navbar-nav" >
+      <li><a id="students" class="mainmenu" routerLink="/students">Uczniowie</a></li>
+      <li><a id="subjects" class="mainmenu" routerLink="/subjects">Przedmioty</a></li>
+      <li><a id="schedule" class="mainmenu" routerLink="/schedule">Plan zajęć</a></li>
+      <li><a id="settings" class="mainmenu" routerLink="/settings">Ustawienia</a></li>
+      <li><a id="about" class="mainmenu" routerLink="/about">O aplikacji</a></li>
+
     </ul>
+    <div class="g-signin2" id="login_button" data-onsuccess="onSignIn"></div>
   </div>
 </nav>
 

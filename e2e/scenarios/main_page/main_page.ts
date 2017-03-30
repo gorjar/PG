@@ -29,7 +29,7 @@ fdescribe('dziennik-lekcyjny Login', () => {
                 expect(password.isPresent()).toBe(true, "hhh");
                 password.sendKeys(LoginData.correct_password);
                 password.submit();
-                browser.sleep(2000);
+                browser.sleep(5000);
             });
         });
     });

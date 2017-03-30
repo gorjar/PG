@@ -2,35 +2,70 @@
  * Copyright 2017 GMO. All Rights Reserved
  */
 
-import {browser, element, by} from "protractor";
+import {browser, element, by, protractor} from "protractor";
 import {LoginData} from "../../feed/test_data"
 
-fdescribe('dziennik-lekcyjny Login', () => {
+describe('Dziennik Lekcyjny Main Page', () => {
 
-    beforeEach(() => {
-        browser.get(browser.baseUrl);
-    });
+  let LOGIN_BUTTON = element(by.id('login_button'));
+  let EMAIL_FIELD = element(by.id('Email'));
+  let PASSWORD_FIELD = element(by.id('Passwd'));
+  let STUDENTS_BUTTON = element(by.id('students'));
+  let SUBJECTS_BUTTON = element(by.id('subjects'));
+  let SCHEDULE_BUTTON = element(by.id('schedule'));
+  let SETTINGS_BUTTON = element(by.id('settings'));
+  let ABOUT_BUTTON = element(by.id('about'));
 
-    fit('User ', () => {
-        let login_button = element(by.css('#login_button'));
+  beforeEach(() => {
+      browser.get(browser.baseUrl);
+  });
 
-        expect(login_button.isPresent()).toBe(true, "Display Login Button");
-        login_button.click();
+  it('User successful Log-in ', () => {
 
-        browser.getAllWindowHandles().then(function(handles){
-            browser.switchTo().window(handles[1]).then(function(){
-                let login_field = element(by.css('#Email'));
-                expect(login_field.isPresent()).toBe(true, "ggg");
-                login_field.sendKeys(LoginData.correct_login);
-                login_field.submit();
-                browser.sleep(1000);
+      expect(LOGIN_BUTTON.isPresent()).toBe(true);
+      LOGIN_BUTTON.click();
 
-                let password = element(by.css('#Passwd'));
-                expect(password.isPresent()).toBe(true, "hhh");
-                password.sendKeys(LoginData.correct_password);
-                password.submit();
-                browser.sleep(5000);
-            });
-        });
-    });
+      browser.getAllWindowHandles().then(function(handles) {
+          browser.switchTo().window(handles[1]).then(function () {
+              expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
+              EMAIL_FIELD.sendKeys(LoginData.correct_login);
+              EMAIL_FIELD.submit();
+              browser.wait(protractor.ExpectedConditions.visibilityOf(PASSWORD_FIELD));
+
+              expect(PASSWORD_FIELD.isPresent()).toBe(true, "Display password field");
+              PASSWORD_FIELD.sendKeys(LoginData.correct_password);
+              PASSWORD_FIELD.submit();
+              expect(PASSWORD_FIELD.isPresent()).toBe(false, "Display password field after log-in");
+          });
+          browser.switchTo().window(handles[0]).then(function () {
+            browser.sleep(1000);
+          });
+      });
+  });
+
+  it('Display all elements on Main Page ', () => {
+      expect(LOGIN_BUTTON.isPresent()).toBe(true);
+      LOGIN_BUTTON.click();
+
+      browser.getAllWindowHandles().then(function(handles) {
+          browser.switchTo().window(handles[1]).then(function () {
+            expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
+            EMAIL_FIELD.sendKeys(LoginData.correct_login);
+            EMAIL_FIELD.submit();
+            browser.wait(protractor.ExpectedConditions.visibilityOf(PASSWORD_FIELD));
+
+            expect(PASSWORD_FIELD.isPresent()).toBe(true, "Display password field");
+            PASSWORD_FIELD.sendKeys(LoginData.correct_password);
+            PASSWORD_FIELD.submit();
+            expect(PASSWORD_FIELD.isPresent()).toBe(false, "Display password field after log-in");
+          });
+          browser.switchTo().window(handles[0]).then(function () {
+            browser.wait(protractor.ExpectedConditions.visibilityOf(STUDENTS_BUTTON));
+            expect(SUBJECTS_BUTTON.isPresent()).toBe(true, "Display email field");
+            expect(SCHEDULE_BUTTON.isPresent()).toBe(true, "Display email field");
+            expect(SETTINGS_BUTTON.isPresent()).toBe(true, "Display email field");
+            expect(ABOUT_BUTTON.isPresent()).toBe(true, "Display email field");
+          });
+      });
+  });
 });

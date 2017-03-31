@@ -7,10 +7,12 @@ exports.config = {
   allScriptsTimeout: 11000,
   baseUrl: 'http://localhost:4200',
   specs: [
-    './e2e/**/*.ts'
+    './e2e/scenarios/**/*.ts'
   ],
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'chrome',
+    shardTestFiles: false,
+    maxInstances: 1
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',

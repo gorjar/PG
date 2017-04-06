@@ -72,7 +72,8 @@ var CookieAlert = {
 
 			/* Buttons */
 			var buttons = '<div style="width:52px;display:inline-block;vertical-align:middle;text-align:right;">';
-			buttons += '<a href="'+ CA.options.cookiePolicy +'"><img src="assets/images/'+ CA.options.style +'/info.png" style="border:0;" title="Informacje o ciasteczkach"/></a>';
+      /* Button z linkiem do strony z informacjami o cookie - odkomentuj by użyć */
+			//buttons += '<a href="'+ CA.options.cookiePolicy +'"><img src="assets/images/'+ CA.options.style +'/info.png" style="border:0;" title="Informacje o ciasteczkach"/></a>';
 			buttons += '<img src="assets/images/'+ CA.options.style +'/close.png" id="CookieAlertClose" style="border:0;cursor:pointer;margin-left:8px;" title="Zamknij komunikat"/>';
 			buttons += '</div>';
 

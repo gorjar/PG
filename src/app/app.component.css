@@ -2,7 +2,8 @@
   display: none;
 }
 
-#login_button{
- float: right;
-
+#signup {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }

@@ -22,6 +22,9 @@
         <button id="signup" routerLink="/signup" class="btn btn-primary">Zarejestruj</button>
         <button id="signin" routerLink="/signin" class="btn btn-primary">Zaloguj</button>
       </ng-template>
+      <ng-template [ngIf]="authService.isSignIn()">
+        <button id="logout" routerLink="/" class="btn btn-primary" (click)="logOut()">Wyloguj</button>
+      </ng-template>
   </div>
 </nav>
 

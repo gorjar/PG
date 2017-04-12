@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as firebase from 'firebase'
 import {AuthService} from "./auth/auth.service";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,12 +11,16 @@ import {AuthService} from "./auth/auth.service";
 })
 export class AppComponent implements OnInit{
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router){}
 
-  ngOnInit() {
-    firebase.initializeApp({
-      apiKey: "AIzaSyDx5MTX0Nd3Jft6s9mXyv2witPxkXikOdY",
-      authDomain: "edzienniklekcyjny-ea2c0.firebaseapp.com"
-    })
-}
+    ngOnInit() {
+      firebase.initializeApp({
+          apiKey: "AIzaSyDx5MTX0Nd3Jft6s9mXyv2witPxkXikOdY",
+          authDomain: "edzienniklekcyjny-ea2c0.firebaseapp.com"
+      })
+    };
+
+    logOut(){
+    this.authService.logOut();
+    }
 }

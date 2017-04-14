@@ -13,7 +13,7 @@ export class ScheduleComponent implements OnInit {
 
   ngOnInit() {
     if(this.auth.token == null){
-      this.router.navigate((['/']));
+      this.router.navigate((['/about']));
     }
   }
 

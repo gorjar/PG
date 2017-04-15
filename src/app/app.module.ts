@@ -14,6 +14,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import {AuthService} from "./auth/auth.service";
+import { ServerService } from './server.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import {AuthService} from "./auth/auth.service";
     HttpModule,
     routing
   ],
-  providers: [AuthService],
+  providers: [AuthService, ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

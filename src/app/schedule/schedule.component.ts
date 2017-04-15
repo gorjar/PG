@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 })
 export class ScheduleComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    if(this.auth.token == null){
+    if(this.authService.token == null){
       this.router.navigate((['/']));
     }
   }

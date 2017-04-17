@@ -11,6 +11,11 @@ import { StudentsComponent } from './students/students.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { SettingsComponent } from './settings/settings.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import {AuthService} from "./auth/auth.service";
+import { ServerService } from './server.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +24,9 @@ import { SettingsComponent } from './settings/settings.component';
     StudentsComponent,
     SubjectsComponent,
     ScheduleComponent,
-    SettingsComponent
+    SettingsComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,7 @@ import { SettingsComponent } from './settings/settings.component';
     HttpModule,
     routing
   ],
-  providers: [],
+  providers: [AuthService, ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

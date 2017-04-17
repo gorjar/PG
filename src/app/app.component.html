@@ -2,17 +2,29 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">eDziennik Lekcyjny</a>
+      <a class="navbar-brand" routerLink="/">eDziennik Lekcyjny</a>
     </div>
-    <ul id="nav1" class="nav navbar-nav" >
-      <li><a id="students" class="mainmenu" routerLink="/students">Uczniowie</a></li>
-      <li><a id="subjects" class="mainmenu" routerLink="/subjects">Przedmioty</a></li>
-      <li><a id="schedule" class="mainmenu" routerLink="/schedule">Plan zajęć</a></li>
-      <li><a id="settings" class="mainmenu" routerLink="/settings">Ustawienia</a></li>
-      <li><a id="about" class="mainmenu" routerLink="/about">O aplikacji</a></li>
-
-    </ul>
-    <div class="g-signin2" id="login_button" data-onsuccess="onSignIn"></div>
+      <ng-template [ngIf]="authService.isSignIn()">
+        <ul id="nav1" class="nav navbar-nav" >
+          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a id="students" class="mainmenu" routerLink="/students">Uczniowie</a></li>
+          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a id="subjects" class="mainmenu" routerLink="/subjects">Przedmioty</a></li>
+          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a id="schedule" class="mainmenu" routerLink="/schedule">Plan zajęć</a></li>
+          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a id="settings" class="mainmenu" routerLink="/settings">Ustawienia</a></li>
+          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a id="about" class="mainmenu" routerLink="/about">O aplikacji</a></li>
+        </ul>
+      </ng-template>
+      <ng-template [ngIf]="!authService.isSignIn()">
+        <button id="signup" routerLink="/signup" class="btn btn-primary">Zarejestruj</button>
+        <button id="signin" routerLink="/signin" class="btn btn-primary">Zaloguj</button>
+      </ng-template>
+      <ng-template [ngIf]="authService.isSignIn()">
+        <button id="logout" routerLink="/" class="btn btn-primary" (click)="logOut()">Wyloguj</button>
+      </ng-template>
   </div>
 </nav>
 

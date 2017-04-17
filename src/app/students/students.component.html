@@ -1,3 +1,14 @@
-<p>
-  students works!
-</p>
+<div class="col-md-4">
+  <table class="table">
+      <thead>
+        <tr>
+          <td><strong>Student</strong></td>
+        </tr>
+      </thead>
+      <tbody class="table table bordered" *ngFor="let student of students">
+        <tr>
+          <td>{{ student }}</td>
+        </tr>
+      </tbody>
+  </table>
+</div>

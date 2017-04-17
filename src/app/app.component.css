@@ -1,8 +1,24 @@
-#nav1{
-  display: none;
+#signup {
+  height: 40px;
+  width: 100px;
+  position: absolute;
+  right: 10px;
+  top: 5px;
 }
 
-#login_button{
- float: right;
-
+#signin {
+  height: 40px;
+  width: 100px;
+  position: absolute;
+  right: 150px;
+  top: 5px;
 }
+
+#logout {
+  height: 40px;
+  width: 100px;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+

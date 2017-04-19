@@ -4,17 +4,37 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { AboutComponent } from './about/about.component';
+import { routing } from './app.routing';
+import { HomeComponent } from './home/home.component';
+import { StudentsComponent } from './students/students.component';
+import { SubjectsComponent } from './subjects/subjects.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { SettingsComponent } from './settings/settings.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import {AuthService} from "./auth/auth.service";
+import { ServerService } from './server.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutComponent,
+    HomeComponent,
+    StudentsComponent,
+    SubjectsComponent,
+    ScheduleComponent,
+    SettingsComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
-  providers: [],
+  providers: [AuthService, ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

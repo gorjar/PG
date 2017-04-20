@@ -1,10 +1,23 @@
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/">eDziennik Lekcyjny</a>
+
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Rozwiń nawigację</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" routerLink="/">eDziennik Lekcyjny</a>
     </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
       <ng-template [ngIf]="authService.isSignIn()">
+
+
         <ul id="nav1" class="nav navbar-nav" >
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a id="students" class="mainmenu" routerLink="/students">Uczniowie</a></li>
@@ -19,6 +32,7 @@
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a id="chat" class="mainmenu" routerLink="/chat">Chat</a></li>
         </ul>
+
       </ng-template>
       <ng-template [ngIf]="!authService.isSignIn()">
         <button id="signup" routerLink="/signup" class="btn btn-primary">Zarejestruj</button>
@@ -27,6 +41,8 @@
       <ng-template [ngIf]="authService.isSignIn()">
         <button id="logout" routerLink="/" class="btn btn-primary" (click)="logOut()">Wyloguj</button>
       </ng-template>
+
+  </div>
   </div>
 </nav>
 

@@ -15,6 +15,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import {AuthService} from "./auth/auth.service";
 import { ServerService } from './server.service';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ServerService } from './server.service';
     ScheduleComponent,
     SettingsComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

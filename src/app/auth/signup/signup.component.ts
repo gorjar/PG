@@ -17,11 +17,11 @@ export class SignupComponent implements OnInit {
 
   onSignup(form: NgForm) {
     const email = form.value.email;
-    this.student.push(email);
     const password = form.value.password;
     this.serverService.storeStudent(this.student).subscribe(
         (response) => console.log(response),
-        (error) => console.log(error));
+        (error) => console.log(error),
+        () => this.student.push(email));
     this.authService.signUp(email, password);
   }
 }

@@ -8,7 +8,8 @@ import { SubjectsComponent } from './subjects/subjects.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SignupComponent } from "./auth/signup/signup.component";
-import {SigninComponent} from "./auth/signin/signin.component";
+import { SigninComponent } from "./auth/signin/signin.component";
+import { ChatComponent } from './chat/chat.component'
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -18,7 +19,8 @@ const appRoutes: Routes = [
   {path: 'schedule', component: ScheduleComponent},
   {path: 'settings', component: SettingsComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'signin', component: SigninComponent}
+  {path: 'signin', component: SigninComponent},
+  {path: 'chat', component: ChatComponent}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

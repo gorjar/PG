@@ -21,4 +21,18 @@ export class ServerService {
                 }
             );
     }
+
+    onSend(message) {
+        return this.http.post('https://edzienniklekcyjny-ea2c0.firebaseio.com/chat.json', message);
+    }
+
+    getMessages(){
+        return this.http.get('https://edzienniklekcyjny-ea2c0.firebaseio.com/chat.json')
+        .map(
+            (response: Response) => {
+                const chat = response.json();
+                return chat;
+            }
+        )
+    }
 }

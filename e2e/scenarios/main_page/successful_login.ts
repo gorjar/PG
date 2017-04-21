@@ -27,7 +27,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
 
 
 
-    it('login', () => {
+    it('Should check if user can successfully login to application', () => {
         expect(LOGIN_BUTTON.isPresent()).toBe(true);
         LOGIN_BUTTON.click();
         expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
@@ -40,7 +40,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     });
 
 
-  it('logout', () => {
+  it('Should check if user can successfully log out from application', () => {
     expect(LOGIN_BUTTON.isPresent()).toBe(true);
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
@@ -55,7 +55,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_BUTTON.isPresent()).toBe(true);
   });
 
-  it('main menu buttons', () => {
+  it('Verify that all menu components are displayed after successfull login', () => {
     expect(LOGIN_BUTTON.isPresent()).toBe(true);
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");

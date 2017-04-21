@@ -35,7 +35,8 @@ describe('Dziennik Lekcyjny Main Page', () => {
         PASSWORD_FIELD.sendKeys(LoginData.correct_password);
         expect(SIGN_IN_BUTTON.isPresent()).toBe(true);
         SIGN_IN_BUTTON.click();
-        //browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'Taking too long to load element');
+        browser.wait(until.presenceOf(LOGOUT_BUTTON), 5000, 'Taking too long to load element');
+        expect(LOGOUT_BUTTON.isPresent()).toBe(true);
     });
 
 

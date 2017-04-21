@@ -7,32 +7,20 @@ import { StudentsComponent } from './students/students.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { SettingsComponent } from './settings/settings.component';
+import { SignupComponent } from "./auth/signup/signup.component";
+import { SigninComponent } from "./auth/signin/signin.component";
+import { ChatComponent } from './chat/chat.component'
 
 const appRoutes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'about',
-    component: AboutComponent
-  },
-  {
-    path: 'students',
-    component: StudentsComponent
-  },
-  {
-    path: 'subjects',
-    component: SubjectsComponent
-  },
-  {
-    path: 'schedule',
-    component: ScheduleComponent
-  },
-  {
-    path: 'settings',
-    component: SettingsComponent
-  }
+  {path: '', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'students', component: StudentsComponent},
+  {path: 'subjects', component: SubjectsComponent},
+  {path: 'schedule', component: ScheduleComponent},
+  {path: 'settings', component: SettingsComponent},
+  {path: 'signup', component: SignupComponent},
+  {path: 'signin', component: SigninComponent},
+  {path: 'chat', component: ChatComponent}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

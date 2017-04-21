@@ -50,6 +50,8 @@ describe('Dziennik Lekcyjny Main Page', () => {
     browser.wait(until.presenceOf(LOGOUT_BUTTON), 5000, 'Taking too long to load element');
     expect(LOGOUT_BUTTON.isPresent()).toBe(true);
     LOGOUT_BUTTON.click();
+    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
+    expect(LOGIN_BUTTON.isPresent()).toBe(true);
   });
 
   it('student component', () => {
@@ -109,7 +111,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(SIGN_IN_BUTTON.isPresent()).toBe(true);
     SIGN_IN_BUTTON.click();
     browser.wait(until.presenceOf(ABOUT_BUTTON), 5000, 'Taking too long to load element');
-    expect(ABOUT_BUTTON.isPresent()).toBe(true);
+    expect(SETTINGS_BUTTON.isPresent()).toBe(true);
   });
 
 

@@ -55,7 +55,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_BUTTON.isPresent()).toBe(true);
   });
 
-  it('Verify that all menu components are displayed after successfull login', () => {
+  it('Verify that all menu components are displayed after successful login', () => {
     expect(LOGIN_BUTTON.isPresent()).toBe(true);
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
@@ -63,11 +63,15 @@ describe('Dziennik Lekcyjny Main Page', () => {
     PASSWORD_FIELD.sendKeys(LoginData.correct_password);
     expect(SIGN_IN_BUTTON.isPresent()).toBe(true);
     SIGN_IN_BUTTON.click();
-    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'Taking too long to load element');
+    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'students button not available');
     expect(STUDENTS_BUTTON.isPresent()).toBe(true);
+    browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'subjects button not available');
     expect(SUBJECTS_BUTTON.isPresent()).toBe(true);
+    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule button not available');
     expect(SCHEDULE_BUTTON.isPresent()).toBe(true);
+    browser.wait(until.presenceOf(SETTINGS_BUTTON), 5000, 'settings button not available');
     expect(SETTINGS_BUTTON.isPresent()).toBe(true);
-    expect(SETTINGS_BUTTON.isPresent()).toBe(true);
+    browser.wait(until.presenceOf(ABOUT_BUTTON), 5000, 'about button not available');
+    expect(ABOUT_BUTTON.isPresent()).toBe(true);
   });
 });

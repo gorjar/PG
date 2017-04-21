@@ -1,8 +1,6 @@
-
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Rozwiń nawigację</span>
         <span class="icon-bar"></span>
@@ -11,14 +9,9 @@
       </button>
       <a class="navbar-brand" href="#" routerLink="/">eDziennik Lekcyjny</a>
     </div>
-
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-
-      <ng-template [ngIf]="authService.isSignIn()">
-
-
-        <ul id="nav1" class="nav navbar-nav" >
+      <ul id="nav1" class="nav navbar-nav navbar-left" >
+        <ng-template [ngIf]="authService.isSignIn()">
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a id="students" class="mainmenu" routerLink="/students">Uczniowie</a></li>
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -31,19 +24,21 @@
             <a id="about" class="mainmenu" routerLink="/about">O aplikacji</a></li>
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a id="chat" class="mainmenu" routerLink="/chat">Forum</a></li>
-        </ul>
-
-      </ng-template>
-      <ng-template [ngIf]="!authService.isSignIn()">
-        <button id="signup" routerLink="/signup" class="btn btn-primary">Zarejestruj</button>
-        <button id="signin" routerLink="/signin" class="btn btn-primary">Zaloguj</button>
-      </ng-template>
-      <ng-template [ngIf]="authService.isSignIn()">
-        <button id="logout" routerLink="/" class="btn btn-primary" (click)="logOut()">Wyloguj</button>
-      </ng-template>
-
-  </div>
+        </ng-template>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <ng-template [ngIf]="!authService.isSignIn()">
+          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a id="signup" routerLink="/signup">Zarejestruj</a></li>
+          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a id="signin" routerLink="/signin" >Zaloguj</a></li>
+        </ng-template>
+        <ng-template [ngIf]="authService.isSignIn()">
+          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a id="logout" routerLink="/"  (click)="logOut()">Wyloguj</a></li>
+        </ng-template>
+      </ul>
+    </div>
   </div>
 </nav>
-
 <router-outlet></router-outlet>

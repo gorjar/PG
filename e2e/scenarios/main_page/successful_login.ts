@@ -55,7 +55,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_BUTTON.isPresent()).toBe(true);
   });
 
-  it('Verify that all menu components are displayed after successful login', () => {
+  it('Verify that all menu components are displayed after successfull login', () => {
     expect(LOGIN_BUTTON.isPresent()).toBe(true);
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");

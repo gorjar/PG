@@ -1,0 +1,24 @@
+#signup {
+  height: 40px;
+  width: 100px;
+  /* position: absolute;*/
+   right: 10px;
+   top: 35px;
+ }
+
+#signin {
+  height: 40px;
+  width: 100px;
+/*  position: absolute;*/
+  right: 150px;
+  top: 35px;
+}
+
+#logout {
+  height: 40px;
+  width: 100px;
+ /* position: absolute;*/
+  right: 10px;
+  top: 5px;
+}
+

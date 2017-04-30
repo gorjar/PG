@@ -19,10 +19,10 @@ export class ChatComponent implements OnInit {
   message = '';
   date: any;
 
-  constructor(private server: ServerService, private auth: AuthService, private router: Router, private http: Http) {}
+  constructor(private server: ServerService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    if(this.auth.token == null){
+    if(this.authService.token == null){
       this.router.navigate((['/']));
     }
     this.getMess()

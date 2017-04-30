@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http'
-import * as firebase from 'firebase'
 import 'rxjs/Rx';
 
 @Injectable()

@@ -11,9 +11,11 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul id="nav1" class="nav navbar-nav navbar-left" >
-        <ng-template [ngIf]="authService.isSignIn()">
+        <ng-template [ngIf]="authService.isSignIn() && roles==='sekretarka'">
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a id="students" class="mainmenu" routerLink="/students">Uczniowie</a></li>
+        </ng-template>
+        <ng-template [ngIf]="authService.isSignIn()">
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a id="subjects" class="mainmenu" routerLink="/subjects">Przedmioty</a></li>
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

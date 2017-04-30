@@ -11,15 +11,17 @@ import * as firebase from 'firebase'
 })
 export class StudentsComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router, private server: ServerService) {}
+  constructor(private authService: AuthService, private router: Router, private server: ServerService) {}
   students = [];
   roles: any;
   ngOnInit() {
-    if (this.auth.token == null) {
+    if (this.authService.token == null) {
       this.router.navigate((['/']));
     }
-    this.listStudents();
-    this.roles = this.getRole();
+    else {
+      this.listStudents();
+      this.roles = this.getRole();
+    }
   }
 
   listStudents(){

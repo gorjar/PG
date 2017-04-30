@@ -28,20 +28,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   logOut(){
     this.authService.logOut();
-    console.log("praca");
   }
 
   getRole(){
     const user = firebase.auth().currentUser.email;
-    console.log(user);
     this.server.getCurrentUserRole(user).subscribe(
         (response: any) => (this.roles = response),
         (error) => console.log(error),
         () => {
           this.roles;
-          console.log(this.roles);
         });
-
   }
 
 }

@@ -25,13 +25,15 @@ export class NavbarComponent implements OnInit, AfterViewInit{
 
   getRole() {
     const user = firebase.auth().currentUser.email;
-    console.log(user);
     this.serverService.getCurrentUserRole(user).subscribe(
         (response: any) => (this.roles = response),
         (error) => console.log(error),
         () => {
           this.roles;
-          console.log(this.roles);
         });
+  }
+
+  logOut(){
+    this.authService.logOut();
   }
 }

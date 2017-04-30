@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
-import { Http, Response } from '@angular/http'
+import { Response } from '@angular/http'
 import * as firebase from 'firebase'
 import { ServerService } from '../server.service';
 import { NgForm } from '@angular/forms';
@@ -77,13 +77,11 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
     getRole() {
         const user = firebase.auth().currentUser.email;
-        console.log(user);
         this.server.getCurrentUserRole(user).subscribe(
             (response: any) => (this.roles = response),
             (error) => console.log(error),
             () => {
                 this.roles;
-                console.log(this.roles);
             });
     }
 }

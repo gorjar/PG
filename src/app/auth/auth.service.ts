@@ -1,6 +1,6 @@
 import * as firebase from 'firebase'
 import { Router } from '@angular/router';
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthService{
@@ -26,11 +26,6 @@ export class AuthService{
     firebase.auth().signOut();
     this.token = null;
   }
-
-  getToken() {
-    firebase.auth().currentUser.getToken().then((token: string) => this.token = token);
-    return this.token
-  };
 
   isSignIn() {
     return this.token != null;

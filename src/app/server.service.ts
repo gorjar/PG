@@ -21,7 +21,9 @@ export class ServerService {
                     const data = response.json();
                     let array = Object.keys(data).map(k => data[k]);
                     for(let i=0; i<array.length; i++) {
-                        students.push(array[i].email)
+                        if(array[i].role === "student") {
+                            students.push(array[i].email)
+                        }
                     }
                     return students
                 }

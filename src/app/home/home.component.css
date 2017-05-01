@@ -1,5 +1,11 @@
 .carousel-inner {
-  height:85vh;
+  height: 85vh;
+  vertical-align: middle
+}
+
+.item img {
+  width: 100%;
+
 }
 
 #sm-display {
@@ -14,12 +20,18 @@
   img {
     width: 97%;
     padding-bottom: 20px;
-    align-items:center;
+    align-items: center;
     display: block;
     margin: 0px auto;
   }
 
-  #myCarousel{
+  #myCarousel {
     display: none;
+  }
+}
+
+@media (max-width: 2560px) {
+  #myCarousel{
+    margin-top: 2.5%;
   }
 }

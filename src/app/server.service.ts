@@ -9,13 +9,13 @@ export class ServerService {
     }
 
     storeStudentRole(user) {
-        return this.http.post('https://edzienniklekcyjny-ea2c0.firebaseio.com/students_role.json', user)
+        return this.http.post('https://edzienniklekcyjny-ea2c0.firebaseio.com/users.json', user)
     }
 
     getStudents() {
 
         let students = [];
-        return this.http.get('https://edzienniklekcyjny-ea2c0.firebaseio.com/students_role.json')
+        return this.http.get('https://edzienniklekcyjny-ea2c0.firebaseio.com/users.json')
             .map(
                 (response: Response) => {
                     const data = response.json();
@@ -31,7 +31,7 @@ export class ServerService {
     }
 
     getCurrentUserRole(user) {
-        return this.http.get('https://edzienniklekcyjny-ea2c0.firebaseio.com/students_role.json').map(
+        return this.http.get('https://edzienniklekcyjny-ea2c0.firebaseio.com/users.json').map(
             (response: Response) => {
                 const data = response.json();
                 let array = (Object.keys(data).map(k => data[k]));

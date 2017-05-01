@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     const rola = form.value.rola;
-    const user = {email: email, haslo: password, role: rola}
+    const user = {email: email, role: rola};
     this.serverService.storeStudentRole(user).subscribe(
       (response) => console.log(response),
       (error) => console.log(error));

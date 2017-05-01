@@ -24,13 +24,17 @@ export class SignupComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     const rola = form.value.rola;
-    const user = {email: email, haslo: password, role: rola};
-    if (rola === "student"){
-      this.serverService.storeStudentRole(user).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error));
+    const user = {email: email, haslo: password, role: rola}
+    this.serverService.storeStudentRole(user).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error));
+    if (rola === "student" || rola === "nauczyciel" || rola === "sekretarka") {
+      this.authService.signUp(email, password);
     }
-    this.authService.signUp(email, password);
+    else {
+      form.resetForm();
+      this.router.navigate((['/signup']));
+    }
   }
 
   getRole() {

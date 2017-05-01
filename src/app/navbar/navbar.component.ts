@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit, AfterViewInit{
         (error) => console.log(error),
         () => {
           this.roles;
+          console.log(this.roles);
         });
   }
 

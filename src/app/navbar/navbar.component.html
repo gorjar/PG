@@ -13,7 +13,7 @@
       <ul id="nav1" class="nav navbar-nav navbar-left" >
         <ng-template [ngIf]="(authService.isSignIn() && roles==='nauczyciel') || (authService.isSignIn() && roles==='sekretarka')">
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="students" class="mainmenu" routerLink="/students">Uczniowie</a></li>
+            <a id="students" class="mainmenu" routerLink="/students">Studenci</a></li>
         </ng-template>
         <ng-template [ngIf]="authService.isSignIn()">
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

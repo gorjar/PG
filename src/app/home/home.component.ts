@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { ServerService } from '../server.service';
 import * as firebase from 'firebase'
 
@@ -10,8 +9,6 @@ import * as firebase from 'firebase'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-
-  @ViewChild(NavbarComponent) navbar: NavbarComponent;
 
   roles = "";
 
@@ -24,10 +21,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if(firebase.auth().currentUser != null) {
       this.getRole();
     }
-  }
-
-  logOut(){
-    this.authService.logOut();
   }
 
   getRole(){

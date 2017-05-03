@@ -1,11 +1,7 @@
 import {
-  Component, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked,
-  AfterContentChecked, OnChanges, DoCheck
+  Component, OnInit
 } from '@angular/core';
 import * as firebase from 'firebase'
-import {AuthService} from "./auth/auth.service";
-import { ServerService } from './server.service';
-
 
 
 @Component({
@@ -13,11 +9,9 @@ import { ServerService } from './server.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnChanges{
+export class AppComponent implements OnInit{
 
-  roles: any;
-
-  constructor(private authService: AuthService, private server: ServerService){}
+  constructor(){}
 
   ngOnInit() {
     firebase.initializeApp({
@@ -25,21 +19,4 @@ export class AppComponent implements OnInit, OnChanges{
         authDomain: "edzienniklekcyjny-ea2c0.firebaseapp.com"
     });
   };
-
-  ngOnChanges(){
-    console.log("oninit");
-  }
-
-  logOut(){
-  this.authService.logOut();
-  console.log("praca");
-  }
-
-  getRole(){
-    const user = firebase.auth().currentUser.email;
-    this.server.getCurrentUserRole(user).subscribe(
-        (roles: any) => (this.roles = roles),
-        (error) => console.log(error));
-        console.log(this.roles);
-  }
 }

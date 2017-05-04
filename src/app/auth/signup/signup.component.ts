@@ -25,27 +25,23 @@ export class SignupComponent implements OnInit {
     const password = form.value.password;
     const rola = form.value.rola;
     const user = {email: email, role: rola};
-    this.serverService.storeStudentRole(user).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error));
-    if (rola === "student" || rola === "nauczyciel" || rola === "sekretarka") {
-      this.authService.signUp(email, password);
-    }
-    else {
-      form.resetForm();
-      this.router.navigate((['/signup']));
+    if(rola!==""){
+      if(confirm("Potwierdź rolę użytkownika: " + email + "\n\n Wybrana rola: " + rola)==true) {
+        this.serverService.storeStudentRole(user).subscribe(
+          (response) => console.log(response),
+          (error) => console.log(error));
+        this.authService.signUp(email, password);
+      }
     }
   }
 
   getRole() {
     const user = firebase.auth().currentUser.email;
-    console.log(user);
     this.serverService.getCurrentUserRole(user).subscribe(
         (response: any) => (this.roles = response),
         (error) => console.log(error),
         () => {
           this.roles;
-          console.log(this.roles);
         });
   }
 }

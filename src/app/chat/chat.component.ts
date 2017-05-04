@@ -44,7 +44,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     if (this.message != ""){
       this.messages.push({author: this.student, datetime: this.date, text: this.message});
       this.server.onSend(this.messages).subscribe(
-          () => console.log("1"),
+          () => console.log(""),
           (error) => console.log(error),
           () => {
             form.resetForm();

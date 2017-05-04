@@ -26,7 +26,8 @@ export class SignupComponent implements OnInit {
     const rola = form.value.rola;
     const user = {email: email, role: rola};
     if(rola!==""){
-      if(confirm("Potwierdź rolę użytkownika: " + email + "\n\n Wybrana rola: " + rola)==true) {
+      if(confirm("Potwierdź dane nowego użytkownika" + "\n\nEmail: " + email + "\nHasło: " + password + "\nRola: " +
+          rola)==true) {
         this.serverService.storeStudentRole(user).subscribe(
           (response) => console.log(response),
           (error) => console.log(error));

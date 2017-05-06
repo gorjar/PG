@@ -1,18 +1,18 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
 import { ServerService } from '../server.service';
 import * as firebase from 'firebase'
+import { AuthService } from '../auth/auth.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class NavbarComponent implements OnInit, AfterViewInit{
 
-  roles = "";
+  roles:any;
 
-  constructor(private authService: AuthService, private server: ServerService){}
+  constructor(private authService: AuthService, private serverService: ServerService){}
 
   ngOnInit() {
   };
@@ -23,9 +23,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getRole(){
+  getRole() {
     const user = firebase.auth().currentUser.email;
-    this.server.getCurrentUserRole(user).subscribe(
+    this.serverService.getCurrentUserRole(user).subscribe(
         (response: any) => (this.roles = response),
         (error) => console.log(error),
         () => {
@@ -33,4 +33,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         });
   }
 
+  logOut(){
+    this.authService.logOut();
+  }
 }

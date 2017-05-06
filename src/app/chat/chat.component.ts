@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
-import { Http, Response } from '@angular/http'
+import { Response } from '@angular/http'
 import * as firebase from 'firebase'
 import { ServerService } from '../server.service';
 import { NgForm } from '@angular/forms';
@@ -11,22 +11,29 @@ import { NgForm } from '@angular/forms';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewInit {
 
   messages = [];
   tab = [];
   student = firebase.auth().currentUser.email;
   message = '';
   date: any;
+  roles:any;
 
-  constructor(private server: ServerService, private auth: AuthService, private router: Router, private http: Http) {}
+  constructor(private server: ServerService, private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
-    if(this.auth.token == null){
+    ngOnInit() {
+    if(this.authService.token == null){
       this.router.navigate((['/']));
     }
     this.getMess()
-  }
+    }
+
+    ngAfterViewInit(){
+        if(firebase.auth().currentUser != null) {
+            this.getRole();
+        }
+    }
 
   onSend(form: NgForm) {
     this.tab = [];
@@ -37,7 +44,7 @@ export class ChatComponent implements OnInit {
     if (this.message != ""){
       this.messages.push({author: this.student, datetime: this.date, text: this.message});
       this.server.onSend(this.messages).subscribe(
-          () => console.log("1"),
+          () => console.log(""),
           (error) => console.log(error),
           () => {
             form.resetForm();
@@ -67,4 +74,14 @@ export class ChatComponent implements OnInit {
               (error) => console.log(error)
         );
   }
+
+    getRole() {
+        const user = firebase.auth().currentUser.email;
+        this.server.getCurrentUserRole(user).subscribe(
+            (response: any) => (this.roles = response),
+            (error) => console.log(error),
+            () => {
+                this.roles;
+            });
+    }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
+import { ServerService } from '../server.service';
 
 @Component({
   selector: 'app-schedule',
@@ -9,12 +10,24 @@ import { Router } from '@angular/router';
 })
 export class ScheduleComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  schedule:any;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private serverService:ServerService
+  ) {}
 
   ngOnInit() {
     if(this.authService.token == null){
       this.router.navigate((['/']));
     }
+
+    this.serverService.getSchedule().subscribe(schedule =>{
+      console.log(schedule);
+      this.schedule = schedule;
+    })
+
   }
 
 }

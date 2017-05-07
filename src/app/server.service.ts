@@ -7,6 +7,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 export class ServerService {
 
   subjects: FirebaseListObservable<any[]>;
+  schedule: FirebaseListObservable<any[]>;
 
     constructor(private http: Http, private af:AngularFireDatabase) {
     }
@@ -67,6 +68,11 @@ export class ServerService {
     this.subjects=this.af.list('/subjects') as FirebaseListObservable<Subject[]>;
     return this.subjects;
   }
+
+  getSchedule(){
+    this.schedule=this.af.list('/schedule') as FirebaseListObservable<Schedule[]>;
+    return this.schedule;
+  }
 }
 
 interface Subject{
@@ -74,3 +80,15 @@ interface Subject{
   name?:string;
   lecturer?:string;
 }
+
+interface Schedule{
+  $key?:string;
+  date?:string;
+  duration?:string;
+  lecturer?:string;
+  room?:string;
+  subject?:string;
+  time?:string;
+  type?:string;
+}
+

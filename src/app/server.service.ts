@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http'
 import 'rxjs/Rx';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Schedule } from './schedule/schedule';
+import { Subject } from './subjects/subject';
+
 
 @Injectable()
 export class ServerService {
@@ -73,22 +76,26 @@ export class ServerService {
     this.schedule=this.af.list('/schedule') as FirebaseListObservable<Schedule[]>;
     return this.schedule;
   }
+
+  addSched(sched){
+    return this.schedule.push(sched);
+
+  }
+
+  updateSched(id, sched){
+
+    return this.schedule.update(id,sched);
+
+  }
+
+  deleteShed(id){
+    return this.schedule.remove(id);
+
+
+  }
 }
 
-interface Subject{
-  $key?:string;
-  name?:string;
-  lecturer?:string;
-}
 
-interface Schedule{
-  $key?:string;
-  date?:string;
-  duration?:string;
-  lecturer?:string;
-  room?:string;
-  subject?:string;
-  time?:string;
-  type?:string;
-}
+
+
 

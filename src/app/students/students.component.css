@@ -10,3 +10,7 @@ tr:hover {
 th {
   background-color: #e7e7e7;
 }
+
+.form-control:focus {
+  border-color: #e7e7e7;
+}

@@ -21,8 +21,6 @@ import { ServerService } from './server.service';
 import { ChatComponent } from './chat/chat.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

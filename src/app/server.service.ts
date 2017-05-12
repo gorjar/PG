@@ -72,6 +72,18 @@ export class ServerService {
     return this.subjects;
   }
 
+  addSubject(subject){
+    return this.subjects.push(subject);
+  }
+
+  updateSubject(id, subject){
+    return this.subjects.update(id,subject);
+  }
+
+  deleteSubject(id){
+    return this.subjects.remove(id);
+  }
+
   getSchedule(){
     this.schedule=this.af.list('/schedule') as FirebaseListObservable<Schedule[]>;
     return this.schedule;
@@ -79,19 +91,14 @@ export class ServerService {
 
   addSched(sched){
     return this.schedule.push(sched);
-
   }
 
   updateSched(id, sched){
-
     return this.schedule.update(id,sched);
-
   }
 
   deleteShed(id){
     return this.schedule.remove(id);
-
-
   }
 }
 

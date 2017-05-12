@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http'
 import 'rxjs/Rx';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Injectable()
 export class ServerService {
 
-    constructor(private http: Http) {
+  subjects: FirebaseListObservable<any[]>;
+
+    constructor(private http: Http, private af:AngularFireDatabase) {
     }
 
     storeStudentRole(user) {
@@ -59,4 +62,15 @@ export class ServerService {
             }
         )
     }
+
+  getSubjects(){
+    this.subjects=this.af.list('/subjects') as FirebaseListObservable<Subject[]>;
+    return this.subjects;
+  }
+}
+
+interface Subject{
+  $key?:string;
+  name?:string;
+  lecturer?:string;
 }

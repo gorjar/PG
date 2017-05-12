@@ -12,124 +12,112 @@
       <th>Typ</th>
       <th>Sala</th>
       <th>Prowadzący</th>
-      <th></th>
+      <th *ngIf="currentRole==='sekretarka'"></th>
+      <th *ngIf="currentRole==='sekretarka'"></th>
     </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let sched of schedule" >
     <tr>
-      <td>2017-05-13</td>
-      <td>11.00-12.30</td>
-      <td>2</td>
-      <td>Testowanie oprogramowania</td>
-      <td>W</td>
-      <td>NE 230</td>
-      <td>mgr Adrian Nicoś</td>
-      <td><button type="button" class="btn btn-primary">Usuń</button></td>
-    </tr>
-    <tr>
-      <td>2017-05-13</td>
-      <td>12.45-14.15</td>
-      <td>2</td>
-      <td>Testowanie oprogramowania</td>
-      <td>L</td>
-      <td>EA 527</td>
-      <td>mgr Adrian Nicoś</td>
-      <td><button type="button" class="btn btn-primary">Usuń</button></td>
-    </tr>
-    <tr>
-      <td>2017-05-13</td>
-      <td>14.30-17.00</td>
-      <td>3</td>
-      <td>Zaawansowane programowanie w języku skryptowym</td>
-      <td>L</td>
-      <td>EA 527</td>
-      <td>inż. Maciej Walczak</td>
-      <td><button type="button" class="btn btn-primary">Usuń</button></td>
-    </tr>
-    <tr>
-      <td>2017-05-13</td>
-      <td>17.15-18.45</td>
-      <td>2</td>
-      <td>Projekt grupowy</td>
-      <td>P</td>
-      <td>EA 527</td>
-      <td>mgr inż. Kamil Maraś</td>
-      <td><button type="button" class="btn btn-primary">Usuń</button></td>
-    </tr>
-    <tr>
-      <td>2017-05-14</td>
-      <td>8.30-11.45</td>
-      <td>4</td>
-      <td>Zaawansowane programowanie w języku skryptowym</td>
-      <td>L</td>
-      <td>EA 527</td>
-      <td>inż. Maciej Walczak</td>
-      <td><button type="button" class="btn btn-primary">Usuń</button></td>
-    </tr>
-    <tr>
-      <td>2017-05-14</td>
-      <td>12.00-13.30</td>
-      <td>2</td>
-      <td>Testowanie oprogramowania</td>
-      <td>L</td>
-      <td>EA 527</td>
-      <td>mgr Adrian Nicoś</td>
-      <td><button type="button" class="btn btn-primary">Usuń</button></td>
-    </tr>
-    <tr>
-      <td>2017-05-14</td>
-      <td>13.45-16.15</td>
-      <td>2</td>
-      <td>Projekt grupowy</td>
-      <td>P</td>
-      <td>EA 527</td>
-      <td>mgr inż. Kamil Maraś</td>
-      <td><button type="button" class="btn btn-primary">Usuń</button></td>
+      <td>{{sched.date}}</td>
+      <td>{{sched.time}}</td>
+      <td>{{sched.duration}}</td>
+      <td>{{sched.subject}}</td>
+      <td>{{sched.type}}</td>
+      <td>{{sched.room}}</td>
+      <td>{{sched.lecturer}}</td>
+      <td *ngIf="currentRole==='sekretarka'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(sched)">Edycja</button></td>
+      <td *ngIf="currentRole==='sekretarka'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(sched.$key)">Usuń</button></td>
     </tr>
     </tbody>
   </table>
+  <button *ngIf="currentRole==='sekretarka'" type="button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
   <p>W - Wykłady</p>
   <p>L - Laboratorium</p>
   <p>P - Projekty</p>
   <hr>
-</div>
-=======
+
+  <div *ngIf="editInit">
+    <div class="container">
+
+      <h3>Edycja pozycji w Planie Zajęć</h3>
 
 
-<div class="container">
-  <h3>Dodawanie pozycji do Planu Zajęć</h3>
-  <form>
-    <div class="form-group">
-      <div class="col-xs-12">
-        <label for="ex1">Data</label>
-        <input class="form-control" id="ex1" type="Date">
-      </div>
-      <div class="col-xs-12">
-        <label for="ex2">Godziny</label>
-        <input class="form-control" id="ex2" type="text">
-      </div>
-      <div class="col-xs-12">
-        <label for="ex3">L. godz.</label>
-        <input class="form-control" id="ex3" type="text">
-      </div>
-      <div class="col-xs-12">
-        <label for="ex4">Przedmiot</label>
-        <input class="form-control" id="ex4" type="text">
-      </div>
-      <div class="col-xs-12">
-        <label for="ex5">Typ</label>
-        <input class="form-control" id="ex5" type="text">
-      </div>
-      <div class="col-xs-12">
-        <label for="ex6">Sala</label>
-        <input class="form-control" id="ex6" type="text">
-      </div>
-      <div class="col-xs-12">
-        <label for="ex7">Prowadzący</label>
-        <input class="form-control" id="ex7" type="text">
-      </div>
-      <button type="button" class="btn btn-primary">Dodaj</button>
+        <div class="form-group">
+          <div class="col-xs-12">
+            <label for="ex1">Data</label>
+            <input [(ngModel)]="selectedSched.date" placeholder="date" class="form-control" id="ex1" type="Date"/>
+          </div>
+          <div class="col-xs-12">
+            <label for="ex2">Godziny</label>
+            <input [(ngModel)]="selectedSched.time" placeholder="time" class="form-control" id="ex2" type="text">
+          </div>
+          <div class="col-xs-12">
+            <label for="ex3">L. godz.</label>
+            <input [(ngModel)]="selectedSched.duration" placeholder="duration" class="form-control" id="ex3" type="text">
+          </div>
+          <div class="col-xs-12">
+            <label for="ex4">Przedmiot</label>
+            <input [(ngModel)]="selectedSched.subject" placeholder="subject" class="form-control" id="ex4" type="text">
+          </div>
+          <div class="col-xs-12">
+            <label for="ex5">Typ</label>
+            <input [(ngModel)]="selectedSched.type" placeholder="time" class="form-control" id="ex5" type="text">
+          </div>
+          <div class="col-xs-12">
+            <label for="ex6">Sala</label>
+            <input [(ngModel)]="selectedSched.room" placeholder="room" class="form-control" id="ex6" type="text">
+          </div>
+          <div class="col-xs-12">
+            <label for="ex7">Prowadzący</label>
+            <input [(ngModel)]="selectedSched.lecturer" placeholder="lecturer" class="form-control" id="ex7" type="text">
+          </div>
+          <button type="button" class="btn btn-primary" (click)="onEditSubmit(selectedSched.$key, selectedSched)">Zapisz zmiany</button>
+        </div>
     </div>
-  </form>
-  <hr>
+  </div>
+
+  <div *ngIf="initSched">
+
+
+    <div class="container">
+
+      <h3>Dodanie pozycji do Planu Zajęć</h3>
+
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <label for="ex1">Data</label>
+          <input [(ngModel)]="addedSched.date" placeholder="date" class="form-control" id="ex1" type="Date"/>
+        </div>
+        <div class="col-xs-12">
+          <label for="ex2">Godziny</label>
+          <input [(ngModel)]="addedSched.time" placeholder="time" class="form-control" id="ex2" type="text">
+        </div>
+        <div class="col-xs-12">
+          <label for="ex3">L. godz.</label>
+          <input [(ngModel)]="addedSched.duration" placeholder="duration" class="form-control" id="ex3" type="text">
+        </div>
+        <div class="col-xs-12">
+          <label for="ex4">Przedmiot</label>
+          <input [(ngModel)]="addedSched.subject" placeholder="subject" class="form-control" id="ex4" type="text">
+        </div>
+        <div class="col-xs-12">
+          <label for="ex5">Typ</label>
+          <input [(ngModel)]="addedSched.type" placeholder="time" class="form-control" id="ex5" type="text">
+        </div>
+        <div class="col-xs-12">
+          <label for="ex6">Sala</label>
+          <input [(ngModel)]="addedSched.room" placeholder="room" class="form-control" id="ex6" type="text">
+        </div>
+        <div class="col-xs-12">
+          <label for="ex7">Prowadzący</label>
+          <input [(ngModel)]="addedSched.lecturer" placeholder="lecturer" class="form-control" id="ex7" type="text">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="onAddSubmit(addedSched)">Dodaj</button>
+      </div>
+    </div>
+
+  </div>
+
+
 </div>

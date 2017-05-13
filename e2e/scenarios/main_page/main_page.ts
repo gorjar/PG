@@ -17,6 +17,8 @@ describe('Dziennik Lekcyjny Main Page', () => {
     let SCHEDULE_BUTTON = element(by.id('schedule'));
     let SETTINGS_BUTTON = element(by.id('settings'));
     let ABOUT_BUTTON = element(by.id('about'));
+    let ADD_BUTTON = element(by.id('add-button'));
+    let STUDENTS_DROPDOWN = element(by.id('student'));
 
     let until = protractor.ExpectedConditions;
 
@@ -70,4 +72,49 @@ describe('Dziennik Lekcyjny Main Page', () => {
       browser.wait(until.presenceOf(ABOUT_BUTTON), 5000, 'about button not available');
       expect(ABOUT_BUTTON.isPresent()).toBe(true);
     });
+
+  it('studentComponent droplist functionality presence', () => {
+    expect(LOGIN_BUTTON.isPresent()).toBe(true);
+    LOGIN_BUTTON.click();
+    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
+    EMAIL_FIELD.sendKeys(LoginData.correct_login);
+    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
+    expect(SIGN_IN_BUTTON.isPresent()).toBe(true);
+    SIGN_IN_BUTTON.click();
+    browser.sleep(2000);
+    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'student dropdown not aviable');
+    STUDENTS_BUTTON.click();
+    browser.wait(until.presenceOf(STUDENTS_DROPDOWN), 5000, 'add button not aviable');
+  });
+
+  it('subjectsComponent adding  functionality presence', () => {
+    expect(LOGIN_BUTTON.isPresent()).toBe(true);
+    LOGIN_BUTTON.click();
+    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
+    EMAIL_FIELD.sendKeys(LoginData.correct_login);
+    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
+    expect(SIGN_IN_BUTTON.isPresent()).toBe(true);
+    SIGN_IN_BUTTON.click();
+    browser.sleep(2000);
+    browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'subjects button not aviable');
+    SUBJECTS_BUTTON.click();
+    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not aviable');
+    ADD_BUTTON.click();
+  });
+
+  it('scheduleComponent adding  functionality presence', () => {
+    expect(LOGIN_BUTTON.isPresent()).toBe(true);
+    LOGIN_BUTTON.click();
+    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
+    EMAIL_FIELD.sendKeys(LoginData.correct_login);
+    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
+    expect(SIGN_IN_BUTTON.isPresent()).toBe(true);
+    SIGN_IN_BUTTON.click();
+    browser.sleep(2000);
+    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule button not aviable');
+    SCHEDULE_BUTTON.click();
+    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not aviable');
+    ADD_BUTTON.click();
+  });
+
 });

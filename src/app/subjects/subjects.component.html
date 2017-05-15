@@ -65,7 +65,7 @@
           <label for="ex2">Wykładowca</label>
           <input [(ngModel)]="selectedSubject.lecturer" placeholder="lecturer" class="form-control" id="ex2" type="text">
         </div>
-        <button type="button" class="btn btn-primary" (click)="onEditSubmit(selectedSubject.$key, selectedSubject)">Zapisz zmiany</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="onEditSubmit(selectedSubject.$key, selectedSubject)">Zapisz zmiany</button>
       </div>
     </div>
   </div>
@@ -80,13 +80,13 @@
       <div class="form-group">
         <div class="col-xs-12">
           <label for="ex1">Przedmiot</label>
-          <input [(ngModel)]="addedSubject.name" placeholder="Przedmiot" class="form-control" id="ex1" type="text"/>
+          <input [(ngModel)]="addedSubject.name" placeholder="Przedmiot" class="form-control" id="ex11" type="text"/>
         </div>
         <div class="col-xs-12">
           <label for="ex2">Wykładowca</label>
-          <input [(ngModel)]="addedSubject.lecturer" placeholder="Wykładowca" class="form-control" id="ex2" type="text">
+          <input [(ngModel)]="addedSubject.lecturer" placeholder="Wykładowca" class="form-control" id="ex12" type="text">
         </div>
-        <button type="button" class="btn btn-primary" (click)="onAddSubmit(addedSubject)">Dodaj</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="onAddSubmit(addedSubject)">Dodaj</button>
       </div>
     </div>
   </div>

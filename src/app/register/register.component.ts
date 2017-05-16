@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {User} from '../user';
+
 
 @Component({
   selector: 'app-register',

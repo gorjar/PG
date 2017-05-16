@@ -16,11 +16,11 @@
           <li><a id="schedule"  [routerLink]="['/schedule']">Plan zajęć</a></li>
           <li><a id="settings"  [routerLink]="['/settings']">Ustawienia</a></li>
           <li><a id="about"  [routerLink]="['/about']">O aplikacji</a></li>
-          <li><a id="chat"  [routerLink]="['/chat']">Forum</a></li>
+          <li><a id="chat"  >Forum</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!(afAuth.authState | async)"><a (click)="login()">Zaloguj</a></li>
-        <li *ngIf="(afAuth.authState | async)"><a (click)="logout()">Wyloguj</a></li>
+        <li *ngIf="!(afAuth.authState | async)"><a [routerLink]="['/login']">Zaloguj</a></li>
+        <li *ngIf="(afAuth.authState | async)"><a (click)="onLogout()">Wyloguj</a></li>
         <li *ngIf="!(afAuth.authState | async)"><a [routerLink]="['/register']">Zarejestruj</a></li>
       </ul>
     </div>

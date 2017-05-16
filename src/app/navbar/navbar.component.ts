@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ServerService } from '../server.service';
-import * as firebase from 'firebase/app';
-import Promise = firebase.Promise;
+
+
 
 
 @Component({
@@ -21,13 +21,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   };
 
-  login(){
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  }
-
-
-  logout(){
+  onLogout(){
     this.afAuth.auth.signOut();
+    console.log('ok');
   }
 
 

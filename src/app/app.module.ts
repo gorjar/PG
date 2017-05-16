@@ -23,6 +23,7 @@ import { ServerService } from './server.service';
 
 //import { ChatComponent } from './chat/chat.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
   {path: 'subjects', component: SubjectsComponent},
   {path: 'schedule', component: ScheduleComponent},
   {path: 'settings', component: SettingsComponent},
-  //{path: 'chat', component: ChatComponent}
+  //{path: 'chat', component: ChatComponent},
+  {path: 'register', component: RegisterComponent}
 ];
 
 
@@ -49,6 +51,7 @@ const appRoutes: Routes = [
     SettingsComponent,
     //ChatComponent,
     NavbarComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    ServerService,
+    ServerService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+/*import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Response } from '@angular/http'
 import * as firebase from 'firebase'
@@ -20,20 +19,13 @@ export class ChatComponent implements OnInit, AfterViewInit {
   date: any;
   roles:any;
 
-  constructor(private server: ServerService, private authService: AuthService, private router: Router) {}
+  constructor(private server: ServerService, private router: Router) {}
 
     ngOnInit() {
-    if(this.authService.token == null){
-      this.router.navigate((['/']));
-    }
-    this.getMess()
+
     }
 
-    ngAfterViewInit(){
-        if(firebase.auth().currentUser != null) {
-            this.getRole();
-        }
-    }
+
 
   onSend(form: NgForm) {
     this.tab = [];
@@ -85,3 +77,4 @@ export class ChatComponent implements OnInit, AfterViewInit {
             });
     }
 }
+*/

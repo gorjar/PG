@@ -1,39 +1,34 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { ServerService } from '../server.service';
-import * as firebase from 'firebase'
-import { AuthService } from '../auth/auth.service';
+import * as firebase from 'firebase/app';
+import Promise = firebase.Promise;
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit, AfterViewInit{
+export class NavbarComponent implements OnInit {
 
-  roles:any;
 
-  constructor(private authService: AuthService, private serverService: ServerService){}
+  constructor(
+    private serverService: ServerService,
+    public afAuth:AngularFireAuth,
+  ){}
 
   ngOnInit() {
   };
 
-  ngAfterViewInit(){
-    if(firebase.auth().currentUser != null) {
-      this.getRole();
-    }
+  login(){
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
-  getRole() {
-    const user = firebase.auth().currentUser.email;
-    this.serverService.getCurrentUserRole(user).subscribe(
-        (response: any) => (this.roles = response),
-        (error) => console.log(error),
-        () => {
-          this.roles;
-        });
+
+  logout(){
+    this.afAuth.auth.signOut();
   }
 
-  logOut(){
-    this.authService.logOut();
-  }
+
 }

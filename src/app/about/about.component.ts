@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-about',
@@ -9,13 +7,9 @@ import { Router } from '@angular/router';
 })
 export class AboutComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor( ) {}
 
   ngOnInit() {
-    if(this.auth.token == null){
-      this.router.navigate((['/']));
-    }
+
   }
-
 }
-

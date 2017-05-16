@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
 import * as firebase from 'firebase'
@@ -11,30 +10,14 @@ import * as firebase from 'firebase'
 })
 export class StudentsComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router, private server: ServerService) {}
-  students = [];
-  roles: any;
+  constructor(private router: Router, private server: ServerService) {}
+
+
   ngOnInit() {
-    if (this.authService.token == null) {
-      this.router.navigate((['/']));
-    }
-    else {
-      this.listStudents();
-      this.roles = this.getRole();
-    }
+
   }
 
-  listStudents(){
-    this.server.getStudents()
-        .subscribe(
-        (students: any[]) => (this.students = students),
-        (error) => console.log(error));
-  }
 
-  getRole(){
-    const user = firebase.auth().currentUser.email;
-    this.server.getCurrentUserRole(user).subscribe(
-        (roles: any) => (this.roles = roles),
-        (error) => console.log(error));
-  }
+
+
 }

@@ -2,24 +2,41 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {RouterModule, Routes} from'@angular/router';
 import { AngularFireModule} from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
+import {ReactiveFormsModule} from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
-import { routing } from './app.routing';
 import { HomeComponent } from './home/home.component';
 import { StudentsComponent } from './students/students.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { SettingsComponent } from './settings/settings.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { SigninComponent } from './auth/signin/signin.component';
-import {AuthService} from "./auth/auth.service";
+
+
 import { ServerService } from './server.service';
-import { ChatComponent } from './chat/chat.component';
+
+//import { ChatComponent } from './chat/chat.component';
 import { NavbarComponent } from './navbar/navbar.component';
+
+
+
+
+const appRoutes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'students', component: StudentsComponent},
+  {path: 'subjects', component: SubjectsComponent},
+  {path: 'schedule', component: ScheduleComponent},
+  {path: 'settings', component: SettingsComponent},
+  //{path: 'chat', component: ChatComponent}
+];
+
 
 @NgModule({
   declarations: [
@@ -30,20 +47,22 @@ import { NavbarComponent } from './navbar/navbar.component';
     SubjectsComponent,
     ScheduleComponent,
     SettingsComponent,
-    SignupComponent,
-    SigninComponent,
-    ChatComponent,
-    NavbarComponent
+    //ChatComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
+    AngularFireDatabaseModule, // imports firebase/database, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     FormsModule,
     HttpModule,
-    routing
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, ServerService],
+  providers: [
+    ServerService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

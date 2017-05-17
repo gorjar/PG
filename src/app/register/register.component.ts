@@ -17,9 +17,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(email: string, password: string){
+  onRegisterSubmit(email: string, password: string){
     this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-    console.log('ok');
   }
 
 }

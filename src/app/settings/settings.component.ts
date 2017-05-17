@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServerService } from '../server.service';
 
 @Component({
   selector: 'app-settings',
@@ -8,9 +9,15 @@ import { Router } from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  users:any;
+
+  constructor(private serverService: ServerService) {}
 
   ngOnInit() {
+    this.serverService.getUsers().subscribe(users =>{
+      console.log(users);
+      this.users = users;
+    })
 
   }
 

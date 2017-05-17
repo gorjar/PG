@@ -4,6 +4,7 @@ import 'rxjs/Rx';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Schedule } from './schedule/schedule';
 import { Subject } from './subjects/subject';
+import { User } from './user';
 
 
 @Injectable()
@@ -11,6 +12,7 @@ export class ServerService {
 
   subjects: FirebaseListObservable<any[]>;
   schedule: FirebaseListObservable<any[]>;
+  users: FirebaseListObservable<any[]>;
 
     constructor(private http: Http, private af:AngularFireDatabase) {
     }
@@ -72,6 +74,16 @@ export class ServerService {
     return this.subjects;
   }
 
+  getSchedule(){
+    this.schedule=this.af.list('/schedule') as FirebaseListObservable<Schedule[]>;
+    return this.schedule;
+  }
+
+  getUsers(){
+    this.users=this.af.list('/users') as FirebaseListObservable<User[]>;
+    return this.users;
+  }
+
   addSubject(subject){
     return this.subjects.push(subject);
   }
@@ -84,10 +96,7 @@ export class ServerService {
     return this.subjects.remove(id);
   }
 
-  getSchedule(){
-    this.schedule=this.af.list('/schedule') as FirebaseListObservable<Schedule[]>;
-    return this.schedule;
-  }
+
 
   addSched(sched){
     return this.schedule.push(sched);

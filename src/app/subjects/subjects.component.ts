@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
 import { Subject } from './subject';
 
@@ -13,7 +12,6 @@ export class SubjectsComponent implements OnInit {
   subjects:any;
   detailsInit:boolean =false;
 
-  currentRole = this.serverService.currentUserRole;
   selectedSubject:Subject;
   editInit:boolean;
   initSubject: boolean;
@@ -23,9 +21,7 @@ export class SubjectsComponent implements OnInit {
     ''
   ];
 
-
   constructor(
-    private router: Router,
     private serverService:ServerService
   ) {}
 
@@ -36,8 +32,6 @@ export class SubjectsComponent implements OnInit {
       this.subjects = subjects;
     })
   }
-
-
 
   onEditClick(subject:Subject) {
     this.editInit = true;

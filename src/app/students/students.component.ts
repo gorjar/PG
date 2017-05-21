@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
-import * as firebase from 'firebase'
+import { Student } from './student';
 
 @Component({
   selector: 'app-students',
@@ -10,14 +9,53 @@ import * as firebase from 'firebase'
 })
 export class StudentsComponent implements OnInit {
 
-  constructor(private router: Router, private server: ServerService) {}
+  students:any;
+  detailsInit:boolean =false;
 
+  selectedStudent:Student;
+  editInit:boolean;
+  initStudent: boolean;
+  addedStudent: Student;
+  emptyStudent:Student = [
+    '',
+    '',
+    ''
+  ];
+
+  constructor(
+    private serverService:ServerService
+  ) {}
 
   ngOnInit() {
 
+    this.serverService.getStudents().subscribe(students =>{
+      console.log(students);
+      this.students = students;
+    })
   }
 
+  onEditClick(student:Student) {
+    this.editInit = true;
+    this.selectedStudent = student;
+  }
 
+  onEditSubmit(id, student){
+    this.serverService.updateStudent(id, student);
+    this.editInit=false;
+  }
 
+  onAddInit(){
+    this.initStudent = true;
+    this.addedStudent = this.emptyStudent;
+  }
+
+  onAddSubmit(student){
+    this.serverService.addStudent(student);
+    this.initStudent=false;
+  }
+
+  onDeleteClick(id){
+    this.serverService.deleteStudent(id);
+  }
 
 }

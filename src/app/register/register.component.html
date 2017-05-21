@@ -1,26 +1,30 @@
 <div class="container">
-<h3>Zarejestruj się</h3>
-<form (submit)="onRegisterSubmit(email, password)">
-  <div class="form-group">
-    <label>Imię</label>
-    <input class="form-control" type="text" id="name" [(ngModel)]="name" name="name" >
+
+  <div class="container">
+
+    <h3>Rejestracja</h3>
+
+
+    <div class="form-group">
+      <div class="col-xs-12">
+        <label for="ex1">Imię</label>
+        <input [(ngModel)]="name" placeholder="name" class="form-control" id="ex1" type="text"/>
+      </div>
+      <div class="col-xs-12">
+        <label for="ex2">Nazwisko</label>
+        <input [(ngModel)]="lastname" placeholder="lastname" class="form-control" id="ex2" type="text">
+      </div>
+      <div class="col-xs-12">
+        <label for="ex3">E-mail</label>
+        <input [(ngModel)]="email" placeholder="e-mail" class="form-control" id="ex3" type="text">
+      </div>
+      <div class="col-xs-12">
+        <label for="ex4">Hasło</label>
+        <input [(ngModel)]="password" placeholder="password" class="form-control" id="ex4" type="text">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="onRegisterSubmit(email, password)">Dodaj</button>
+    </div>
   </div>
-  <div class="form-group">
-    <label>Nazwisko</label>
-    <input class="form-control" type="text" id="lastname" [(ngModel)]="lastname" name="lastname">
-  </div>
-  <div class="form-group">
-    <label>Adres e-mail</label>
-    <input class="form-control" type="email" id="email" [(ngModel)]="email" name="email">
-  </div>
-  <div class="form-group">
-    <label>Hasło</label>
-    <input class="form-control" type="password" id="password" [(ngModel)]="password" name="password">
-  </div>
-  <div class="form-group">
-    <label for="confirmpassword">Hasło</label>
-    <input class="form-control" type="password" id="confirmpassword" name="confirmpassword">
-  </div>
-  <button type="submit" value="submit" class="btn btn-primary" >Sign Up</button>
-</form>
+
+
 </div>

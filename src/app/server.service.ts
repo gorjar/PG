@@ -84,34 +84,34 @@ export class ServerService {
     return this.users;
   }
 
+
   addSubject(subject){
     return this.subjects.push(subject);
   }
 
-  updateSubject(id, subject){
-    return this.subjects.update(id,subject);
-  }
-
-  deleteSubject(id){
-    return this.subjects.remove(id);
-  }
-
-
-
   addSched(sched){
     return this.schedule.push(sched);
+  }
+
+  addUser(user){
+    return this.users.push(user);
+  }
+
+
+  updateSubject(id, subject){
+    return this.subjects.update(id,subject);
   }
 
   updateSched(id, sched){
     return this.schedule.update(id,sched);
   }
 
+
+  deleteSubject(id){
+    return this.subjects.remove(id);
+  }
+
   deleteShed(id){
     return this.schedule.remove(id);
   }
 }
-
-
-
-
-

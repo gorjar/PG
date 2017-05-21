@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <ul class="list-group" *ngFor="let message of chat">
-      <p id="author"><strong>autor:</strong> {{message.author}}  <strong>data:</strong> {{message.datetime}} <button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(message.$key)">x</button></p>
+      <p id="author"><strong>autor:</strong> {{message.author}}  <strong>data:</strong> {{message.datetime}} <button *ngIf="this.serverService.currentUserRole==='admin'" type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(message.$key)">x</button></p>
         <li class="list-group-item" id="chat_message">{{message.text}}</li>
     </ul>
   </div>

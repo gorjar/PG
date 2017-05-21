@@ -8,8 +8,8 @@
       <th>Nazwisko</th>
       <th>E-mail</th>
       <th>Rola</th>
-      <th *ngIf="currentRole==='sekretarka'"></th>
-      <th *ngIf="currentRole==='sekretarka'"></th>
+      <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
+      <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
     </tr>
     </thead>
     <tbody *ngFor="let user of users">
@@ -18,13 +18,13 @@
       <td>{{user.lastname}}</td>
       <td>{{user.email}}</td>
       <td>{{user.role}}</td>
-      <td *ngIf="currentRole==='sekretarka'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(user)">Edycja</button></td>
-      <td *ngIf="currentRole==='sekretarka'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(user.$key)">Usuń</button></td>
+      <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(user)">Edycja</button></td>
+      <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(user.$key)">Usuń</button></td>
     </tr>
     </tbody>
   </table>
   <hr>
-  <button *ngIf="currentRole==='sekretarka'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
+  <button *ngIf="this.serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
   <div *ngIf="detailsInit">
 
   </div>

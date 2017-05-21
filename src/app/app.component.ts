@@ -10,7 +10,6 @@ export class AppComponent implements OnInit {
 
   constructor(private serverService:ServerService){}
 
-
   ngOnInit() {
     this.serverService.getCurrentUserRole();
   };

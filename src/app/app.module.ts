@@ -26,9 +26,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 
-
-
-
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'about', component: AboutComponent},

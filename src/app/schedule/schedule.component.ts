@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
 import { Schedule } from './schedule';
 

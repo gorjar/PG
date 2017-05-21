@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
 import { User } from '../user';
 
@@ -11,7 +10,6 @@ import { User } from '../user';
 export class SettingsComponent implements OnInit {
 
   users:any;
-  currentRole:any = 'sekretarka';
   editInit:boolean;
   selectedUser: User;
 

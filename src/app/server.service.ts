@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http'
 import 'rxjs/Rx';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase,  FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Schedule } from './schedule/schedule';
 import { Subject } from './subjects/subject';
 import { User } from './user';
+import auth = firebase.auth;
 
 
 @Injectable()
@@ -13,47 +15,28 @@ export class ServerService {
   subjects: FirebaseListObservable<any[]>;
   schedule: FirebaseListObservable<any[]>;
   users: FirebaseListObservable<any[]>;
+  currentUserMail:string;
+  currentUserRole:string;
 
-    constructor(private http: Http, private af:AngularFireDatabase) {
+    constructor(private http: Http, private af:AngularFireDatabase, private afAuth:AngularFireAuth) {
     }
 
-    storeStudentRole(user) {
-        return this.http.post('https://edzienniklekcyjny-ea2c0.firebaseio.com/users.json', user)
-    }
+    getCurrentUserRole() {
 
-    getStudents() {
-
-        let students = [];
-        return this.http.get('https://edzienniklekcyjny-ea2c0.firebaseio.com/users.json')
-            .map(
-                (response: Response) => {
-                    const data = response.json();
-                    let array = Object.keys(data).map(k => data[k]);
-                    for(let i=0; i<array.length; i++) {
-                        if(array[i].role === "student") {
-                            students.push(array[i].email)
-                        }
-                    }
-                    return students
-                }
-            )
-    }
-
-    getCurrentUserRole(user) {
-        return this.http.get('https://edzienniklekcyjny-ea2c0.firebaseio.com/users.json').map(
-            (response: Response) => {
-                const data = response.json();
-                let array = (Object.keys(data).map(k => data[k]));
-                for(let i=0; i<array.length; i++){
-                    for(let x in array[i]){
-                        if(array[i].email === user) {
-                            return array[i].role
-                        }
-                    }
-                }
+      this.afAuth.authState.subscribe(auth =>{
+        if (auth != null){
+          this.currentUserMail = auth.email;
+          this.getUsers().subscribe(users =>{
+            for (let user of users){
+              if (this.currentUserMail===user.email) {this.currentUserRole=user.role}
             }
-        )
+          });
+
+        }
+      });
+
     }
+
 
     onSend(message) {
         return this.http.post('https://edzienniklekcyjny-ea2c0.firebaseio.com/chat.json', message);

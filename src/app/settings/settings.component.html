@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Studia Podyplomowe</h2>
-  <h3>Użytkownicy</h3>
+  <h3>Zarejestrowani użytkownicy serwisu</h3>
   <table class="table table-bordered table-striped ">
     <thead>
     <tr>
@@ -57,23 +57,4 @@
   </div>
 
 
-  <div *ngIf="initSubject">
-
-    <div class="container">
-
-      <h3>Dodanie Przedmiotu</h3>
-
-      <div class="form-group">
-        <div class="col-xs-12">
-          <label for="ex1">Przedmiot</label>
-          <input [(ngModel)]="addedSubject.name" placeholder="Przedmiot" class="form-control" id="ex1" type="text"/>
-        </div>
-        <div class="col-xs-12">
-          <label for="ex2">Wykładowca</label>
-          <input [(ngModel)]="addedSubject.lecturer" placeholder="Wykładowca" class="form-control" id="ex2" type="text">
-        </div>
-        <button type="button" class="btn btn-primary" (click)="onAddSubmit(addedSubject)">Dodaj</button>
-      </div>
-    </div>
-  </div>
 </div>

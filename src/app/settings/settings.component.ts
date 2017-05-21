@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-settings',
@@ -11,6 +12,9 @@ export class SettingsComponent implements OnInit {
 
   users:any;
   currentRole:any = 'sekretarka';
+  editInit:boolean;
+  selectedUser: User;
+
 
   constructor(private serverService: ServerService) {}
 
@@ -19,7 +23,20 @@ export class SettingsComponent implements OnInit {
       console.log(users);
       this.users = users;
     })
+  }
 
+  onEditClick(user:User) {
+    this.editInit = true;
+    this.selectedUser = user;
+  }
+
+  onEditSubmit(id, user){
+    this.serverService.updateUser(id, user);
+    this.editInit=false;
+  }
+
+  onDeleteClick(id){
+    this.serverService.deleteUser(id);
   }
 
 }

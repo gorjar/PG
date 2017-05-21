@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
 import { Subject } from './subject';
-import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-subjects',
@@ -14,7 +13,7 @@ export class SubjectsComponent implements OnInit {
   subjects:any;
   detailsInit:boolean =false;
 
-  currentRole:any = 'sekretarka';
+  currentRole = this.serverService.currentUserRole;
   selectedSubject:Subject;
   editInit:boolean;
   initSubject: boolean;

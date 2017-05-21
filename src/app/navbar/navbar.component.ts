@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ServerService } from '../server.service';
 import { Router } from '@angular/router';
@@ -12,10 +12,11 @@ export class NavbarComponent implements OnInit {
 
 
   constructor(
-    private serverService: ServerService,
+    private serverService: ServerService, //don't delete, used via component.html
     public afAuth:AngularFireAuth,
     private router: Router
   ){}
+
 
   ngOnInit() {
   };
@@ -24,6 +25,5 @@ export class NavbarComponent implements OnInit {
     this.afAuth.auth.signOut();
     this.router.navigate(['login']);
   }
-
 
 }

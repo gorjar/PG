@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http'
-import 'rxjs/Rx';
 import { AngularFireDatabase,  FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Student } from './students/student';
 import { Schedule } from './schedule/schedule';
 import { Subject } from './subjects/subject';
+import { Message } from './chat/message';
 import { User } from './user';
-import auth = firebase.auth;
 
 
 @Injectable()
@@ -17,10 +15,11 @@ export class ServerService {
   subjects: FirebaseListObservable<any[]>;
   schedule: FirebaseListObservable<any[]>;
   users: FirebaseListObservable<any[]>;
+  chat: FirebaseListObservable<any[]>;
   currentUserMail:string;
   currentUserRole:string;
 
-  constructor(private http: Http, private af:AngularFireDatabase, private afAuth:AngularFireAuth) {
+  constructor( private af:AngularFireDatabase, private afAuth:AngularFireAuth) {
   }
 
   getCurrentUserRole() {
@@ -37,20 +36,6 @@ export class ServerService {
     });
   }
 
-
-    onSend(message) {
-        return this.http.post('https://edzienniklekcyjny-ea2c0.firebaseio.com/chat.json', message);
-    }
-
-    getMessages(){
-        return this.http.get('https://edzienniklekcyjny-ea2c0.firebaseio.com/chat.json')
-        .map(
-            (response: Response) => {
-                const chat = response.json();
-                return chat;
-            }
-        )
-    }
 
   getStudents(){
     this.students=this.af.list('/students') as FirebaseListObservable<Student[]>;
@@ -71,6 +56,10 @@ export class ServerService {
     this.users=this.af.list('/users') as FirebaseListObservable<User[]>;
     return this.users;
   }
+  getChat(){
+    this.chat=this.af.list('/chat') as FirebaseListObservable<Message[]>;
+    return this.chat;
+  }
 
 
   addStudent(student){
@@ -87,6 +76,10 @@ export class ServerService {
 
   addUser(user){
     return this.users.push(user);
+  }
+
+  addMessage(message){
+    return this.chat.push(message);
   }
 
 
@@ -121,6 +114,10 @@ export class ServerService {
 
   deleteUser(id){
     return this.users.remove(id);
+  }
+
+  deleteMessage(id){
+    return this.chat.remove(id);
   }
 
 }

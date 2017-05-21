@@ -11,10 +11,7 @@ import * as firebase from 'firebase';
 })
 export class RegisterComponent implements OnInit {
 
-
   users:any;
-
-  newUser:User;
 
   name:string;
   lastname:string;
@@ -32,8 +29,6 @@ export class RegisterComponent implements OnInit {
 
   }
 
-
-
   onRegisterSubmit( email, password){
     this.afAuth.auth.createUserWithEmailAndPassword(email, password);
     this.serverService.getUsers().subscribe(users =>{
@@ -47,9 +42,6 @@ export class RegisterComponent implements OnInit {
         email: this.email
       }
     );
-
-
-
 
   }
 

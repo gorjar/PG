@@ -21,7 +21,7 @@ import { SettingsComponent } from './settings/settings.component';
 
 import { ServerService } from './server.service';
 
-//import { ChatComponent } from './chat/chat.component';
+import { ChatComponent } from './chat/chat.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -36,7 +36,7 @@ const appRoutes: Routes = [
   {path: 'subjects', component: SubjectsComponent},
   {path: 'schedule', component: ScheduleComponent},
   {path: 'settings', component: SettingsComponent},
-  //{path: 'chat', component: ChatComponent},
+  {path: 'chat', component: ChatComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent}
 ];
@@ -51,7 +51,7 @@ const appRoutes: Routes = [
     SubjectsComponent,
     ScheduleComponent,
     SettingsComponent,
-    //ChatComponent,
+    ChatComponent,
     NavbarComponent,
     RegisterComponent,
     LoginComponent,

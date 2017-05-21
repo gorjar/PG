@@ -1,80 +1,44 @@
-/*import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Response } from '@angular/http'
-import * as firebase from 'firebase'
+import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit, AfterViewInit {
+export class ChatComponent implements OnInit {
 
-  messages = [];
-  tab = [];
-  student = firebase.auth().currentUser.email;
-  message = '';
-  date: any;
-  roles:any;
+  chat:any;
+  text:string;
+  datetime:any;
+  author:string;
 
-  constructor(private server: ServerService, private router: Router) {}
+
+  constructor(private serverService: ServerService) {}
 
     ngOnInit() {
-
+      this.serverService.getChat().subscribe(chat =>{
+        console.log(chat);
+        this.chat = chat;
+      })
     }
 
-
-
-  onSend(form: NgForm) {
-    this.tab = [];
-    this.student = firebase.auth().currentUser.email;
-    this.message = form.value.message;
-    this.date = new Date().toLocaleString();
-    console.log(this.date);
-    if (this.message != ""){
-      this.messages.push({author: this.student, datetime: this.date, text: this.message});
-      this.server.onSend(this.messages).subscribe(
-          () => console.log(""),
-          (error) => console.log(error),
-          () => {
-            form.resetForm();
-            form.value.message = "";
-            this.messages = [];
-            this.message = "";
-            this.getMess();
-          })
-    }
-    else { this.getMess()}
+  onSubmit(){
+    this.datetime = new Date().toLocaleDateString() +' '+ new Date().toLocaleTimeString();
+    this.serverService.addMessage(
+      {
+        text: this.text,
+        author: this.serverService.currentUserMail,
+        datetime: this.datetime
+      }
+    );
+    this.text='';
   }
 
-  clear(){
-    document.getElementById("message").onreset
+  onDeleteClick(id){
+    this.serverService.deleteMessage(id);
   }
 
-  getMess() {
-    this.server.getMessages()
-        .subscribe(
-        (response: Response) => {
-          for (let key in response){
-            if (response.hasOwnProperty(key)) {
-              this.tab.push(response[key][0])
-            }
-          }
-        },
-              (error) => console.log(error)
-        );
-  }
 
-    getRole() {
-        const user = firebase.auth().currentUser.email;
-        this.server.getCurrentUserRole(user).subscribe(
-            (response: any) => (this.roles = response),
-            (error) => console.log(error),
-            () => {
-                this.roles;
-            });
-    }
+
 }
-*/

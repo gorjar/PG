@@ -106,6 +106,10 @@ export class ServerService {
     return this.schedule.update(id,sched);
   }
 
+  updateUser(id, user){
+    return this.users.update(id,user);
+  }
+
 
   deleteSubject(id){
     return this.subjects.remove(id);
@@ -114,4 +118,9 @@ export class ServerService {
   deleteShed(id){
     return this.schedule.remove(id);
   }
+
+  deleteUser(id){
+    return this.users.remove(id);
+  }
+
 }

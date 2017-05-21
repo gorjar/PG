@@ -10,6 +10,7 @@ import { ServerService } from '../server.service';
 export class SettingsComponent implements OnInit {
 
   users:any;
+  currentRole:any = 'sekretarka';
 
   constructor(private serverService: ServerService) {}
 

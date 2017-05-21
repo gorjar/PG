@@ -1,4 +1,79 @@
-<p>
-  settings works!
-</p>
+<div class="container">
+  <h2>Studia Podyplomowe</h2>
+  <h3>Użytkownicy</h3>
+  <table class="table table-bordered table-striped ">
+    <thead>
+    <tr>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>E-mail</th>
+      <th>Rola</th>
+      <th *ngIf="currentRole==='sekretarka'"></th>
+      <th *ngIf="currentRole==='sekretarka'"></th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let user of users">
+    <tr>
+      <td>{{user.name}}</td>
+      <td>{{user.lastname}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.role}}</td>
+      <td *ngIf="currentRole==='sekretarka'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(user)">Edycja</button></td>
+      <td *ngIf="currentRole==='sekretarka'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(user.$key)">Usuń</button></td>
+    </tr>
+    </tbody>
+  </table>
+  <hr>
+  <button *ngIf="currentRole==='sekretarka'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
+  <div *ngIf="detailsInit">
 
+  </div>
+
+  <div *ngIf="editInit">
+    <div class="container">
+
+      <h3>Edycja Użytkownika</h3>
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <label for="ex1">Imię</label>
+          <input [(ngModel)]="selectedUser.name" class="form-control" id="ex1" type="text"/>
+        </div>
+        <div class="col-xs-12">
+          <label for="ex1">Nazwisko</label>
+          <input [(ngModel)]="selectedUser.lastname"  class="form-control" id="ex1" type="text"/>
+        </div>
+        <div class="col-xs-12">
+          <label for="ex1">E-mail</label>
+          <input [(ngModel)]="selectedUser.email" class="form-control" id="ex1" type="text"/>
+        </div>
+        <div class="col-xs-12">
+          <label for="ex1">Rola</label>
+          <input [(ngModel)]="selectedUser.role" placeholder="name" class="form-control" id="ex1" type="text"/>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="onEditSubmit(selectedUser.$key, selectedUser)">Zapisz zmiany</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="initSubject">
+
+    <div class="container">
+
+      <h3>Dodanie Przedmiotu</h3>
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <label for="ex1">Przedmiot</label>
+          <input [(ngModel)]="addedSubject.name" placeholder="Przedmiot" class="form-control" id="ex1" type="text"/>
+        </div>
+        <div class="col-xs-12">
+          <label for="ex2">Wykładowca</label>
+          <input [(ngModel)]="addedSubject.lecturer" placeholder="Wykładowca" class="form-control" id="ex2" type="text">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="onAddSubmit(addedSubject)">Dodaj</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { User } from '../user';
+import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
 import * as firebase from 'firebase';
 
@@ -13,16 +13,17 @@ export class RegisterComponent implements OnInit {
 
   users:any;
 
-  name:string;
-  lastname:string;
-  email:string;
-  password:string;
-  confirmpassword:string;
+  name:string='';
+  lastname:string='';
+  email:string='';
+  password:string='';
+  confirmpassword:string='';
 
 
   constructor(
     private afAuth: AngularFireAuth,
-    private serverService: ServerService
+    private serverService: ServerService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -42,6 +43,7 @@ export class RegisterComponent implements OnInit {
         email: this.email
       }
     );
+    this.router.navigate(['']);
 
   }
 

@@ -16,13 +16,13 @@
       </div>
       <div class="col-xs-12">
         <label for="ex3">E-mail</label>
-        <input [(ngModel)]="email" placeholder="e-mail" class="form-control" id="ex3" type="text">
+        <input [(ngModel)]="email" placeholder="e-mail" class="form-control" id="ex3" type="text" autocomplete="off">
       </div>
       <div class="col-xs-12">
         <label for="ex4">Hasło</label>
-        <input [(ngModel)]="password" placeholder="password" class="form-control" id="ex4" type="text">
+        <input [(ngModel)]="password" placeholder="password" class="form-control" id="ex4" type="password" autocomplete="off">
       </div>
-      <button type="button" class="btn btn-primary" (click)="onRegisterSubmit(email, password)">Dodaj</button>
+      <button type="button" class="btn btn-primary" (click)="onRegisterSubmit(email, password)">Zarejestruj</button>
     </div>
   </div>
 

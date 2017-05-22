@@ -34,7 +34,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!(afAuth.authState | async)"><a [routerLink]="['/login']">Zaloguj</a></li>
-        <li *ngIf="(afAuth.authState | async)"><a [routerLink] (click)="onLogout()">Wyloguj </a></li>
+        <li *ngIf="(afAuth.authState | async)"><a [routerLink]="['/login']" (click)="onLogout()">Wyloguj </a></li>
         <li *ngIf="!(afAuth.authState | async)"><a [routerLink]="['/register']">Zarejestruj</a></li>
       </ul>
     </div>

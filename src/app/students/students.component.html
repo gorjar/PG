@@ -1,4 +1,4 @@
-<div *ngIf="this.serverService.currentUserMail!='0'" class="container">
+<div *ngIf="this.serverService.currentUserMail!='0' && this.serverService.currentUserRole!='student'" class="container">
   <h2>Studia Podyplomowe</h2>
   <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
   <table class="table table-bordered table-striped ">

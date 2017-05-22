@@ -16,7 +16,7 @@ export class ServerService {
   schedule: FirebaseListObservable<any[]>;
   users: FirebaseListObservable<any[]>;
   chat: FirebaseListObservable<any[]>;
-  currentUserMail:string;
+  currentUserMail:string='0';
   currentUserRole:string;
 
   constructor( private af:AngularFireDatabase, private afAuth:AngularFireAuth) {

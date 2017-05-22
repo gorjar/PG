@@ -28,7 +28,6 @@ export class SubjectsComponent implements OnInit {
   ngOnInit() {
 
     this.serverService.getSubjects().subscribe(subjects =>{
-      console.log(subjects);
       this.subjects = subjects;
     })
   }

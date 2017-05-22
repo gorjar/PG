@@ -18,7 +18,6 @@ export class ChatComponent implements OnInit {
 
     ngOnInit() {
       this.serverService.getChat().subscribe(chat =>{
-        console.log(chat);
         this.chat = chat;
       })
     }

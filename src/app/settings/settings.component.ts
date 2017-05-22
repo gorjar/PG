@@ -18,7 +18,6 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.serverService.getUsers().subscribe(users =>{
-      console.log(users);
       this.users = users;
     })
   }

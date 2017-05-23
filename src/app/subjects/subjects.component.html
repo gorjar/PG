@@ -12,7 +12,7 @@
     </thead>
     <tbody *ngFor="let subject of subjects">
       <tr>
-        <td>{{subject.name}}</td>
+        <td (click)="onSelect(subject)">{{subject.name}}</td>
         <td>{{subject.lecturer}}</td>
         <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(subject)">Edycja</button></td>
         <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(subject.$key)">Usuń</button></td>
@@ -22,7 +22,7 @@
   <hr>
   <button *ngIf="this.serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
   <div *ngIf="detailsInit">
-  <h2>Oceny dla wybranego przedmiotu</h2>
+  <h2>Oceny dla {{selectedSubject.name}}</h2>
   <table class="table table-bordered table-striped">
     <thead>
     <tr>
@@ -31,23 +31,43 @@
       <th>Semestr II </th>
     </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let student of students">
     <tr>
-      <td>Jan Kowalski</td>
-      <td>4</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <td>Zbigniew Nowak</td>
-      <td>3</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>Andrzej Olszewski</td>
-      <td>5</td>
-      <td>4</td>
+      <td>{{student.name}} {{student.lastname}}</td>
+      <td> </td>
+      <td></td>
     </tr>
   </table>
+
+    <button type="button" id="add-button" class="btn btn-primary" (click)="onAddGradeInit()">Dodaj ocenę</button>
+
+    <div *ngIf="addGradeInit">
+    <h4>Dodaj ocenę</h4>
+    <div class="form-group">
+      <div class="col-xs-12">
+
+      <div class="col-xs-12">
+      <label>Student </label>
+      <select [(ngModel)]="addStudentId">
+        <option *ngFor="let student of students" value='{{student.$key}}'>{{student.name}} {{student.lastname}}</option>
+      </select>
+      </div>
+      <div class="col-xs-12">
+      <label>Semestr </label>
+      <select [(ngModel)]="addSemester">
+        <option value="I">I</option>
+        <option value="II">II</option>
+      </select>
+      </div>
+      <div class="col-xs-12">
+      <label>Ocena </label>
+      <input type="text" [(ngModel)]="addValue">
+      </div>
+      <button type="button" class="gmo-btn btn btn-primary" (click)="onAddGradeSubmit()">Dodaj</button>
+
+
+    </div>
+    </div>
   </div>
 
   <div *ngIf="editInit">

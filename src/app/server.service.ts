@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Student } from './students/student';
 import { Schedule } from './schedule/schedule';
 import { Subject } from './subjects/subject';
+import { Grade } from './subjects/grade';
 import { Message } from './chat/message';
 import { User } from './user';
 
@@ -13,6 +14,7 @@ export class ServerService {
 
   students: FirebaseListObservable<any[]>;
   subjects: FirebaseListObservable<any[]>;
+  grades: FirebaseListObservable<any[]>;
   schedule: FirebaseListObservable<any[]>;
   users: FirebaseListObservable<any[]>;
   chat: FirebaseListObservable<any[]>;
@@ -47,6 +49,11 @@ export class ServerService {
     return this.subjects;
   }
 
+  getGrades(){
+    this.grades=this.af.list('/grades') as FirebaseListObservable<Grade[]>;
+    return this.users;
+  }
+
   getSchedule(){
     this.schedule=this.af.list('/schedule') as FirebaseListObservable<Schedule[]>;
     return this.schedule;
@@ -56,6 +63,7 @@ export class ServerService {
     this.users=this.af.list('/users') as FirebaseListObservable<User[]>;
     return this.users;
   }
+
   getChat(){
     this.chat=this.af.list('/chat') as FirebaseListObservable<Message[]>;
     return this.chat;
@@ -68,6 +76,10 @@ export class ServerService {
 
   addSubject(subject){
     return this.subjects.push(subject);
+  }
+
+  addGrade(grade){
+    return this.grades.push(grade);
   }
 
   addSched(sched){
@@ -89,6 +101,10 @@ export class ServerService {
 
   updateSubject(id, subject){
     return this.subjects.update(id,subject);
+  }
+
+  updateGrade(id, grade){
+    return this.grades.update(id,grade);
   }
 
   updateSched(id, sched){

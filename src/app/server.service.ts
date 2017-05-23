@@ -103,10 +103,6 @@ export class ServerService {
     return this.subjects.update(id,subject);
   }
 
-  updateGrade(id, grade){
-    return this.grades.update(id,grade);
-  }
-
   updateSched(id, sched){
     return this.schedule.update(id,sched);
   }
@@ -122,6 +118,10 @@ export class ServerService {
 
   deleteSubject(id){
     return this.subjects.remove(id);
+  }
+
+  deleteGrade(id){
+    return this.grades.remove(id);
   }
 
   deleteShed(id){

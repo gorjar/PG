@@ -36,12 +36,12 @@
       <td>{{student.name}} {{student.lastname}}</td>
       <td>
         <span *ngFor="let grade of grades">
-          <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='I'">{{grade.value}} </span>
+          <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='I'" (dblclick)="onDblGradeClick(grade.$key)">{{grade.value}} </span>
         </span>
       </td>
       <td>
         <span *ngFor="let grade of grades">
-          <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='II'">{{grade.value}}</span>
+          <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='II'" (dblclick)="onDblGradeClick(grade.$key)">{{grade.value}}</span>
         </span>
       </td>
     </tr>
@@ -70,7 +70,14 @@
       </div>
       <div class="col-xs-12">
       <label>Ocena </label>
-      <input type="text" [(ngModel)]="addValue">
+        <select [(ngModel)]="addValue" id="ex1" type="text">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
       </div>
       <button type="button" class="gmo-btn btn btn-primary" (click)="onAddGradeSubmit()">Dodaj</button>
 
@@ -119,3 +126,7 @@
     </div>
   </div>
 </div>
+</div>
+<br>
+<br>
+<br>

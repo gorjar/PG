@@ -7,7 +7,7 @@ import {LoginData} from "../../feed/test_data"
 
 describe('Dziennik Lekcyjny Main Page', () => {
 
-    let LOGIN_BUTTON = element(by.id('signin'));
+    let LOGIN_BUTTON = element(by.id('login'));
     let LOGOUT_BUTTON = element(by.id('logout'));
     let EMAIL_FIELD = element(by.id('email'));
     let SIGN_IN_BUTTON = element(by.id('sign-in'));

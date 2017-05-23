@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div class="container">
+
+    <h3>Rejestracja</h3>
+
+
+    <div class="form-group">
+      <div class="col-xs-12">
+        <label for="ex1">Imię</label>
+        <input [(ngModel)]="name" placeholder="name" class="form-control" id="ex1" type="text"/>
+      </div>
+      <div class="col-xs-12">
+        <label for="ex2">Nazwisko</label>
+        <input [(ngModel)]="lastname" placeholder="lastname" class="form-control" id="ex2" type="text">
+      </div>
+      <div class="col-xs-12">
+        <label for="ex3">E-mail</label>
+        <input [(ngModel)]="email" placeholder="e-mail" class="form-control" id="ex3" type="text" autocomplete="off">
+      </div>
+      <div class="col-xs-12">
+        <label for="ex4">Hasło</label>
+        <input [(ngModel)]="password" placeholder="password" class="form-control" id="ex4" type="password" autocomplete="off">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="onRegisterSubmit(email, password)">Zarejestruj</button>
+    </div>
+  </div>
+
+
+</div>

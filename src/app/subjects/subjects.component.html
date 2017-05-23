@@ -1,27 +1,26 @@
-<app-navbar></app-navbar>
-<div class="container">
+<div *ngIf="this.serverService.currentUserMail!='0'" class="container">
   <h2>Studia Podyplomowe</h2>
-  <h2>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h2>
+  <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
   <table class="table table-bordered table-striped ">
     <thead>
       <tr>
         <th>Przedmiot</th>
         <th>Wykładowca</th>
-        <th *ngIf="currentRole==='sekretarka'"></th>
-        <th *ngIf="currentRole==='sekretarka'"></th>
+        <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
+        <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
       </tr>
     </thead>
     <tbody *ngFor="let subject of subjects">
       <tr>
         <td>{{subject.name}}</td>
         <td>{{subject.lecturer}}</td>
-        <td *ngIf="currentRole==='sekretarka'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(subject)">Edycja</button></td>
-        <td *ngIf="currentRole==='sekretarka'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(subject.$key)">Usuń</button></td>
+        <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(subject)">Edycja</button></td>
+        <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(subject.$key)">Usuń</button></td>
       </tr>
     </tbody>
   </table>
   <hr>
-  <button *ngIf="currentRole==='sekretarka'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
+  <button *ngIf="this.serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
   <div *ngIf="detailsInit">
   <h2>Oceny dla wybranego przedmiotu</h2>
   <table class="table table-bordered table-striped">

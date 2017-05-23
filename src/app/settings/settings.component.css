@@ -1,0 +1,25 @@
+h2 {
+  text-align: center;
+}
+h3 {
+  font-weight: bold;
+}
+th {
+  background-color: #7f7f7f;
+  color: white;
+  text-align: center;
+  horiz-align: center;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: #e7e7e7;
+}
+/*
+.table-striped>tbody>tr:nth-of-type(even) {
+  background-color: #d9e2f3;
+}
+*/
+
+.container{
+  padding-bottom: 20px;
+}

@@ -51,7 +51,7 @@ export class ServerService {
 
   getGrades(){
     this.grades=this.af.list('/grades') as FirebaseListObservable<Grade[]>;
-    return this.users;
+    return this.grades;
   }
 
   getSchedule(){

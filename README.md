@@ -31,13 +31,18 @@ Wszelkie instrukcje, wyniki zadań typu 'research' i opisy poszczególnych narz�
 Założenia
 RWD
 testy automatyczne
-// TODO dodać więcej założeń/ kryteriów akceptacji
 
 *** Definition of done dla Issues ***
-zadanie odznaczone jako DONE w zakładce "Board"
-zadanie sprawdzone przez innego członka zespołu
-branch z zadaniem zmergowany z master branch
-W przypadku Issues typu "Research" wymagany jest opis w Wiki projektu z wnioskami wyciągniętymi podczas researchu.
+
+
+zadanie wykonane zgodnie z wymaganiami opisanym w Issue, 
+zadanie sprawdzone przez innego członka zespołu, 
+branch z zadaniem zmergowany z develop branch, 
+w przypadku Issues typu "Research" wymagany jest opis w Wiki projektu z wnioskami wyciągniętymi podczas researchu, 
+każdy merge request musi zostać skomentowany przez wszyskich członków grupy, 
+każdy MR musi być przypisany do konkretnego użytkownika, 
+informacja o nowym MR na Slacku, 
+w przypadku braku uwag do MR wpisać odpowiedni komentarz. 
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.

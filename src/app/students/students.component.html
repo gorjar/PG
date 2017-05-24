@@ -71,6 +71,8 @@
           <input [(ngModel)]="selectedStudent.email" placeholder="email" class="form-control" id="ex2" type="text">
         </div>
         <button type="button" class="btn btn-primary" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
+        <button type="button" class="btn btn-primary" (click)="CancelEdit()">Anuluj</button>
+
       </div>
     </div>
   </div>
@@ -96,6 +98,7 @@
           <input [(ngModel)]="addedStudent.email" placeholder="email" class="form-control" id="ex2" type="text">
         </div>
         <button type="button" class="btn btn-primary" (click)="onAddSubmit(addedStudent)">Dodaj</button>
+        <button type="button" class="btn btn-primary" (click)="CancelAdd()">Anuluj</button>
       </div>
     </div>
   </div>

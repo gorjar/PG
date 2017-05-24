@@ -57,4 +57,12 @@ export class StudentsComponent implements OnInit {
     this.serverService.deleteStudent(id);
   }
 
+  CancelEdit() {
+    this.editInit=false;
+  }
+
+  CancelAdd() {
+    this.initStudent=false;
+  }
+
 }

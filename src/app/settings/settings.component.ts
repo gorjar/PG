@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
+import { ServerService } from '../server.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-settings',
@@ -9,12 +9,31 @@ import { Router } from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router) {}
+  users:any;
+  editInit:boolean;
+  selectedUser: User;
+
+
+  constructor(private serverService: ServerService) {}
 
   ngOnInit() {
-    if(this.auth.token == null){
-      this.router.navigate((['/']));
-    }
+    this.serverService.getUsers().subscribe(users =>{
+      this.users = users;
+    })
+  }
+
+  onEditClick(user:User) {
+    this.editInit = true;
+    this.selectedUser = user;
+  }
+
+  onEditSubmit(id, user){
+    this.serverService.updateUser(id, user);
+    this.editInit=false;
+  }
+
+  onDeleteClick(id){
+    this.serverService.deleteUser(id);
   }
 
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
+import { Student } from './student';
 
 @Component({
   selector: 'app-students',
@@ -10,20 +9,52 @@ import { ServerService } from '../server.service';
 })
 export class StudentsComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router, private server: ServerService) {}
-  students = [];
+  students:any;
+  detailsInit:boolean =false;
+
+  selectedStudent:Student;
+  editInit:boolean;
+  initStudent: boolean;
+  addedStudent: Student;
+  emptyStudent:Student = [
+    '',
+    '',
+    ''
+  ];
+
+  constructor(
+    private serverService:ServerService
+  ) {}
+
   ngOnInit() {
-    if (this.auth.token == null) {
-      this.router.navigate((['/']));
-    }
-    this.listStudents()
+
+    this.serverService.getStudents().subscribe(students =>{
+      this.students = students;
+    })
   }
 
-  listStudents(){
-    this.server.getStudents()
-        .subscribe(
-        (students: any[]) => (this.students = students),
-        (error) => console.log(error));
+  onEditClick(student:Student) {
+    this.editInit = true;
+    this.selectedStudent = student;
+  }
+
+  onEditSubmit(id, student){
+    this.serverService.updateStudent(id, student);
+    this.editInit=false;
+  }
+
+  onAddInit(){
+    this.initStudent = true;
+    this.addedStudent = this.emptyStudent;
+  }
+
+  onAddSubmit(student){
+    this.serverService.addStudent(student);
+    this.initStudent=false;
+  }
+
+  onDeleteClick(id){
+    this.serverService.deleteStudent(id);
   }
 
 }

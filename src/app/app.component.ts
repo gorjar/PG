@@ -1,27 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import * as firebase from 'firebase'
-import {AuthService} from "./auth/auth.service";
-import { Router } from '@angular/router';
-
+import { Component, OnInit } from '@angular/core';
+import { ServerService } from './server.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(private serverService:ServerService){}
 
   ngOnInit() {
-    firebase.initializeApp({
-        apiKey: "AIzaSyDx5MTX0Nd3Jft6s9mXyv2witPxkXikOdY",
-        authDomain: "edzienniklekcyjny-ea2c0.firebaseapp.com"
-    })
-
+    this.serverService.getCurrentUserRole();
   };
 
-  logOut(){
-  this.authService.logOut();
-  }
 }

@@ -1,0 +1,92 @@
+<div *ngIf="this.serverService.currentUserMail!='0'" class="container">
+  <h2>Studia Podyplomowe</h2>
+  <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
+  <table class="table table-bordered table-striped ">
+    <thead>
+      <tr>
+        <th>Przedmiot</th>
+        <th>Wykładowca</th>
+        <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
+        <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let subject of subjects">
+      <tr>
+        <td>{{subject.name}}</td>
+        <td>{{subject.lecturer}}</td>
+        <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(subject)">Edycja</button></td>
+        <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(subject.$key)">Usuń</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <button *ngIf="this.serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
+  <div *ngIf="detailsInit">
+  <h2>Oceny dla wybranego przedmiotu</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>Imię i nazwisko</th>
+      <th>Semestr I </th>
+      <th>Semestr II </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Jan Kowalski</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Zbigniew Nowak</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Andrzej Olszewski</td>
+      <td>5</td>
+      <td>4</td>
+    </tr>
+  </table>
+  </div>
+
+  <div *ngIf="editInit">
+    <div class="container">
+
+      <h3>Edycja Przedmiotu</h3>
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <label for="ex1">Przedmiot</label>
+          <input [(ngModel)]="selectedSubject.name" placeholder="name" class="form-control" id="ex1" type="text"/>
+        </div>
+        <div class="col-xs-12">
+          <label for="ex2">Wykładowca</label>
+          <input [(ngModel)]="selectedSubject.lecturer" placeholder="lecturer" class="form-control" id="ex2" type="text">
+        </div>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="onEditSubmit(selectedSubject.$key, selectedSubject)">Zapisz zmiany</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="initSubject">
+
+    <div class="container">
+
+      <h3>Dodanie Przedmiotu</h3>
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <label for="ex1">Przedmiot</label>
+          <input [(ngModel)]="addedSubject.name" placeholder="Przedmiot" class="form-control" id="ex11" type="text"/>
+        </div>
+        <div class="col-xs-12">
+          <label for="ex2">Wykładowca</label>
+          <input [(ngModel)]="addedSubject.lecturer" placeholder="Wykładowca" class="form-control" id="ex12" type="text">
+        </div>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="onAddSubmit(addedSubject)">Dodaj</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,20 +1,22 @@
-<div class="container">
-  <div class="row">
-    <ul class="list-group" *ngFor="let chat of tab">
-      <p id="author"><strong>autor:</strong> {{ chat.author }}  <strong>data:</strong> {{ chat.datetime }}</p>
-        <li class="list-group-item" id="chat_message">{{ chat.text }}</li>
-    </ul>
+<div *ngIf="this.serverService.currentUserMail!='0'" class="container">
+  <div>
+    <div class="row">
+      <ul class="list-group" *ngFor="let message of chat">
+        <p id="author"><strong>autor:</strong> {{message.author}}  <strong>data:</strong> {{message.datetime}} <button *ngIf="this.serverService.currentUserRole==='admin'" type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(message.$key)">x</button></p>
+          <li class="list-group-item" id="chat_message">{{message.text}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container" id="message_field">
+    <div class="row">
+        <div class="form-group">
+          <label>Wiadomość</label>
+          <input [(ngModel)]="text" placeholder="text" class="form-control" id="ex2" type="text">
+        </div>
+        <button class="btn btn-primary" id="send_button" (click)="onSubmit(newMessage)">Wyślij</button>
+    </div>
+    <br>
+    <br>
+    <br>
   </div>
 </div>
-<div class="container" id="message_field">
-  <div class="row">
-    <form (ngSubmit)="onSend(f)" #f="ngForm">
-      <div class="form-group">
-        <label for="message">Wiadomość</label>
-        <input type="message" class="form-control" id="message" name="message" ngModel>
-      </div>
-      <button class="btn btn-primary" id="send_button" (click)="clear()">Wyślij</button>
-    </form>
-  </div>
-</div>
-

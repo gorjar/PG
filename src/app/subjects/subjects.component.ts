@@ -39,7 +39,7 @@ export class SubjectsComponent implements OnInit {
 
   onEditSubmit(id, subject){
     this.serverService.updateSubject(id, subject);
-    this.editInit=false;
+    this.editInit = false;
   }
 
   onAddInit(){
@@ -49,11 +49,19 @@ export class SubjectsComponent implements OnInit {
 
   onAddSubmit(subject){
     this.serverService.addSubject(subject);
-    this.initSubject=false;
+    this.initSubject = false;
   }
 
   onDeleteClick(id){
     this.serverService.deleteSubject(id);
+  }
+
+  CancelEdit() {
+    this.editInit = false;
+  }
+
+  CancelAdd() {
+    this.initSubject = false;
   }
 
 }

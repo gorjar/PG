@@ -70,6 +70,8 @@
             <input [(ngModel)]="selectedSched.lecturer" placeholder="lecturer" class="form-control" id="ex7" type="text">
           </div>
           <button type="button" class="gmo-btn btn btn-primary" (click)="onEditSubmit(selectedSched.$key, selectedSched)">Zapisz zmiany</button>
+          <button type="button" class="gmo-btn btn btn-primary" (click)="CancelEdit()">Anuluj</button>
+
         </div>
     </div>
   </div>
@@ -112,6 +114,8 @@
           <input [(ngModel)]="addedSched.lecturer" placeholder="lecturer" class="form-control" id="ex17" type="text">
         </div>
         <button type="button" class="gmo-btn btn btn-primary" (click)="onAddSubmit(addedSched)">Dodaj</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelAdd()">Anuluj</button>
+
       </div>
     </div>
 

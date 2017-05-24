@@ -10,7 +10,7 @@
       <a class="navbar-brand" href="#" routerLink="/">eDziennik Lekcyjny</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul id="nav1" class="nav navbar-nav navbar-left" >
+      <ul id="nav1" class="nav navbar-nav navbar-left">
         <ng-template [ngIf]="authService.isSignIn()">
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a id="students" class="mainmenu" routerLink="/students">Uczniowie</a></li>
@@ -31,11 +31,11 @@
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a id="signup" routerLink="/signup">Zarejestruj</a></li>
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="signin" routerLink="/signin" >Zaloguj</a></li>
+            <a id="signin" routerLink="/signin">Zaloguj</a></li>
         </ng-template>
         <ng-template [ngIf]="authService.isSignIn()">
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="logout" routerLink="/"  (click)="logOut()">Wyloguj</a></li>
+            <a id="logout" routerLink="/" (click)="logOut()">Wyloguj</a></li>
         </ng-template>
       </ul>
     </div>
@@ -45,5 +45,9 @@
 
 <div class="footer">
   <p>GMOteam 2017</p>
+</div>
+
+<div class="sm-footer">
+
 </div>
 

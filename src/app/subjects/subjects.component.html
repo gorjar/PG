@@ -58,7 +58,7 @@
     </tbody>
   </table>
 
-    <button *ngIf="this.serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-primary" (click)="onAddGradeInit()">Dodaj ocenę</button>
+    <button *ngIf="this.serverService.currentUserRole!='student'" type="button" id="add-button" class="btn btn-primary" (click)="onAddGradeInit()">Dodaj ocenę</button>
 
     <div *ngIf="addGradeInit">
     <h4>Dodaj ocenę</h4>

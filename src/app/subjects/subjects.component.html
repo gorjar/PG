@@ -65,6 +65,7 @@
           <input [(ngModel)]="selectedSubject.lecturer" placeholder="lecturer" class="form-control" id="ex2" type="text">
         </div>
         <button type="button" class="gmo-btn btn btn-primary" (click)="onEditSubmit(selectedSubject.$key, selectedSubject)">Zapisz zmiany</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelEdit()">Anuluj</button>
       </div>
     </div>
   </div>
@@ -86,6 +87,7 @@
           <input [(ngModel)]="addedSubject.lecturer" placeholder="Wykładowca" class="form-control" id="ex12" type="text">
         </div>
         <button type="button" class="gmo-btn btn btn-primary" (click)="onAddSubmit(addedSubject)">Dodaj</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelAdd()">Anuluj</button>
       </div>
     </div>
   </div>

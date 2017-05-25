@@ -1,7 +1,7 @@
 <div *ngIf="this.serverService.currentUserMail!='0' && this.serverService.currentUserRole!='student'" class="container">
   <h2>Studia Podyplomowe</h2>
   <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
-  <table class="table table-bordered table-striped ">
+  <table id="students_table" class="table table-bordered table-striped ">
     <thead>
     <tr>
       <th>Imię</th>
@@ -67,8 +67,8 @@
           <input [(ngModel)]="selectedStudent.lastname" placeholder="lastname" class="form-control" id="ex2" type="text">
         </div>
         <div class="col-xs-12">
-          <label for="ex2">E-mail</label>
-          <input [(ngModel)]="selectedStudent.email" placeholder="email" class="form-control" id="ex2" type="text">
+          <label for="ex3">E-mail</label>
+          <input [(ngModel)]="selectedStudent.email" placeholder="email" class="form-control" id="ex3" type="text">
         </div>
         <button type="button" class="btn btn-primary" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
         <button type="button" class="btn btn-primary" (click)="CancelEdit()">Anuluj</button>
@@ -94,8 +94,8 @@
           <input [(ngModel)]="addedStudent.lastname" placeholder="lastname" class="form-control" id="ex2" type="text">
         </div>
         <div class="col-xs-12">
-          <label for="ex2">E-mail</label>
-          <input [(ngModel)]="addedStudent.email" placeholder="email" class="form-control" id="ex2" type="text">
+          <label for="ex3">E-mail</label>
+          <input [(ngModel)]="addedStudent.email" placeholder="email" class="form-control" id="ex3" type="text">
         </div>
         <button type="button" class="btn btn-primary" (click)="onAddSubmit(addedStudent)">Dodaj</button>
         <button type="button" class="btn btn-primary" (click)="CancelAdd()">Anuluj</button>

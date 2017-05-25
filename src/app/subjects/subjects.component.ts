@@ -97,9 +97,10 @@ export class SubjectsComponent implements OnInit {
     this.serverService.deleteGrade(id);
   }
 
-  onSelect(subject:Subject){
-    this.selectedSubject=subject;
-    this.detailsInit=true;
+  onSelect(subject:Subject) {
+    this.selectedSubject = subject;
+    this.detailsInit = true;
+  }
 
   CancelEdit() {
     this.editInit = false;

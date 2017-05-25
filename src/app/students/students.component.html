@@ -70,8 +70,8 @@
           <label for="ex2">E-mail</label>
           <input [(ngModel)]="selectedStudent.email" placeholder="email" class="form-control" id="ex2" type="text">
         </div>
-        <button type="button" class="btn btn-primary" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
-        <button type="button" class="btn btn-primary" (click)="CancelEdit()">Anuluj</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelEdit()">Anuluj</button>
 
       </div>
     </div>
@@ -97,8 +97,8 @@
           <label for="ex2">E-mail</label>
           <input [(ngModel)]="addedStudent.email" placeholder="email" class="form-control" id="ex2" type="text">
         </div>
-        <button type="button" class="btn btn-primary" (click)="onAddSubmit(addedStudent)">Dodaj</button>
-        <button type="button" class="btn btn-primary" (click)="CancelAdd()">Anuluj</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="onAddSubmit(addedStudent)">Dodaj</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelAdd()">Anuluj</button>
       </div>
     </div>
   </div>

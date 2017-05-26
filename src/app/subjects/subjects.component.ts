@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
 import { Subject } from './subject';
+import { Grade } from './grade';
 
 @Component({
   selector: 'app-subjects',
@@ -10,10 +11,20 @@ import { Subject } from './subject';
 export class SubjectsComponent implements OnInit {
 
   subjects:any;
-  detailsInit:boolean =false;
+  grades:any;
+  students:any;
+  detailsInit:boolean;
+
+  addSubjectId:string;
+  addStudentId:string;
+  addSemester:string;
+  addValue:string;
+
+
 
   selectedSubject:Subject;
   editInit:boolean;
+  addGradeInit:boolean;
   initSubject: boolean;
   addedSubject: Subject;
   emptySubject:Subject = [
@@ -29,6 +40,13 @@ export class SubjectsComponent implements OnInit {
 
     this.serverService.getSubjects().subscribe(subjects =>{
       this.subjects = subjects;
+    });
+    this.serverService.getStudents().subscribe(students =>{
+      this.students = students;
+    });
+    this.serverService.getGrades().subscribe(grades =>{
+      this.grades = grades;
+      console.log(this.grades);
     })
   }
 
@@ -47,6 +65,25 @@ export class SubjectsComponent implements OnInit {
     this.addedSubject = this.emptySubject;
   }
 
+  onAddGradeInit(){
+    this.addGradeInit = true;
+  }
+
+  onAddGradeSubmit(){
+    this.serverService.addGrade(
+      {
+        subjectId: this.selectedSubject.$key,
+        studentId: this.addStudentId,
+        value: this.addValue,
+        semester: this.addSemester
+      }
+    );
+    this.addGradeInit = false;
+    this.addStudentId='';
+    this.addSemester='';
+    this.addValue='';
+  }
+
   onAddSubmit(subject){
     this.serverService.addSubject(subject);
     this.initSubject = false;
@@ -54,6 +91,15 @@ export class SubjectsComponent implements OnInit {
 
   onDeleteClick(id){
     this.serverService.deleteSubject(id);
+  }
+
+  onDblGradeClick(id){
+    this.serverService.deleteGrade(id);
+  }
+
+  onSelect(subject:Subject) {
+    this.selectedSubject = subject;
+    this.detailsInit = true;
   }
 
   CancelEdit() {

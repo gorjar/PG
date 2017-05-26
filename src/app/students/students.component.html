@@ -60,18 +60,18 @@
       <div class="form-group">
         <div class="col-xs-12">
           <label for="ex1">Imię</label>
-          <input [(ngModel)]="selectedStudent.name" placeholder="name" class="form-control" id="ex1" type="text"/>
+          <input [(ngModel)]="selectedStudent.name" placeholder="Imię" class="form-control" id="ex1" type="text"/>
         </div>
         <div class="col-xs-12">
           <label for="ex2">Nazwisko</label>
-          <input [(ngModel)]="selectedStudent.lastname" placeholder="lastname" class="form-control" id="ex2" type="text">
+          <input [(ngModel)]="selectedStudent.lastname" placeholder="Nazwisko" class="form-control" id="ex2" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex3">E-mail</label>
           <input [(ngModel)]="selectedStudent.email" placeholder="email" class="form-control" id="ex3" type="text">
         </div>
-        <button type="button" class="btn btn-primary" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
-        <button type="button" class="btn btn-primary" (click)="CancelEdit()">Anuluj</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelEdit()">Anuluj</button>
 
       </div>
     </div>
@@ -87,18 +87,18 @@
       <div class="form-group">
         <div class="col-xs-12">
           <label for="ex1">Imię</label>
-          <input [(ngModel)]="addedStudent.name" placeholder="name" class="form-control" id="ex1" type="text"/>
+          <input [(ngModel)]="addedStudent.name" placeholder="Imię" class="form-control" id="ex1" type="text"/>
         </div>
         <div class="col-xs-12">
           <label for="ex2">Nazwisko</label>
-          <input [(ngModel)]="addedStudent.lastname" placeholder="lastname" class="form-control" id="ex2" type="text">
+          <input [(ngModel)]="addedStudent.lastname" placeholder="Nazwisko" class="form-control" id="ex2" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex3">E-mail</label>
           <input [(ngModel)]="addedStudent.email" placeholder="email" class="form-control" id="ex3" type="text">
         </div>
-        <button type="button" class="btn btn-primary" (click)="onAddSubmit(addedStudent)">Dodaj</button>
-        <button type="button" class="btn btn-primary" (click)="CancelAdd()">Anuluj</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="onAddSubmit(addedStudent)">Dodaj</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelAdd()">Anuluj</button>
       </div>
     </div>
   </div>

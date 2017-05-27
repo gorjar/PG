@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
-import * as firebase from 'firebase'
+import { Student } from './student';
 
 @Component({
   selector: 'app-students',
@@ -11,30 +9,60 @@ import * as firebase from 'firebase'
 })
 export class StudentsComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router, private server: ServerService) {}
-  students = [];
-  roles: any;
+  students:any;
+  detailsInit:boolean =false;
+
+  selectedStudent:Student;
+  editInit:boolean;
+  initStudent: boolean;
+  addedStudent: Student;
+  emptyStudent:Student = [
+    '',
+    '',
+    ''
+  ];
+
+  constructor(
+    private serverService:ServerService
+  ) {}
+
   ngOnInit() {
-    if (this.authService.token == null) {
-      this.router.navigate((['/']));
-    }
-    else {
-      this.listStudents();
-      this.roles = this.getRole();
-    }
+
+    this.serverService.getStudents().subscribe(students =>{
+      this.students = students;
+    })
   }
 
-  listStudents(){
-    this.server.getStudents()
-        .subscribe(
-        (students: any[]) => (this.students = students),
-        (error) => console.log(error));
+  onEditClick(student:Student) {
+    this.editInit = true;
+    this.selectedStudent = student;
   }
 
-  getRole(){
-    const user = firebase.auth().currentUser.email;
-    this.server.getCurrentUserRole(user).subscribe(
-        (roles: any) => (this.roles = roles),
-        (error) => console.log(error));
+  onEditSubmit(id, student){
+    this.serverService.updateStudent(id, student);
+    this.editInit=false;
   }
+
+  onAddInit(){
+    this.initStudent = true;
+    this.addedStudent = this.emptyStudent;
+  }
+
+  onAddSubmit(student){
+    this.serverService.addStudent(student);
+    this.initStudent=false;
+  }
+
+  onDeleteClick(id){
+    this.serverService.deleteStudent(id);
+  }
+
+  CancelEdit() {
+    this.editInit=false;
+  }
+
+  CancelAdd() {
+    this.initStudent=false;
+  }
+
 }

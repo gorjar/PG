@@ -1,17 +1,9 @@
-.table {
-  border: 1px solid black;
-  padding: 10px;
-  text-align: center;
-}
-
-.table-striped>tbody>tr:nth-of-type(odd) {
-  background-color: #e7e7e7;
-}
-
 h2 {
   text-align: center;
 }
-
+h3 {
+  font-weight: bold;
+}
 th {
   background-color: #7f7f7f;
   color: white;
@@ -19,6 +11,22 @@ th {
   horiz-align: center;
 }
 
-.form-control:focus {
-  border-color: #e7e7e7;
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: #e7e7e7;
+}
+/*
+.table-striped>tbody>tr:nth-of-type(even) {
+  background-color: #d9e2f3;
+}
+*/
+
+.container{
+  padding-bottom: 40px;
+}
+
+#add-button {
+  margin-bottom: 20px;
+}
+.gmo-btn {
+  margin-top: 10px;
 }

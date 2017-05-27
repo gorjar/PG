@@ -1,68 +1,105 @@
-<app-navbar></app-navbar>
-<div class="container">
+<div *ngIf="this.serverService.currentUserMail!='0' && this.serverService.currentUserRole!='student'" class="container">
   <h2>Studia Podyplomowe</h2>
-  <h2>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h2>
-  <div class="form-group">
-    <label for="student">Student</label>
-    <select type="student" class="form-control" id="student" name="student">
-      <option *ngFor="let student of students">{{ student }}</option>
-    </select>
-  </div>
-  <table class="table table-striped">
+  <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
+  <table id="students_table" class="table table-bordered table-striped ">
     <thead>
     <tr>
-      <th>Lp</th>
-      <th>Przedmioty</th>
-      <th>Oceny cząstkowe</th>
-      <th>Średnia ocena</th>
-      <th>Ocena za I semestr</th>
-      <th>Oceny cząstkowe</th>
-      <th>Średnia ocena</th>
-      <th>Ocena za II semestr</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>E-mail</th>
+      <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
+      <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
     </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let student of students">
     <tr>
-      <td>1</td>
-      <td>Podstawy programowania</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Architektury systemów internetowych</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Podstawy inżynierii oprogramowania</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Testowanie</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{student.name}}</td>
+      <td>{{student.lastname}}</td>
+      <td>{{student.email}}</td>
+      <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(student)">Edycja</button></td>
+      <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(student.$key)">Usuń</button></td>
     </tr>
     </tbody>
   </table>
   <hr>
+  <button *ngIf="this.serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
+  <div *ngIf="detailsInit">
+    <h2>Oceny dla wybranego studenta</h2>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Imię i nazwisko</th>
+        <th>Semestr I </th>
+        <th>Semestr II </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Jan Kowalski</td>
+        <td>4</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>Zbigniew Nowak</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>Andrzej Olszewski</td>
+        <td>5</td>
+        <td>4</td>
+      </tr>
+    </table>
+  </div>
+
+  <div *ngIf="editInit">
+    <div class="container">
+
+      <h3>Edycja danych Studenta</h3>
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <label for="ex1">Imię</label>
+          <input [(ngModel)]="selectedStudent.name" placeholder="Imię" class="form-control" id="ex1" type="text"/>
+        </div>
+        <div class="col-xs-12">
+          <label for="ex2">Nazwisko</label>
+          <input [(ngModel)]="selectedStudent.lastname" placeholder="Nazwisko" class="form-control" id="ex2" type="text">
+        </div>
+        <div class="col-xs-12">
+          <label for="ex3">E-mail</label>
+          <input [(ngModel)]="selectedStudent.email" placeholder="email" class="form-control" id="ex3" type="text">
+        </div>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelEdit()">Anuluj</button>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="initStudent">
+
+    <div class="container">
+
+      <h3>Dodanie nowego Studenta</h3>
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <label for="ex1">Imię</label>
+          <input [(ngModel)]="addedStudent.name" placeholder="Imię" class="form-control" id="ex1" type="text"/>
+        </div>
+        <div class="col-xs-12">
+          <label for="ex2">Nazwisko</label>
+          <input [(ngModel)]="addedStudent.lastname" placeholder="Nazwisko" class="form-control" id="ex2" type="text">
+        </div>
+        <div class="col-xs-12">
+          <label for="ex3">E-mail</label>
+          <input [(ngModel)]="addedStudent.email" placeholder="email" class="form-control" id="ex3" type="text">
+        </div>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="onAddSubmit(addedStudent)">Dodaj</button>
+        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelAdd()">Anuluj</button>
+      </div>
+    </div>
+  </div>
 </div>

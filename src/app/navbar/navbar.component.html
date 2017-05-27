@@ -11,36 +11,31 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul id="nav1" class="nav navbar-nav navbar-left" >
-        <ng-template [ngIf]="(authService.isSignIn() && roles==='nauczyciel') || (authService.isSignIn() && roles==='sekretarka')">
-          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="students" class="mainmenu" routerLink="/students">Studenci</a></li>
-        </ng-template>
-        <ng-template [ngIf]="authService.isSignIn()">
-          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="subjects" class="mainmenu" routerLink="/subjects">Przedmioty</a></li>
-          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="schedule" class="mainmenu" routerLink="/schedule">Plan zajęć</a></li>
-          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="settings" class="mainmenu" routerLink="/settings">Ustawienia</a></li>
-          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="about" class="mainmenu" routerLink="/about">O aplikacji</a></li>
-          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="chat" class="mainmenu" routerLink="/chat">Forum</a></li>
-        </ng-template>
+        <li><a id="schedule"  [routerLink]="['/schedule']">Plan zajęć</a></li>
+      </ul>
+      <ul *ngIf="this.serverService.currentUserRole==='admin'" id="nav1" class="nav navbar-nav navbar-left" >
+          <li *ngIf="(afAuth.authState | async)"><a id="students"  [routerLink]="['/students']">Studenci</a></li>
+          <li *ngIf="(afAuth.authState | async)"><a id="subjects"  [routerLink]="['/subjects']">Przedmioty</a></li>
+          <li *ngIf="(afAuth.authState | async)"><a id="settings"  [routerLink]="['/settings']">Ustawienia</a></li>
+          <li *ngIf="(afAuth.authState | async)"><a id="about"  [routerLink]="['/about']">O aplikacji</a></li>
+          <li *ngIf="(afAuth.authState | async)"><a id="chat"  [routerLink]="['/chat']">Chat</a></li>
+      </ul>
+      <ul *ngIf="this.serverService.currentUserRole==='student'" id="nav1" class="nav navbar-nav navbar-left" >
+        <li *ngIf="(afAuth.authState | async)"><a id="subjects"  [routerLink]="['/subjects']">Przedmioty</a></li>
+        <li *ngIf="(afAuth.authState | async)"><a id="about"  [routerLink]="['/about']">O aplikacji</a></li>
+        <li *ngIf="(afAuth.authState | async)"><a id="chat"  [routerLink]="['/chat']">Chat</a></li>
+      </ul>
+      <ul *ngIf="this.serverService.currentUserRole==='lecturer'" id="nav1" class="nav navbar-nav navbar-left" >
+        <li *ngIf="(afAuth.authState | async)"><a id="students"  [routerLink]="['/students']">Studenci</a></li>
+        <li *ngIf="(afAuth.authState | async)"><a id="subjects"  [routerLink]="['/subjects']">Przedmioty</a></li>
+        <li><a id="schedule"  [routerLink]="['/schedule']">Plan zajęć</a></li>
+        <li *ngIf="(afAuth.authState | async)"><a id="about"  [routerLink]="['/about']">O aplikacji</a></li>
+        <li *ngIf="(afAuth.authState | async)"><a id="chat"  [routerLink]="['/chat']">Chat</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <ng-template [ngIf]="!authService.isSignIn()">
-          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="signin" routerLink="/signin" >Zaloguj</a></li>
-        </ng-template>
-        <ng-template [ngIf]="authService.isSignIn() && roles==='sekretarka'">
-          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="signup" routerLink="/signup">Zarejestruj</a></li>
-        </ng-template>
-        <ng-template [ngIf]="authService.isSignIn()">
-          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a id="logout" routerLink="/"  (click)="logOut()">Wyloguj</a></li>
-        </ng-template>
+        <li *ngIf="!(afAuth.authState | async)"><a [routerLink]="['/login']" id="login">Zaloguj</a></li>
+        <li *ngIf="(afAuth.authState | async)"><a [routerLink]="['/login']" (click)="onLogout()" id="logout">Wyloguj </a></li>
+        <li *ngIf="!(afAuth.authState | async)"><a [routerLink]="['/register']" id="register">Zarejestruj</a></li>
       </ul>
     </div>
   </div>

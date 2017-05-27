@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
 import { Subject } from './subject';
-import * as firebase from 'firebase';
+import { Grade } from './grade';
 
 @Component({
   selector: 'app-subjects',
@@ -13,13 +11,20 @@ import * as firebase from 'firebase';
 export class SubjectsComponent implements OnInit {
 
   subjects:any;
-  detailsInit:boolean =false;
+  grades:any;
+  students:any;
+  detailsInit:boolean;
+
+  addSubjectId:string;
+  addStudentId:string;
+  addSemester:string;
+  addValue:string;
 
 
-  roles:any;
-  currentRole:any;
+
   selectedSubject:Subject;
   editInit:boolean;
+  addGradeInit:boolean;
   initSubject: boolean;
   addedSubject: Subject;
   emptySubject:Subject = [
@@ -27,35 +32,22 @@ export class SubjectsComponent implements OnInit {
     ''
   ];
 
-
   constructor(
-    private auth: AuthService,
-    private router: Router,
     private serverService:ServerService
   ) {}
 
   ngOnInit() {
-    if(this.auth.token == null){
-      this.router.navigate((['/']));
-    }
-
-    this.getRole();
 
     this.serverService.getSubjects().subscribe(subjects =>{
-      console.log(subjects);
       this.subjects = subjects;
+    });
+    this.serverService.getStudents().subscribe(students =>{
+      this.students = students;
+    });
+    this.serverService.getGrades().subscribe(grades =>{
+      this.grades = grades;
+      console.log(this.grades);
     })
-  }
-
-  getRole() {
-    const user = firebase.auth().currentUser.email;
-    this.serverService.getCurrentUserRole(user).subscribe(
-      (response: any) => (this.roles = response),
-      (error) => console.log(error),
-      () => {
-        this.roles;
-        this.currentRole=this.roles;
-      });
   }
 
   onEditClick(subject:Subject) {
@@ -65,7 +57,7 @@ export class SubjectsComponent implements OnInit {
 
   onEditSubmit(id, subject){
     this.serverService.updateSubject(id, subject);
-    this.editInit=false;
+    this.editInit = false;
   }
 
   onAddInit(){
@@ -73,13 +65,49 @@ export class SubjectsComponent implements OnInit {
     this.addedSubject = this.emptySubject;
   }
 
+  onAddGradeInit(){
+    this.addGradeInit = true;
+  }
+
+  onAddGradeSubmit(){
+    this.serverService.addGrade(
+      {
+        subjectId: this.selectedSubject.$key,
+        studentId: this.addStudentId,
+        value: this.addValue,
+        semester: this.addSemester
+      }
+    );
+    this.addGradeInit = false;
+    this.addStudentId='';
+    this.addSemester='';
+    this.addValue='';
+  }
+
   onAddSubmit(subject){
     this.serverService.addSubject(subject);
-    this.initSubject=false;
+    this.initSubject = false;
   }
 
   onDeleteClick(id){
     this.serverService.deleteSubject(id);
+  }
+
+  onDblGradeClick(id){
+    this.serverService.deleteGrade(id);
+  }
+
+  onSelect(subject:Subject) {
+    this.selectedSubject = subject;
+    this.detailsInit = true;
+  }
+
+  CancelEdit() {
+    this.editInit = false;
+  }
+
+  CancelAdd() {
+    this.initSubject = false;
   }
 
 }

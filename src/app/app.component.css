@@ -1,5 +1,5 @@
 .footer {
-  font-family: "Arial Black";
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -14,8 +14,6 @@
     position: static;
     bottom: 0;
     width: 100%;
-    height: 20px;
-    background-color: #ffffff;
 
   }
 

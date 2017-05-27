@@ -19,6 +19,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     let SETTINGS_BUTTON = element(by.id('settings'));
     let ABOUT_BUTTON = element(by.id('about'));
     let ADD_BUTTON = element(by.id('add-button'));
+    let SUBJECTS_ADD_BUTTON = element(by.id('add-subject-button'));
     let STUDENTS_TABLE = element(by.id('students_table'));
     let SUBJECTS_TABLE = element(by.id('subjects_table'));
     let SCHEDULE_TABLE = element(by.id('schedule_table'));
@@ -131,8 +132,8 @@ describe('Dziennik Lekcyjny Main Page', () => {
     browser.sleep(2000);
     browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'subjects button not aviable');
     SUBJECTS_BUTTON.click();
-    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not aviable');
-    ADD_BUTTON.click();
+    browser.wait(until.presenceOf(SUBJECTS_ADD_BUTTON), 5000, 'add button not aviable');
+    SUBJECTS_ADD_BUTTON.click();
   });
 
   it('ScheduleComponent table presence', () => {

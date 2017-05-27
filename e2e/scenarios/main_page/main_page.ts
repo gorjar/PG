@@ -19,6 +19,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     let SETTINGS_BUTTON = element(by.id('settings'));
     let ABOUT_BUTTON = element(by.id('about'));
     let ADD_BUTTON = element(by.id('add-button'));
+    let SUBJECTS_ADD_BUTTON = element(by.id('add-subject-button'));
     let STUDENTS_TABLE = element(by.id('students_table'));
     let SUBJECTS_TABLE = element(by.id('subjects_table'));
     let SCHEDULE_TABLE = element(by.id('schedule_table'));
@@ -86,9 +87,9 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
     browser.sleep(2000);
-    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'student dropdown not aviable');
+    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'student button not available');
     STUDENTS_BUTTON.click();
-    browser.wait(until.presenceOf(STUDENTS_TABLE), 5000, 'students table not aviable');
+    browser.wait(until.presenceOf(STUDENTS_TABLE), 5000, 'students table not available');
   });
 
   it('StudentsComponent adding  functionality presence', () => {
@@ -100,9 +101,9 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
     browser.sleep(2000);
-    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'students button not aviable');
+    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'students button not available');
     STUDENTS_BUTTON.click();
-    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not aviable');
+    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
     ADD_BUTTON.click();
   });
 
@@ -115,9 +116,9 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
     browser.sleep(2000);
-    browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'student dropdown not aviable');
+    browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'student dropdown not available');
     SUBJECTS_BUTTON.click();
-    browser.wait(until.presenceOf(SUBJECTS_TABLE), 5000, 'subjects table not aviable');
+    browser.wait(until.presenceOf(SUBJECTS_TABLE), 5000, 'subjects table not available');
   });
 
   it('SubjectsComponent adding  functionality presence', () => {
@@ -129,10 +130,10 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
     browser.sleep(2000);
-    browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'subjects button not aviable');
+    browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'subjects button not available');
     SUBJECTS_BUTTON.click();
-    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not aviable');
-    ADD_BUTTON.click();
+    browser.wait(until.presenceOf(SUBJECTS_ADD_BUTTON), 5000, 'add button not available');
+    SUBJECTS_ADD_BUTTON.click();
   });
 
   it('ScheduleComponent table presence', () => {
@@ -144,9 +145,9 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
     browser.sleep(2000);
-    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule table not aviable');
+    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule table not available');
     SCHEDULE_BUTTON.click();
-    browser.wait(until.presenceOf(SCHEDULE_TABLE), 5000, 'schedule table not aviable');
+    browser.wait(until.presenceOf(SCHEDULE_TABLE), 5000, 'schedule table not available');
   });
 
   it('ScheduleComponent adding  functionality presence', () => {
@@ -158,9 +159,9 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
     browser.sleep(2000);
-    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule button not aviable');
+    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule button not available');
     SCHEDULE_BUTTON.click();
-    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not aviable');
+    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
     ADD_BUTTON.click();
   });
 
@@ -173,9 +174,9 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
     browser.sleep(2000);
-    browser.wait(until.presenceOf(SETTINGS_BUTTON), 5000, 'settings table not aviable');
+    browser.wait(until.presenceOf(SETTINGS_BUTTON), 5000, 'settings table not available');
     SETTINGS_BUTTON.click();
-    browser.wait(until.presenceOf(SETTINGS_TABLE), 5000, 'settings table not aviable');
+    browser.wait(until.presenceOf(SETTINGS_TABLE), 5000, 'settings table not available');
   });
 
   it('ScheduleComponent adding  functionality presence', () => {
@@ -187,9 +188,9 @@ describe('Dziennik Lekcyjny Main Page', () => {
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
     browser.sleep(2000);
-    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule button not aviable');
+    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule button not available');
     SCHEDULE_BUTTON.click();
-    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not aviable');
+    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
     ADD_BUTTON.click();
   });
 

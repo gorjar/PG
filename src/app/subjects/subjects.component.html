@@ -32,7 +32,30 @@
     </tr>
     </thead>
     <tbody *ngFor="let student of students">
-    <tr>
+    <tr *ngIf="serverService.currentUserRole==='student' && serverService.currentUserMail==student.email ">
+      <td>{{student.name}} {{student.lastname}}</td>
+      <td *ngIf="serverService.currentUserRole==='student'">
+        <span *ngFor="let grade of grades">
+          <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='I'">{{grade.value}} </span>
+        </span>
+      </td>
+      <td *ngIf="serverService.currentUserRole==='student'">
+        <span *ngFor="let grade of grades">
+          <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='II'">{{grade.value}}</span>
+        </span>
+      </td>
+      <td *ngIf="serverService.currentUserRole!='student'">
+        <span *ngFor="let grade of grades">
+          <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='I'" (dblclick)="onDblGradeClick(grade.$key)">{{grade.value}} </span>
+        </span>
+      </td>
+      <td *ngIf="serverService.currentUserRole!='student'">
+        <span *ngFor="let grade of grades">
+          <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='II'" (dblclick)="onDblGradeClick(grade.$key)">{{grade.value}}</span>
+        </span>
+      </td>
+    </tr>
+    <tr *ngIf="serverService.currentUserRole!='student'">
       <td>{{student.name}} {{student.lastname}}</td>
       <td *ngIf="serverService.currentUserRole==='student'">
         <span *ngFor="let grade of grades">

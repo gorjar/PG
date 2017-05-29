@@ -27,10 +27,10 @@ export class SubjectsComponent implements OnInit {
   addGradeInit:boolean;
   initSubject: boolean;
   addedSubject: Subject;
-  emptySubject:Subject = [
-    '',
-    ''
-  ];
+  emptySubject:Subject = {
+    name:'',
+    lecturer:''
+  };
 
   constructor(
     private serverService:ServerService

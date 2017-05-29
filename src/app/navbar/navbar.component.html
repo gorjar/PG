@@ -13,19 +13,19 @@
       <ul id="nav1" class="nav navbar-nav navbar-left" >
         <li><a id="schedule"  [routerLink]="['/schedule']">Plan zajęć</a></li>
       </ul>
-      <ul *ngIf="this.serverService.currentUserRole==='admin'" id="nav1" class="nav navbar-nav navbar-left" >
+      <ul *ngIf="serverService.currentUserRole==='admin'" id="nav1" class="nav navbar-nav navbar-left" >
           <li *ngIf="(afAuth.authState | async)"><a id="students"  [routerLink]="['/students']">Studenci</a></li>
           <li *ngIf="(afAuth.authState | async)"><a id="subjects"  [routerLink]="['/subjects']">Przedmioty</a></li>
           <li *ngIf="(afAuth.authState | async)"><a id="settings"  [routerLink]="['/settings']">Ustawienia</a></li>
           <li *ngIf="(afAuth.authState | async)"><a id="about"  [routerLink]="['/about']">O aplikacji</a></li>
           <li *ngIf="(afAuth.authState | async)"><a id="chat"  [routerLink]="['/chat']">Chat</a></li>
       </ul>
-      <ul *ngIf="this.serverService.currentUserRole==='student'" id="nav1" class="nav navbar-nav navbar-left" >
+      <ul *ngIf="serverService.currentUserRole==='student'" id="nav1" class="nav navbar-nav navbar-left" >
         <li *ngIf="(afAuth.authState | async)"><a id="subjects"  [routerLink]="['/subjects']">Przedmioty</a></li>
         <li *ngIf="(afAuth.authState | async)"><a id="about"  [routerLink]="['/about']">O aplikacji</a></li>
         <li *ngIf="(afAuth.authState | async)"><a id="chat"  [routerLink]="['/chat']">Chat</a></li>
       </ul>
-      <ul *ngIf="this.serverService.currentUserRole==='lecturer'" id="nav1" class="nav navbar-nav navbar-left" >
+      <ul *ngIf="serverService.currentUserRole==='lecturer'" id="nav1" class="nav navbar-nav navbar-left" >
         <li *ngIf="(afAuth.authState | async)"><a id="students"  [routerLink]="['/students']">Studenci</a></li>
         <li *ngIf="(afAuth.authState | async)"><a id="subjects"  [routerLink]="['/subjects']">Przedmioty</a></li>
         <li><a id="schedule"  [routerLink]="['/schedule']">Plan zajęć</a></li>

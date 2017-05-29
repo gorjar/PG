@@ -1,4 +1,4 @@
-<div *ngIf="this.serverService.currentUserMail!='0' && this.serverService.currentUserRole=='admin'" class="container">
+<div *ngIf="serverService.currentUserMail!='0' && serverService.currentUserRole=='admin'" class="container">
   <h2>Studia Podyplomowe</h2>
   <h3>Zarejestrowani użytkownicy serwisu</h3>
   <table id="settings_table" class="table table-bordered table-striped ">
@@ -8,8 +8,8 @@
       <th>Nazwisko</th>
       <th>E-mail</th>
       <th>Rola</th>
-      <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
-      <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
+      <th *ngIf="serverService.currentUserRole==='admin'"></th>
+      <th *ngIf="serverService.currentUserRole==='admin'"></th>
     </tr>
     </thead>
     <tbody *ngFor="let user of users">
@@ -18,8 +18,8 @@
       <td>{{user.lastname}}</td>
       <td>{{user.email}}</td>
       <td>{{user.role}}</td>
-      <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(user)">Edycja</button></td>
-      <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(user.$key)">Usuń</button></td>
+      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(user)">Edycja</button></td>
+      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(user.$key)">Usuń</button></td>
     </tr>
     </tbody>
   </table>

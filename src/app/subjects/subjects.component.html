@@ -1,4 +1,4 @@
-<div *ngIf="this.serverService.currentUserMail!='0'" class="container">
+<div *ngIf="serverService.currentUserMail!='0'" class="container">
   <h2>Studia Podyplomowe</h2>
   <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
   <table id="subjects_table" class="table table-bordered table-striped ">
@@ -6,21 +6,21 @@
       <tr>
         <th>Przedmiot</th>
         <th>Wykładowca</th>
-        <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
-        <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
+        <th *ngIf="serverService.currentUserRole==='admin'"></th>
+        <th *ngIf="serverService.currentUserRole==='admin'"></th>
       </tr>
     </thead>
     <tbody *ngFor="let subject of subjects">
       <tr>
         <td (click)="onSelect(subject)">{{subject.name}}</td>
         <td>{{subject.lecturer}}</td>
-        <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(subject)">Edycja</button></td>
-        <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(subject.$key)">Usuń</button></td>
+        <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(subject)">Edycja</button></td>
+        <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(subject.$key)">Usuń</button></td>
       </tr>
     </tbody>
   </table>
   <hr>
-  <button *ngIf="this.serverService.currentUserRole==='admin'" type="button" id="add-subject-button" class="btn btn-primary" (click)="onAddInit()">Dodaj przedmiot</button>
+  <button *ngIf="serverService.currentUserRole==='admin'" type="button" id="add-subject-button" class="btn btn-primary" (click)="onAddInit()">Dodaj przedmiot</button>
   <div *ngIf="detailsInit">
   <h2>Oceny dla {{selectedSubject.name}}</h2>
   <table class="table table-bordered table-striped">
@@ -34,22 +34,22 @@
     <tbody *ngFor="let student of students">
     <tr>
       <td>{{student.name}} {{student.lastname}}</td>
-      <td *ngIf="this.serverService.currentUserRole==='student'">
+      <td *ngIf="serverService.currentUserRole==='student'">
         <span *ngFor="let grade of grades">
           <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='I'">{{grade.value}} </span>
         </span>
       </td>
-      <td *ngIf="this.serverService.currentUserRole==='student'">
+      <td *ngIf="serverService.currentUserRole==='student'">
         <span *ngFor="let grade of grades">
           <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='II'">{{grade.value}}</span>
         </span>
       </td>
-      <td *ngIf="this.serverService.currentUserRole!='student'">
+      <td *ngIf="serverService.currentUserRole!='student'">
         <span *ngFor="let grade of grades">
           <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='I'" (dblclick)="onDblGradeClick(grade.$key)">{{grade.value}} </span>
         </span>
       </td>
-      <td *ngIf="this.serverService.currentUserRole!='student'">
+      <td *ngIf="serverService.currentUserRole!='student'">
         <span *ngFor="let grade of grades">
           <span *ngIf="grade.studentId==student.$key && grade.subjectId==selectedSubject.$key && grade.semester=='II'" (dblclick)="onDblGradeClick(grade.$key)">{{grade.value}}</span>
         </span>
@@ -58,7 +58,7 @@
     </tbody>
   </table>
 
-    <button *ngIf="this.serverService.currentUserRole!='student'" type="button" id="add-grade-button" class="btn btn-primary" (click)="onAddGradeInit()">Dodaj ocenę</button>
+    <button *ngIf="serverService.currentUserRole!='student'" type="button" id="add-grade-button" class="btn btn-primary" (click)="onAddGradeInit()">Dodaj ocenę</button>
 
     <div *ngIf="addGradeInit">
     <h4>Dodaj ocenę</h4>

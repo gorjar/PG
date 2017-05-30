@@ -2,7 +2,3 @@
   color: #333;
   background-color: #e7e7e7;
 }
-ul#nav1 li.tab_selected a, ul#nav1 li.tab_selected a:hover {
-  background: #635B53;
-  color: #FFF;
-}

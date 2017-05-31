@@ -10,7 +10,7 @@
         <th *ngIf="serverService.currentUserRole==='admin'"></th>
       </tr>
     </thead>
-    <tbody *ngFor="let subject of subjects">
+    <tbody *ngFor="let subject of subjects" [class.selected]="subject === selectedSubject">
       <tr>
         <td (click)="onSelect(subject)">{{subject.name}}</td>
         <td>{{subject.lecturer}}</td>

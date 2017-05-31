@@ -11,10 +11,26 @@ th {
   horiz-align: center;
 }
 
-.table-striped>tbody>tr:nth-of-type(odd) {
+td {
   background-color: #e7e7e7;
 }
+
+.selected td {
+  background-color: darkgray;
+  color:white;
+
+}
+
+td {
+  background-color: #e7e7e7;
+}
+
+
 /*
+.selected.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: #e7e7e7;
+}
+
 .table-striped>tbody>tr:nth-of-type(even) {
   background-color: #d9e2f3;
 }
@@ -30,3 +46,5 @@ th {
 .gmo-btn {
   margin-top: 10px;
 }
+
+

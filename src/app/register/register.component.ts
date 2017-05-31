@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   email:string='';
   password:string='';
   confirmpassword:string='';
+  role:string='guest';
 
 
   constructor(
@@ -40,7 +41,8 @@ export class RegisterComponent implements OnInit {
       {
         name: this.name,
         lastname: this.lastname,
-        email: this.email
+        email: this.email,
+        role: this.role
       }
     );
     this.router.navigate(['']);

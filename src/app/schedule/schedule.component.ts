@@ -14,16 +14,15 @@ export class ScheduleComponent implements OnInit {
   editInit:boolean;
   initSched: boolean;
   addedSched: Schedule;
-  emptySched:Schedule = [
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-  ];
+  emptySched:Schedule = {
+    date:'',
+    duration:'',
+    lecturer:'',
+    room:'',
+    subject:'',
+    time:'',
+    type:''
+  };
 
 
   constructor(

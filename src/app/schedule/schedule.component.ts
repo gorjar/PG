@@ -45,7 +45,7 @@ export class ScheduleComponent implements OnInit {
 
   onEditSubmit(id, sched){
     this.serverService.updateSched(id, sched);
-    this.editInit=false;
+    this.editInit = false;
   }
 
   onAddInit(){
@@ -55,11 +55,19 @@ export class ScheduleComponent implements OnInit {
 
   onAddSubmit(sched){
     this.serverService.addSched(sched);
-    this.initSched=false;
+    this.initSched = false;
   }
 
   onDeleteClick(id){
     this.serverService.deleteShed(id);
+  }
+
+  CancelEdit(){
+    this.editInit = false;
+  }
+
+  CancelAdd(){
+    this.initSched = false;
   }
 
 }

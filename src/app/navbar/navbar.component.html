@@ -33,9 +33,9 @@
         <li *ngIf="(afAuth.authState | async)"><a id="chat"  [routerLink]="['/chat']">Chat</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!(afAuth.authState | async)"><a [routerLink]="['/login']">Zaloguj</a></li>
-        <li *ngIf="(afAuth.authState | async)"><a [routerLink]="['/login']" (click)="onLogout()">Wyloguj </a></li>
-        <li *ngIf="!(afAuth.authState | async)"><a [routerLink]="['/register']">Zarejestruj</a></li>
+        <li *ngIf="!(afAuth.authState | async)"><a [routerLink]="['/login']" id="login">Zaloguj</a></li>
+        <li *ngIf="(afAuth.authState | async)"><a [routerLink]="['/login']" (click)="onLogout()" id="logout">Wyloguj </a></li>
+        <li *ngIf="!(afAuth.authState | async)"><a [routerLink]="['/register']" id="register">Zarejestruj</a></li>
       </ul>
     </div>
   </div>

@@ -2,3 +2,9 @@
   color: #000 !important;
   background-color: #e7e7e7;
 }
+
+#welcome {
+  color: #777;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}

@@ -87,33 +87,33 @@
       <div class="form-group">
         <div class="col-xs-12">
           <label for="ex1">Data</label>
-          <input [(ngModel)]="addedSched.date" placeholder="date" class="form-control" id="ex11" type="Date"/>
+          <input [(ngModel)]="addedSched.date" placeholder="date" class="form-control" id="add-date" type="Date"/>
         </div>
         <div class="col-xs-12">
           <label for="ex2">Godziny</label>
-          <input [(ngModel)]="addedSched.time" placeholder="time" class="form-control" id="ex12" type="text">
+          <input [(ngModel)]="addedSched.time" placeholder="time" class="form-control" id="add-time" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex3">L. godz.</label>
-          <input [(ngModel)]="addedSched.duration" placeholder="duration" class="form-control" id="ex13" type="text">
+          <input [(ngModel)]="addedSched.duration" placeholder="duration" class="form-control" id="add-duration" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex4">Przedmiot</label>
-          <input [(ngModel)]="addedSched.subject" placeholder="subject" class="form-control" id="ex14" type="text">
+          <input [(ngModel)]="addedSched.subject" placeholder="subject" class="form-control" id="add-subject" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex5">Typ</label>
-          <input [(ngModel)]="addedSched.type" placeholder="time" class="form-control" id="ex15" type="text">
+          <input [(ngModel)]="addedSched.type" placeholder="time" class="form-control" id="add-type" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex6">Sala</label>
-          <input [(ngModel)]="addedSched.room" placeholder="room" class="form-control" id="ex16" type="text">
+          <input [(ngModel)]="addedSched.room" placeholder="room" class="form-control" id="add-room" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex7">Prowadzący</label>
-          <input [(ngModel)]="addedSched.lecturer" placeholder="lecturer" class="form-control" id="ex17" type="text">
+          <input [(ngModel)]="addedSched.lecturer" placeholder="lecturer" class="form-control" id="add-lecturer" type="text">
         </div>
-        <button type="button" class="gmo-btn btn btn-primary" (click)="onAddSubmit(addedSched)">Dodaj</button>
+        <button type="button" class="gmo-btn btn btn-primary" id="add-submit" (click)="onAddSubmit(addedSched)">Dodaj</button>
         <button type="button" class="gmo-btn btn btn-primary" (click)="CancelAdd()">Anuluj</button>
 
       </div>

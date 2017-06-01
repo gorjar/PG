@@ -11,11 +11,6 @@
   display: none;
 }
 
-.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
-  color: #333;
-  background-color: #e7e7e7;
-}
-
 @media (max-width: 768px) {
   #sm-display {
     display: inline;

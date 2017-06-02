@@ -41,6 +41,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     });
 
     it('Should check if user can successfully login to application', () => {
+        browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
         expect(LOGIN_BUTTON.isPresent()).toBe(true);
         LOGIN_BUTTON.click();
         expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
@@ -53,6 +54,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     });
 
     it('Should check if user can successfully log out from application', () => {
+      browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
       expect(LOGIN_BUTTON.isPresent()).toBe(true);
       LOGIN_BUTTON.click();
       expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");

@@ -18,7 +18,7 @@
       <td>{{user.lastname}}</td>
       <td>{{user.email}}</td>
       <td>{{user.role}}</td>
-      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(user)">Edycja</button></td>
+      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-warning btn-sm" (click)="onEditClick(user)">Edycja</button></td>
       <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(user.$key)">Usuń</button></td>
     </tr>
     </tbody>
@@ -53,7 +53,7 @@
             <option value="admin">admin</option>
           </select>
         </div>
-        <button type="button" class="gmo-btn btn btn-primary" (click)="onEditSubmit(selectedUser.$key, selectedUser)">Zapisz zmiany</button>
+        <button type="button" class="gmo-btn btn btn-success" (click)="onEditSubmit(selectedUser.$key, selectedUser)">Zapisz zmiany</button>
       </div>
     </div>
   </div>

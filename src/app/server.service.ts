@@ -20,18 +20,24 @@ export class ServerService {
   chat: FirebaseListObservable<any[]>;
   currentUserMail:string='0';
   currentUserRole:string;
+  currentUserName:string;
+  currentUserLastname:string;
 
   constructor( private af:AngularFireDatabase, private afAuth:AngularFireAuth) {
   }
 
-  getCurrentUserRole() {
+  getCurrentUser() {
 
     this.afAuth.authState.subscribe(auth =>{
       if (auth != null){
         this.currentUserMail = auth.email;
         this.getUsers().subscribe(users =>{
           for (let user of users){
-            if (this.currentUserMail===user.email) {this.currentUserRole=user.role}
+            if (this.currentUserMail===user.email) {
+              this.currentUserRole=user.role;
+              this.currentUserName=user.name;
+              this.currentUserLastname=user.lastname;
+            }
           }
         });
       }

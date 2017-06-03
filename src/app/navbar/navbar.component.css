@@ -1,0 +1,14 @@
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover, .active {
+  color: #000 !important;
+  background-color: #e7e7e7;
+}
+
+#welcome {
+  color: #777;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.vertical_line{
+  height:50px; width:1px;background:gainsboro;
+}

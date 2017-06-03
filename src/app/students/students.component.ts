@@ -16,11 +16,11 @@ export class StudentsComponent implements OnInit {
   editInit:boolean;
   initStudent: boolean;
   addedStudent: Student;
-  emptyStudent:Student = [
-    '',
-    '',
-    ''
-  ];
+  emptyStudent:Student = {
+    name:'',
+    lastname:'',
+    email:''
+  };
 
   constructor(
     private serverService:ServerService

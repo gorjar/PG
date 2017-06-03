@@ -20,6 +20,8 @@ export class NavbarComponent implements OnInit {
   };
 
   onLogout(){
+    this.serverService.currentUserMail='';
+    this.serverService.currentUserRole='';
     this.afAuth.auth.signOut();
   }
 

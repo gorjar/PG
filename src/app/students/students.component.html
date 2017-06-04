@@ -1,4 +1,4 @@
-<div *ngIf="this.serverService.currentUserMail!='0' && this.serverService.currentUserRole!='student'" class="container">
+<div *ngIf="serverService.currentUserMail!='0' && serverService.currentUserRole!='student'" class="container">
   <h2>Studia Podyplomowe</h2>
   <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
   <table id="students_table" class="table table-bordered table-striped ">
@@ -7,8 +7,8 @@
       <th>Imię</th>
       <th>Nazwisko</th>
       <th>E-mail</th>
-      <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
-      <th *ngIf="this.serverService.currentUserRole==='admin'"></th>
+      <th *ngIf="serverService.currentUserRole==='admin'"></th>
+      <th *ngIf="serverService.currentUserRole==='admin'"></th>
     </tr>
     </thead>
     <tbody *ngFor="let student of students">
@@ -16,41 +16,13 @@
       <td>{{student.name}}</td>
       <td>{{student.lastname}}</td>
       <td>{{student.email}}</td>
-      <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-primary btn-sm" (click)="onEditClick(student)">Edycja</button></td>
-      <td *ngIf="this.serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(student.$key)">Usuń</button></td>
+      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-warning btn-sm" (click)="onEditClick(student)">Edycja</button></td>
+      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(student.$key)">Usuń</button></td>
     </tr>
     </tbody>
   </table>
   <hr>
-  <button *ngIf="this.serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
-  <div *ngIf="detailsInit">
-    <h2>Oceny dla wybranego studenta</h2>
-    <table class="table table-bordered table-striped">
-      <thead>
-      <tr>
-        <th>Imię i nazwisko</th>
-        <th>Semestr I </th>
-        <th>Semestr II </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Jan Kowalski</td>
-        <td>4</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>Zbigniew Nowak</td>
-        <td>3</td>
-        <td>4</td>
-      </tr>
-      <tr>
-        <td>Andrzej Olszewski</td>
-        <td>5</td>
-        <td>4</td>
-      </tr>
-    </table>
-  </div>
+  <button *ngIf="serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-success" (click)="onAddInit()">Dodaj pozycję</button>
 
   <div *ngIf="editInit">
     <div class="container">
@@ -70,8 +42,8 @@
           <label for="ex3">E-mail</label>
           <input [(ngModel)]="selectedStudent.email" placeholder="email" class="form-control" id="ex3" type="text">
         </div>
-        <button type="button" class="gmo-btn btn btn-primary" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
-        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelEdit()">Anuluj</button>
+        <button type="button" class="gmo-btn btn btn-success" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
+        <button type="button" class="gmo-btn btn btn-basic" (click)="CancelEdit()">Anuluj</button>
 
       </div>
     </div>
@@ -97,8 +69,8 @@
           <label for="ex3">E-mail</label>
           <input [(ngModel)]="addedStudent.email" placeholder="email" class="form-control" id="ex3" type="text">
         </div>
-        <button type="button" class="gmo-btn btn btn-primary" (click)="onAddSubmit(addedStudent)">Dodaj</button>
-        <button type="button" class="gmo-btn btn btn-primary" (click)="CancelAdd()">Anuluj</button>
+        <button type="button" class="gmo-btn btn btn-success" (click)="onAddSubmit(addedStudent)">Dodaj</button>
+        <button type="button" class="gmo-btn btn btn-basic" (click)="CancelAdd()">Anuluj</button>
       </div>
     </div>
   </div>

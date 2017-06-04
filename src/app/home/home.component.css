@@ -4,14 +4,14 @@
 
 .item img {
   width: 100%;
-  margin: 0;
+  margin: 0px;
 }
 
 #sm-display {
   display: none;
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 768px) {
   #sm-display {
     display: inline;
   }
@@ -21,13 +21,14 @@
     padding-bottom: 20px;
     align-items: center;
     display: block;
-    margin: 0 auto;
+    margin: 0px auto;
   }
 
   #myCarousel {
     display: none;
   }
 }
+
 
 @media (max-width: 1024px) and (min-height: 1366px) {
   #sm-display {
@@ -39,7 +40,7 @@
     padding-bottom: 20px;
     align-items: center;
     display: block;
-    margin: 0 auto;
+    margin: 0px auto;
   }
 
   #myCarousel {
@@ -48,3 +49,8 @@
 }
 
 
+@media (max-width: 2560px) {
+  #myCarousel{
+    margin-top: 2.5%;
+  }
+}

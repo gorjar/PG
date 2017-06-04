@@ -1,4 +1,4 @@
-<div *ngIf="this.serverService.currentUserMail!='0'" class="container">
+<div *ngIf="serverService.currentUserMail!='0'" class="container">
   <div>
     <div class="row">
       <ul class="list-group" *ngFor="let message of chat">
@@ -13,7 +13,7 @@
           <label>Wiadomość</label>
           <input [(ngModel)]="text" placeholder="text" class="form-control" id="ex2" type="text">
         </div>
-        <button class="btn btn-primary" id="send_button" (click)="onSubmit(newMessage)">Wyślij</button>
+        <button class="btn btn-success" id="send_button" (click)="onSubmit(newMessage)">Wyślij</button>
     </div>
     <br>
     <br>

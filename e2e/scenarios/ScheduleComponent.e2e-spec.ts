@@ -29,7 +29,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
   beforeEach(() => {
     browser.get(browser.baseUrl);
   });
-/*
+
   it('ScheduleComponent table presence', () => {
     browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
     LOGIN_BUTTON.click();
@@ -57,7 +57,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
     SCHEDULE_BUTTON.click();
     browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
     ADD_BUTTON.click();
-  });*/
+  })
 
   it('ScheduleComponent adding  functionality', () => {
     browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');

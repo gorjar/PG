@@ -5,7 +5,7 @@
 import {browser, element, by, protractor} from "protractor";
 import {LoginData} from "../feed/test_data"
 
-describe('Dziennik Lekcyjny LoginComponent + Logout functionality', () => {
+describe('Dziennik Lekcyjny ScheduleComponent', () => {
 
   let LOGIN_BUTTON = element(by.id('login'));
   let LOGOUT_BUTTON = element(by.id('logout'));
@@ -19,7 +19,7 @@ describe('Dziennik Lekcyjny LoginComponent + Logout functionality', () => {
   let SETTINGS_BUTTON = element(by.id('settings'));
   let ABOUT_BUTTON = element(by.id('about'));
   let ADD_BUTTON = element(by.id('add-button'));
-  let ADD_SUBMIT = element(by.id('add-submit'));
+  let ADD_SUBMIT = element(by.id('addsubmit'));
   let SUBJECTS_ADD_BUTTON = element(by.id('add-subject-button'));
   let STUDENTS_TABLE = element(by.id('students_table'));
   let SUBJECTS_TABLE = element(by.id('subjects_table'));
@@ -40,8 +40,7 @@ describe('Dziennik Lekcyjny LoginComponent + Logout functionality', () => {
     browser.get(browser.baseUrl);
   });
 
-  it('Should check if user can successfully login to application', () => {
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
+  it('ScheduleComponent table presence', () => {
     expect(LOGIN_BUTTON.isPresent()).toBe(true);
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
@@ -49,26 +48,50 @@ describe('Dziennik Lekcyjny LoginComponent + Logout functionality', () => {
     PASSWORD_FIELD.sendKeys(LoginData.correct_password);
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
-    browser.wait(until.presenceOf(LOGOUT_BUTTON), 5000, 'Taking too long to load element');
-    expect(LOGOUT_BUTTON.isPresent()).toBe(true);
-  });
-
-  it('Should check if user can successfully log out from application', () => {
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.wait(until.presenceOf(LOGOUT_BUTTON), 5000, 'Taking too long to load element');
-    expect(LOGOUT_BUTTON.isPresent()).toBe(true);
     browser.sleep(2000);
-    browser.wait(until.presenceOf(LOGOUT_BUTTON), 5000, 'Taking too long to load element');
-    LOGOUT_BUTTON.click();
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
+    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule table not available');
+    SCHEDULE_BUTTON.click();
+    browser.wait(until.presenceOf(SCHEDULE_TABLE), 5000, 'schedule table not available');
   });
 
+  it('ScheduleComponent adding functionality presence', () => {
+    expect(LOGIN_BUTTON.isPresent()).toBe(true);
+    LOGIN_BUTTON.click();
+    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
+    EMAIL_FIELD.sendKeys(LoginData.correct_login);
+    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
+    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
+    LOGIN_FORM_BUTTON.click();
+    browser.sleep(2000);
+    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule button not available');
+    SCHEDULE_BUTTON.click();
+    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
+    ADD_BUTTON.click();
+  });
+
+  it('ScheduleComponent adding  functionality', () => {
+    expect(LOGIN_BUTTON.isPresent()).toBe(true);
+    LOGIN_BUTTON.click();
+    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
+    EMAIL_FIELD.sendKeys(LoginData.correct_login);
+    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
+    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
+    LOGIN_FORM_BUTTON.click();
+    browser.sleep(2000);
+    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule button not available');
+    SCHEDULE_BUTTON.click();
+    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
+    ADD_BUTTON.click();
+    ADD_DATE_FIELD.sendKeys('2017-04-22');
+    ADD_DURATION_FIELD.sendKeys('test-duration');
+    ADD_LECTURER_FIELD.sendKeys('test-lecturer');
+    ADD_ROOM_FIELD.sendKeys('test-room');
+    ADD_SUBJECT_FIELD.sendKeys('test-subject');
+    ADD_TIME_FIELD.sendKeys('test-time');
+    ADD_TYPE_FIELD.sendKeys('test-type');
+    browser.sleep(2000);
+    ADD_SUBMIT.click();
+
+  });
 
 });

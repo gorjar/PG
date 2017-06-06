@@ -5,7 +5,7 @@
 import {browser, element, by, protractor} from "protractor";
 import {LoginData} from "../feed/test_data"
 
-describe('Dziennik Lekcyjny LoginComponent + Logout functionality', () => {
+describe('Dziennik Lekcyjny SettingsComponent', () => {
 
   let LOGIN_BUTTON = element(by.id('login'));
   let EMAIL_FIELD = element(by.id('email'));

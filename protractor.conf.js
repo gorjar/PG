@@ -7,7 +7,13 @@ exports.config = {
   allScriptsTimeout: 11000,
   baseUrl: 'http://localhost:4200',
   specs: [
-    './e2e/scenarios/**/*.ts'
+    './e2e/scenarios/*.ts',
+    //'./e2e/scenarios/LoginComponent.e2e-spec.ts',
+    //'./e2e/scenarios/MainPage.e2e-spec.ts',
+    //'./e2e/scenarios/ScheduleComponent.e2e-spec.ts',
+    //'./e2e/scenarios/SettingsComponent.e2e-spec.ts',
+    //'./e2e/scenarios/StudentComponent.e2e-spec.ts',
+    //'./e2e/scenarios/SubjectsComponent.e2e-spec.ts',
   ],
   capabilities: {
     browserName: 'chrome',

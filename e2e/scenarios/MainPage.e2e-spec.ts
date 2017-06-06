@@ -3,7 +3,7 @@
  */
 
 import {browser, element, by, protractor} from "protractor";
-import {LoginData} from "../../feed/test_data"
+import {LoginData} from "../feed/test_data"
 
 describe('Dziennik Lekcyjny Main Page', () => {
 
@@ -38,35 +38,6 @@ describe('Dziennik Lekcyjny Main Page', () => {
 
     beforeEach(() => {
         browser.get(browser.baseUrl);
-    });
-
-    it('Should check if user can successfully login to application', () => {
-        browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-        expect(LOGIN_BUTTON.isPresent()).toBe(true);
-        LOGIN_BUTTON.click();
-        expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-        EMAIL_FIELD.sendKeys(LoginData.correct_login);
-        PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-        expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-        LOGIN_FORM_BUTTON.click();
-        browser.wait(until.presenceOf(LOGOUT_BUTTON), 5000, 'Taking too long to load element');
-        expect(LOGOUT_BUTTON.isPresent()).toBe(true);
-    });
-
-    it('Should check if user can successfully log out from application', () => {
-      browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-      expect(LOGIN_BUTTON.isPresent()).toBe(true);
-      LOGIN_BUTTON.click();
-      expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-      EMAIL_FIELD.sendKeys(LoginData.correct_login);
-      PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-      expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-      LOGIN_FORM_BUTTON.click();
-      browser.wait(until.presenceOf(LOGOUT_BUTTON), 5000, 'Taking too long to load element');
-      expect(LOGOUT_BUTTON.isPresent()).toBe(true);
-      LOGOUT_BUTTON.click();
-      browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-      expect(LOGIN_BUTTON.isPresent()).toBe(true);
     });
 
     it('Verify that all menu components are displayed after successfull login', () => {

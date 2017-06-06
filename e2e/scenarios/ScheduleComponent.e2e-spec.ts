@@ -78,7 +78,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
     ADD_SUBJECT_FIELD.sendKeys('test-subject');
     ADD_TIME_FIELD.sendKeys('test-time');
     ADD_TYPE_FIELD.sendKeys('test-type');
-    browser.sleep(2000);
+    browser.actions().mouseMove(ADD_SUBMIT).perform();
     ADD_SUBMIT.click();
 
   });

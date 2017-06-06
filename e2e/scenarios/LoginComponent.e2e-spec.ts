@@ -21,7 +21,6 @@ describe('Dziennik Lekcyjny LoginComponent + Logout functionality', () => {
 
   it('Should check if user can successfully login to application', () => {
     browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
     EMAIL_FIELD.sendKeys(LoginData.correct_login);
@@ -29,12 +28,10 @@ describe('Dziennik Lekcyjny LoginComponent + Logout functionality', () => {
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
     browser.wait(until.presenceOf(LOGOUT_BUTTON), 5000, 'Taking too long to load element');
-    expect(LOGOUT_BUTTON.isPresent()).toBe(true);
   });
 
   it('Should check if user can successfully log out from application', () => {
     browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
     EMAIL_FIELD.sendKeys(LoginData.correct_login);
@@ -42,7 +39,6 @@ describe('Dziennik Lekcyjny LoginComponent + Logout functionality', () => {
     expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
     LOGIN_FORM_BUTTON.click();
     browser.wait(until.presenceOf(LOGOUT_BUTTON), 5000, 'Taking too long to load element');
-    expect(LOGOUT_BUTTON.isPresent()).toBe(true);
     browser.sleep(2000);
     browser.wait(until.presenceOf(LOGOUT_BUTTON), 5000, 'Taking too long to load element');
     LOGOUT_BUTTON.click();

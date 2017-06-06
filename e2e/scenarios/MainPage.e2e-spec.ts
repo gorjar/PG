@@ -26,10 +26,10 @@ describe('Dziennik Lekcyjny Main Page', () => {
     it('Verify that all menu components are displayed after successfull login', () => {
       browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
       LOGIN_BUTTON.click();
-      browser.wait(until.presenceOf(EMAIL_FIELD), 5000, 'email field not available');
+      expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
       EMAIL_FIELD.sendKeys(LoginData.correct_login);
       PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-      browser.wait(until.presenceOf(LOGIN_FORM_BUTTON), 5000, 'login form button not available');
+      expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
       LOGIN_FORM_BUTTON.click();
       browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'students button not available');
       browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'subjects button not available');

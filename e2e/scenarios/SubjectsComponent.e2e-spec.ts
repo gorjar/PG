@@ -55,7 +55,7 @@ describe('Dziennik Lekcyjny SubjectsComponent', () => {
   });
 
   it('SubjectsComponent adding  functionality presence', () => {
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
+    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
     EMAIL_FIELD.sendKeys(LoginData.correct_login);

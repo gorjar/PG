@@ -22,6 +22,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
   let ADD_SUBJECT_FIELD = element(by.id('add-subject'));
   let ADD_TIME_FIELD = element(by.id('add-time'));
   let ADD_TYPE_FIELD = element(by.id('add-type'));
+  let END = element(by.id('end'));
 
   let until = protractor.ExpectedConditions;
 
@@ -30,7 +31,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
   });
 
   it('ScheduleComponent table presence', () => {
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
+    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
     EMAIL_FIELD.sendKeys(LoginData.correct_login);
@@ -44,7 +45,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
   });
 
   it('ScheduleComponent adding functionality presence', () => {
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
+    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
     EMAIL_FIELD.sendKeys(LoginData.correct_login);
@@ -59,7 +60,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
   });
 
   it('ScheduleComponent adding  functionality', () => {
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
+    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
     LOGIN_BUTTON.click();
     expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
     EMAIL_FIELD.sendKeys(LoginData.correct_login);
@@ -78,7 +79,8 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
     ADD_SUBJECT_FIELD.sendKeys('test-subject');
     ADD_TIME_FIELD.sendKeys('test-time');
     ADD_TYPE_FIELD.sendKeys('test-type');
-    browser.actions().mouseMove(ADD_SUBMIT).perform();
+    browser.actions().mouseMove(END).perform();
+    browser.sleep(2000);
     ADD_SUBMIT.click();
 
   });

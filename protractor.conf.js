@@ -12,7 +12,7 @@ exports.config = {
     //'./e2e/scenarios/MainPage.e2e-spec.ts',
     //'./e2e/scenarios/ScheduleComponent.e2e-spec.ts',
     //'./e2e/scenarios/SettingsComponent.e2e-spec.ts',
-    //'./e2e/scenarios/StudentComponent.e2e-spec.ts',
+    //'./e2e/scenarios/StudentsComponent.e2e-spec.ts',
     //'./e2e/scenarios/SubjectsComponent.e2e-spec.ts',
   ],
   capabilities: {

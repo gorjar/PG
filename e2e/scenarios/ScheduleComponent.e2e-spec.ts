@@ -29,7 +29,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
   beforeEach(() => {
     browser.get(browser.baseUrl);
   });
-
+/*
   it('ScheduleComponent table presence', () => {
     browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
     LOGIN_BUTTON.click();
@@ -57,7 +57,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
     SCHEDULE_BUTTON.click();
     browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
     ADD_BUTTON.click();
-  });
+  });*/
 
   it('ScheduleComponent adding  functionality', () => {
     browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
@@ -72,7 +72,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
     SCHEDULE_BUTTON.click();
     browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
     ADD_BUTTON.click();
-    ADD_DATE_FIELD.sendKeys('2017-04-22');
+    ADD_DATE_FIELD.sendKeys('02/01/2017');
     ADD_DURATION_FIELD.sendKeys('test-duration');
     ADD_LECTURER_FIELD.sendKeys('test-lecturer');
     ADD_ROOM_FIELD.sendKeys('test-room');
@@ -80,8 +80,14 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
     ADD_TIME_FIELD.sendKeys('test-time');
     ADD_TYPE_FIELD.sendKeys('test-type');
     browser.actions().mouseMove(END).perform();
-    browser.sleep(2000);
     ADD_SUBMIT.click();
+    expect(element.all(by.id('scheddate')).getText()).toContain('2017-02-01');
+    expect(element.all(by.id('schedtime')).getText()).toContain('test-time');
+    expect(element.all(by.id('schedduration')).getText()).toContain('test-duration');
+    expect(element.all(by.id('schedsubject')).getText()).toContain('test-subject');
+    expect(element.all(by.id('schedtype')).getText()).toContain('test-type');
+    expect(element.all(by.id('schedroom')).getText()).toContain('test-room');
+    expect(element.all(by.id('schedlecturer')).getText()).toContain('test-lecturer');
 
   });
 

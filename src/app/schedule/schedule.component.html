@@ -17,13 +17,13 @@
     </thead>
     <tbody *ngFor="let sched of schedule" >
     <tr>
-      <td>{{sched.date}}</td>
-      <td>{{sched.time}}</td>
-      <td>{{sched.duration}}</td>
-      <td>{{sched.subject}}</td>
-      <td>{{sched.type}}</td>
-      <td>{{sched.room}}</td>
-      <td>{{sched.lecturer}}</td>
+      <td id="scheddate" >{{sched.date}}</td>
+      <td id="schedtime">{{sched.time}}</td>
+      <td id="schedduration">{{sched.duration}}</td>
+      <td id="schedsubject">{{sched.subject}}</td>
+      <td id="schedtype">{{sched.type}}</td>
+      <td id="schedroom">{{sched.room}}</td>
+      <td id="schedlecturer">{{sched.lecturer}}</td>
       <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-warning btn-sm" (click)="onEditClick(sched)">Edycja</button></td>
       <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(sched.$key)">Usuń</button></td>
     </tr>

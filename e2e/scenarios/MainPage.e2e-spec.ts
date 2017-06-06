@@ -61,35 +61,6 @@ describe('Dziennik Lekcyjny Main Page', () => {
     });
 
 
-  it('SubjectsComponent table presence', () => {
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'student dropdown not available');
-    SUBJECTS_BUTTON.click();
-    browser.wait(until.presenceOf(SUBJECTS_TABLE), 5000, 'subjects table not available');
-  });
-
-  it('SubjectsComponent adding  functionality presence', () => {
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'subjects button not available');
-    SUBJECTS_BUTTON.click();
-    browser.wait(until.presenceOf(SUBJECTS_ADD_BUTTON), 5000, 'add button not available');
-    SUBJECTS_ADD_BUTTON.click();
-  });
-
   it('ScheduleComponent table presence', () => {
     expect(LOGIN_BUTTON.isPresent()).toBe(true);
     LOGIN_BUTTON.click();

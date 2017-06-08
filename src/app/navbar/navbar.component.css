@@ -9,11 +9,11 @@
   padding-bottom: 15px;
 }
 
-.vertical_line{
-  height:50px;
-  width:1px;
-  background:gainsboro;
-}
+/*.vertical_line{*/
+  /*height:50px;*/
+  /*width:1px;*/
+  /*background:gainsboro;*/
+/*}*/
 
 .navbar-nav > li > a {
   text-align: center;

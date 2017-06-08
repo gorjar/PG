@@ -10,5 +10,7 @@
 }
 
 .vertical_line{
-  height:50px; width:1px;background:gainsboro;
+  height:50px;
+  width:1px;
+  background:gainsboro;
 }

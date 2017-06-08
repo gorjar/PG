@@ -30,7 +30,7 @@
 }
 
 
-@media (max-width: 1024px) and (min-height: 1366px) {
+@media (max-width: 1024px) {
   #sm-display {
     display: inline;
   }

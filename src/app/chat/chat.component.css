@@ -1,3 +1,23 @@
 #chat_message {
   background-color: #e7e7e7;
 }
+.gmo-cont {
+  padding-bottom: 224px;
+}
+.gmo-msg {
+  height: 144px;
+}
+.form-group {
+  background-color: white;
+}
+@media (max-width: 768px) {
+  .gmo-msg {
+    position: static;
+    bottom: 0;
+    width: 100%;
+  }
+  .gmo-msg, .gmo-cont {
+    height: auto;
+    padding-bottom: 0;
+  }
+}

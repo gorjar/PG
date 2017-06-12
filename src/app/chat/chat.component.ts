@@ -8,22 +8,23 @@ import { ServerService } from '../server.service';
 })
 export class ChatComponent implements OnInit {
 
-  chat:any;
-  text:string;
-  datetime:any;
-  author:string;
+  chat: any;
+  text: string;
+  datetime: any;
+  author: string;
 
+  constructor(private serverService: ServerService) {
+  }
 
-  constructor(private serverService: ServerService) {}
+  ngOnInit() {
+    this.serverService.getChat().subscribe(chat => {
+      this.chat = chat;
+    });
+  }
 
-    ngOnInit() {
-      this.serverService.getChat().subscribe(chat =>{
-        this.chat = chat;
-      })
-    }
-
-  onSubmit(){
-    this.datetime = new Date().toLocaleDateString() +' '+ new Date().toLocaleTimeString();
+  onSubmit() {
+    this.datetime = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString();
+    if (this.text) {
     this.serverService.addMessage(
       {
         text: this.text,
@@ -31,13 +32,14 @@ export class ChatComponent implements OnInit {
         datetime: this.datetime
       }
     );
-    this.text='';
+    this.text = '';
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+  window.scrollTo(0, document.body.scrollHeight);
   }
 
-  onDeleteClick(id){
+  onDeleteClick(id) {
     this.serverService.deleteMessage(id);
+    window.scrollTo(0, document.body.scrollHeight);
   }
-
-
-
 }

@@ -23,7 +23,7 @@ export class StudentsComponent implements OnInit {
   };
 
   constructor(
-    private serverService:ServerService
+    public serverService:ServerService
   ) {}
 
   ngOnInit() {

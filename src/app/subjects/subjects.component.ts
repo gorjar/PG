@@ -33,7 +33,7 @@ export class SubjectsComponent implements OnInit {
   };
 
   constructor(
-    private serverService:ServerService
+    public serverService:ServerService
   ) {}
 
   ngOnInit() {

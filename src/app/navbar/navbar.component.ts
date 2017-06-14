@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
 
 
   constructor(
-    private serverService: ServerService, //don't delete, used within component.html
+    public serverService: ServerService, //don't delete, used within component.html
     public afAuth:AngularFireAuth
   ){}
 

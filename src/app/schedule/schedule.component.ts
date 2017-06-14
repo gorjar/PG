@@ -26,7 +26,7 @@ export class ScheduleComponent implements OnInit {
 
 
   constructor(
-    private serverService:ServerService
+    public serverService:ServerService
   ) {}
 
   ngOnInit() {

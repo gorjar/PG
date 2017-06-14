@@ -14,7 +14,7 @@ export class ChatComponent implements OnInit {
   author:string;
 
 
-  constructor(private serverService: ServerService) {}
+  constructor(public serverService: ServerService) {}
 
     ngOnInit() {
       this.serverService.getChat().subscribe(chat =>{

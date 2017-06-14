@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
   selectedUser: User;
 
 
-  constructor(private serverService: ServerService) {}
+  constructor(public serverService: ServerService) {}
 
   ngOnInit() {
     this.serverService.getUsers().subscribe(users =>{

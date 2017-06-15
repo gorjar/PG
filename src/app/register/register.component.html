@@ -1,22 +1,31 @@
   <div class="container">
     <h3>Rejestracja</h3>
-    <div class="form-group">
-      <div class="col-xs-12">
-        <label for="ex1">Imię</label>
-        <input [(ngModel)]="name" placeholder="imię" class="form-control" id="ex1" type="text"/>
+    <form [formGroup]="myForm" (ngSubmit)="onRegisterSubmit(myForm.value.email, myForm.value.password)">
+
+      <div class="form-group">
+        <label for="name">Imię</label>
+        <input formControlName="name" placeholder="Wprowadź imię" type="text" id="name" #name class="form-control">
       </div>
-      <div class="col-xs-12">
-        <label for="ex2">Nazwisko</label>
-        <input [(ngModel)]="lastname" placeholder="nazwisko" class="form-control" id="ex2" type="text">
+      <div class="form-group">
+        <label for="lastname">Nazwisko</label>
+        <input formControlName="lastname" placeholder="Wprowadź nazwisko" type="text" id="lastname" #lastname class="form-control">
       </div>
-      <div class="col-xs-12">
-        <label for="ex3">E-mail</label>
-        <input [(ngModel)]="email" placeholder="e-mail" class="form-control" id="ex3" type="text" autocomplete="off">
+
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input formControlName="email" placeholder="Wprowadź  e-mail" type="email" id="email" #email class="form-control">
       </div>
-      <div class="col-xs-12">
-        <label for="ex4">Hasło</label>
-        <input [(ngModel)]="password" placeholder="hasło" class="form-control" id="ex4" type="password" autocomplete="off">
+      <div class="form-group">
+        <label for="password">Hasło</label>
+        <input formControlName="password" placeholder="Wprowadź hasło" type="password" id="password" class="form-control">
       </div>
-      <button type="button" class="gmo-btn btn btn-success" (click)="onRegisterSubmit(email, password)">Zarejestruj</button>
-    </div>
+      <div class="form-group">
+        <label for="confirm-password">Powtórz hasło</label>
+        <input formControlName="confirmPassword" placeholder="Powtórz hasło" type="password" id="confirm-password" #confirmPassword class="form-control">
+      </div>
+      <button type="submit" [disabled]="!myForm.valid" class="gmo-btn btn btn-success">Zarejestruj</button>
+    </form>
+
+
+
   </div>

@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
   }
 
   isEmail(control: FormControl): { [s: string]: boolean } {
-    if (!control.value.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
+    if (!control.value.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
       return {noEmail: true};
     }
   }

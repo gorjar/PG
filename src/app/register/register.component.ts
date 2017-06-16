@@ -58,6 +58,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegisterSubmit( email, password) {
+    if (this.myForm.value.password === this.myForm.value.confirmPassword){
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .catch(function (error) {
         //console.log(error);
@@ -93,5 +94,9 @@ export class RegisterComponent implements OnInit {
             {cssClass: 'alert-success', timeout: 3000});
       }
     },2000);
+  }
+  else{
+      alert('Podane hasła są niezgodne');
+    }
   }
 }

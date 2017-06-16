@@ -19,8 +19,8 @@ describe('Dziennik Lekcyjny LoginComponent', () => {
   it('Should check if user can successfully login and logout from application', () => {
     navbarComponent.waitForElementToBeVisible();
     navbarComponent.clickLoginButton();
-    loginComponent.typeInEmailField(LoginData.correct_login);
-    loginComponent.typeInPasswordField(LoginData.correct_password);
+    loginComponent.typeInEmailField(LoginData.correct_admin_login);
+    loginComponent.typeInPasswordField(LoginData.correct_admin_password);
     loginComponent.clickSubmitButton();
     navbarComponent.waitForLogoutButton();
     navbarComponent.clickLogoutButton();

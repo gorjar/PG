@@ -17,11 +17,10 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
 
   beforeEach(() => {
     browser.get(browser.baseUrl);
-    browser.get(browser.baseUrl);
     navbarComponent.waitForElementToBeVisible();
     navbarComponent.clickLoginButton();
-    loginComponent.typeInEmailField(LoginData.correct_login);
-    loginComponent.typeInPasswordField(LoginData.correct_password);
+    loginComponent.typeInEmailField(LoginData.correct_admin_login);
+    loginComponent.typeInPasswordField(LoginData.correct_admin_password);
     loginComponent.clickSubmitButton();
     navbarComponent.waitForLogoutButton();
   });
@@ -31,7 +30,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
     navbarComponent.waitForLoginButton();
   });
 
-  it('Add and delete element functionality', () => {
+  it('Adding and deleting functionality', () => {
       navbarComponent.clickScheduleButton();
       scheduleComponent.waitForAddButton();
       scheduleComponent.waitForScheduleRow();

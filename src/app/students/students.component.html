@@ -1,4 +1,4 @@
-<div *ngIf="serverService.currentUserMail!='0' && serverService.currentUserRole!='student'" class="container">
+<div *ngIf="serverService.currentUserMail!='0' && serverService.currentUserRole!='student'" class="container" id="studentsComponent">
   <h2>Studia Podyplomowe</h2>
   <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
   <table id="students_table" class="table table-bordered table-striped ">
@@ -12,7 +12,7 @@
     </tr>
     </thead>
     <tbody *ngFor="let student of students">
-    <tr>
+    <tr id="student_row">
       <td>{{student.name}}</td>
       <td>{{student.lastname}}</td>
       <td>{{student.email}}</td>

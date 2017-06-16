@@ -1,4 +1,4 @@
-import { by } from 'protractor';
+import { by, element } from 'protractor';
 import { By } from 'selenium-webdriver';
 import { BaseWebCOntrol } from '../base/BaseWebControl';
 
@@ -7,8 +7,9 @@ export class NavbarComponent extends BaseWebCOntrol {
     private LOGOUT_BUTTON = by.id('logout');
     private LOGIN_BUTTON = by.id('login');
     private SCHEDULE_BUTTON = by.id('schedule');
-    private STUDENTS_BUTTON = by.id('students');
+    private STUDENTS_BUTTON = element(by.id('students'));
     private SUBJECTS_BUTTON = by.id('subjects');
+    private SETTINGS_BUTTON = element(by.id('settings'));
     private CHAT_BUTTON = by.id('chat');
     private ABOUT_BUTTON = by.id('about');
 
@@ -32,6 +33,10 @@ export class NavbarComponent extends BaseWebCOntrol {
         return this.clickElement(this.SCHEDULE_BUTTON);
     }
 
+    public clickStudentsButton() {
+        return this.clickElement(this.STUDENTS_BUTTON);
+    }
+
     public waitForLoginButton(){
         this.waitForElementToBeDisplayedInRootElement(this.LOGIN_BUTTON);
     }
@@ -48,12 +53,28 @@ export class NavbarComponent extends BaseWebCOntrol {
         this.waitForElementToBeDisplayedInRootElement(this.SUBJECTS_BUTTON);
     }
 
+    public waitForScheduleButton(){
+        this.waitForElementToBeDisplayedInRootElement(this.SCHEDULE_BUTTON);
+    }
+
+    public waitForSettingsButton(){
+        this.waitForElementToBeDisplayedInRootElement(this.SETTINGS_BUTTON);
+    }
+
     public waitForChatButton(){
         this.waitForElementToBeDisplayedInRootElement(this.CHAT_BUTTON);
     }
 
     public waitForAboutButton(){
         this.waitForElementToBeDisplayedInRootElement(this.ABOUT_BUTTON);
+    }
+
+    public checkStudentsButtonPresence() {
+        return this.STUDENTS_BUTTON.isPresent();
+    }
+
+    public checkSettingsButtonPresence() {
+        return this.SETTINGS_BUTTON.isPresent();
     }
 
 }

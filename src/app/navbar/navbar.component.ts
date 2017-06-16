@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
     this.serverService.currentUserMail='';
     this.serverService.currentUserRole='';
     this.afAuth.auth.signOut();
-    this.flashMessage.show('Nastąpiło udane wylogowanie',
+    this.flashMessage.show('Nastąpiło poprawne wylogowanie',
       {cssClass: 'alert-success', timeout: 3000});
   }
 

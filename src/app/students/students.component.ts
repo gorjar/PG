@@ -27,7 +27,6 @@ export class StudentsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.serverService.getStudents().subscribe(students =>{
       this.students = students;
     })
@@ -59,6 +58,9 @@ export class StudentsComponent implements OnInit {
 
   CancelEdit() {
     this.editInit=false;
+    this.serverService.getStudents().subscribe(students =>{
+      this.students = students;
+    })
   }
 
   CancelAdd() {

@@ -104,6 +104,9 @@ export class SubjectsComponent implements OnInit {
 
   CancelEdit() {
     this.editInit = false;
+    this.serverService.getSubjects().subscribe(subjects =>{
+      this.subjects = subjects;
+    });
   }
 
   CancelAdd() {

@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,7 @@ export class RegisterComponent implements OnInit {
     private serverService: ServerService,
     private router:Router,
     private fb: FormBuilder,
+    public flashMessage:FlashMessagesService
   ) { }
 
   ngOnInit(): any {
@@ -87,6 +89,8 @@ export class RegisterComponent implements OnInit {
             }
           );
           this.router.navigate(['']);
+          this.flashMessage.show('Rejestracja zakończona sukcesem',
+            {cssClass: 'alert-success', timeout: 3000});
       }
     },2000);
   }

@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private serverService: ServerService,
     private router:Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): any {
@@ -55,22 +55,39 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  onRegisterSubmit( email, password){
-    this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-    this.serverService.getUsers().subscribe(users =>{
-      console.log(users);
-      this.users = users;
-    });
-    this.serverService.addUser(
-      {
-        name: this.myForm.value.name,
-        lastname: this.myForm.value.lastname,
-        email: this.myForm.value.email,
-        role: this.role
+  onRegisterSubmit( email, password) {
+    this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .catch(function (error) {
+        //console.log(error);
+        var errorMessage = error.message;
+        console.log(errorMessage);
+        if (errorMessage == "Password should be at least 6 characters") {
+          alert('Hasło powinno składać się z co najmniej 6 znaków');
+        }
+        if (errorMessage == "The email address is already in use by another account.") {
+          alert('Podany adres e-mail jest już używany przez innego użytkownika');
+        }
+        if (errorMessage == "The email address is badly formatted.") {
+          alert('Podany adres e-mail jest nieprawidłowy');
+
+        }
+      });
+    setTimeout(()=>{
+      if(this.serverService.currentUserMail.length>2){
+          this.serverService.getUsers().subscribe(users => {
+            console.log(users);
+            this.users = users;
+          });
+          this.serverService.addUser(
+            {
+              name: this.myForm.value.name,
+              lastname: this.myForm.value.lastname,
+              email: this.myForm.value.email,
+              role: this.role
+            }
+          );
+          this.router.navigate(['']);
       }
-    );
-    this.router.navigate(['']);
-
+    },2000);
   }
-
 }

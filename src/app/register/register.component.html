@@ -21,7 +21,7 @@
       </div>
       <div *ngIf="myForm.value.password.length>0" class="form-group">
         <label for="confirm-password">Powtórz hasło</label>
-        <input formControlName="confirmPassword" [disabled]="true" placeholder="Powtórz hasło" type="password" id="confirm-password" #confirmPassword class="form-control">
+        <input formControlName="confirmPassword" placeholder="Powtórz hasło" type="password" id="confirm-password" #confirmPassword class="form-control">
       </div>
       <button type="submit" [disabled]="!myForm.valid" class="gmo-btn btn btn-success">Zarejestruj</button>
     </form>

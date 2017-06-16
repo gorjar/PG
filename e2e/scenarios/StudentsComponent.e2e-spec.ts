@@ -21,33 +21,33 @@ describe('Dziennik Lekcyjny StudentsComponent', () => {
     browser.get(browser.baseUrl);
   });
 
-  it('StudentsComponent table presence', () => {
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'student button not available');
-    STUDENTS_BUTTON.click();
-    browser.wait(until.presenceOf(STUDENTS_TABLE), 5000, 'students table not available');
-  });
-
-  it('StudentsComponent adding  functionality presence', () => {
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'students button not available');
-    STUDENTS_BUTTON.click();
-    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
-    ADD_BUTTON.click();
-  });
+  //it('StudentsComponent table presence', () => {
+  //  expect(LOGIN_BUTTON.isPresent()).toBe(true);
+  //  LOGIN_BUTTON.click();
+  //  expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
+  //  EMAIL_FIELD.sendKeys(LoginData.correct_login);
+  //  PASSWORD_FIELD.sendKeys(LoginData.correct_password);
+  //  expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
+  //  LOGIN_FORM_BUTTON.click();
+  //  browser.sleep(2000);
+  //  browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'student button not available');
+  //  STUDENTS_BUTTON.click();
+  //  browser.wait(until.presenceOf(STUDENTS_TABLE), 5000, 'students table not available');
+  //});
+  //
+  //it('StudentsComponent adding  functionality presence', () => {
+  //  browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
+  //  LOGIN_BUTTON.click();
+  //  expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
+  //  EMAIL_FIELD.sendKeys(LoginData.correct_login);
+  //  PASSWORD_FIELD.sendKeys(LoginData.correct_password);
+  //  expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
+  //  LOGIN_FORM_BUTTON.click();
+  //  browser.sleep(2000);
+  //  browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'students button not available');
+  //  STUDENTS_BUTTON.click();
+  //  browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
+  //  ADD_BUTTON.click();
+  //});
 
 });

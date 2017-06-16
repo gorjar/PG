@@ -2,93 +2,66 @@
  * Created by adam on 06.06.17.
  */
 
-import {browser, element, by, protractor} from "protractor";
-import {LoginData} from "../feed/test_data"
+import { browser, element, by } from "protractor";
+import { LoginData } from "../feed/test_data"
+import { LoginComponent } from "../components/LoginComponent/LoginComponent.po"
+import { NavbarComponent } from '../components/NavbarComponent/NavbarComponent.po';
+import { ScheduleComponent } from '../components/ScheduleComponent/ScheduleComponent.po';
 
 describe('Dziennik Lekcyjny ScheduleComponent', () => {
 
-  let LOGIN_BUTTON = element(by.id('login'));
-  let EMAIL_FIELD = element(by.id('email'));
-  let LOGIN_FORM_BUTTON = element(by.id('login_form'));
-  let PASSWORD_FIELD = element(by.id('password'));
-  let SCHEDULE_BUTTON = element(by.id('schedule'));
-  let ADD_BUTTON = element(by.id('add-button'));
-  let ADD_SUBMIT = element(by.id('addsubmit'));
-  let SCHEDULE_TABLE = element(by.id('schedule_table'));
-  let ADD_DATE_FIELD = element(by.id('add-date'));
-  let ADD_DURATION_FIELD = element(by.id('add-duration'));
-  let ADD_LECTURER_FIELD = element(by.id('add-lecturer'));
-  let ADD_ROOM_FIELD = element(by.id('add-room'));
-  let ADD_SUBJECT_FIELD = element(by.id('add-subject'));
-  let ADD_TIME_FIELD = element(by.id('add-time'));
-  let ADD_TYPE_FIELD = element(by.id('add-type'));
-  let END = element(by.id('end'));
-
-  let until = protractor.ExpectedConditions;
+  let navbarComponent = NavbarComponent.buildNavbarComponent();
+  let loginComponent = LoginComponent.buildLoginComponent();
+  let scheduleComponent = ScheduleComponent.buildScheduleComponent();
+  let ALL_ROWS = element.all(by.id('schedule_row'));
 
   beforeEach(() => {
     browser.get(browser.baseUrl);
+    browser.get(browser.baseUrl);
+    navbarComponent.waitForElementToBeVisible();
+    navbarComponent.clickLoginButton();
+    loginComponent.typeInEmailField(LoginData.correct_login);
+    loginComponent.typeInPasswordField(LoginData.correct_password);
+    loginComponent.clickSubmitButton();
+    navbarComponent.waitForLogoutButton();
   });
 
-  it('ScheduleComponent table presence', () => {
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule table not available');
-    SCHEDULE_BUTTON.click();
-    browser.wait(until.presenceOf(SCHEDULE_TABLE), 5000, 'schedule table not available');
+  afterEach(() => {
+    navbarComponent.clickLogoutButton();
+    navbarComponent.waitForLoginButton();
   });
 
-  it('ScheduleComponent adding functionality presence', () => {
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule button not available');
-    SCHEDULE_BUTTON.click();
-    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
-    ADD_BUTTON.click();
-  })
-
-  it('ScheduleComponent adding  functionality', () => {
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(SCHEDULE_BUTTON), 5000, 'schedule button not available');
-    SCHEDULE_BUTTON.click();
-    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
-    ADD_BUTTON.click();
-    ADD_DATE_FIELD.sendKeys('02/01/2017');
-    ADD_DURATION_FIELD.sendKeys('test-duration');
-    ADD_LECTURER_FIELD.sendKeys('test-lecturer');
-    ADD_ROOM_FIELD.sendKeys('test-room');
-    ADD_SUBJECT_FIELD.sendKeys('test-subject');
-    ADD_TIME_FIELD.sendKeys('test-time');
-    ADD_TYPE_FIELD.sendKeys('test-type');
-    browser.actions().mouseMove(END).perform();
-    ADD_SUBMIT.click();
-    expect(element.all(by.id('scheddate')).getText()).toContain('2017-02-01');
-    expect(element.all(by.id('schedtime')).getText()).toContain('test-time');
-    expect(element.all(by.id('schedduration')).getText()).toContain('test-duration');
-    expect(element.all(by.id('schedsubject')).getText()).toContain('test-subject');
-    expect(element.all(by.id('schedtype')).getText()).toContain('test-type');
-    expect(element.all(by.id('schedroom')).getText()).toContain('test-room');
-    expect(element.all(by.id('schedlecturer')).getText()).toContain('test-lecturer');
-
+  it('Add and delete element functionality', () => {
+      navbarComponent.clickScheduleButton();
+      scheduleComponent.waitForAddButton();
+      scheduleComponent.waitForScheduleRow();
+      expect(ALL_ROWS.count()).toEqual(1, 'Number of rows before adding');
+      scheduleComponent.clickAddButton();
+      scheduleComponent.typeInDateField('01/01/2018');
+      scheduleComponent.typeInDurationField('test-duration');
+      scheduleComponent.typeInLecturerField('');
+      scheduleComponent.typeInRoomField('test-room');
+      scheduleComponent.typeInSubjectField('test-subject');
+      scheduleComponent.typeInTimeField('test-time');
+      scheduleComponent.typeInTypeField('test-type');
+      scheduleComponent.clickSubmitButton();
+      expect(ALL_ROWS.count()).toEqual(2, 'Number of rows after adding');
+      scheduleComponent.clickDeleteButton();
+      expect(ALL_ROWS.count()).toEqual(1, 'Number of rows after deleting');
   });
 
+  it('Edit element functionality', () => {
+      navbarComponent.clickScheduleButton();
+      scheduleComponent.waitForScheduleRow();
+      expect(scheduleComponent.getLecturerContent()).toEqual('');
+      scheduleComponent.clickEditButton();
+      scheduleComponent.editLecturerField('edited');
+      scheduleComponent.clickEditSubmitButton();
+      expect(scheduleComponent.getLecturerContent()).toEqual('edited');
+      scheduleComponent.clickEditButton();
+      scheduleComponent.clearLecturerField();
+      scheduleComponent.editLecturerField(' ');
+      scheduleComponent.clickEditSubmitButton();
+      scheduleComponent.waitForScheduleRow();
+  });
 });

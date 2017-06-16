@@ -20,6 +20,9 @@ exports.config = {
     shardTestFiles: false,
     maxInstances: 1
   },
+  params: {
+    webElementDisplayedTimeout: 10000, // in milliseconds
+  },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',

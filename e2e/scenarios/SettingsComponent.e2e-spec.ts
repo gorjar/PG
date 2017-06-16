@@ -20,18 +20,18 @@ describe('Dziennik Lekcyjny SettingsComponent', () => {
     browser.get(browser.baseUrl);
   });
 
-  it('SettingsComponent table presence', () => {
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(SETTINGS_BUTTON), 5000, 'settings table not available');
-    SETTINGS_BUTTON.click();
-    browser.wait(until.presenceOf(SETTINGS_TABLE), 5000, 'settings table not available');
-  });
+  //it('SettingsComponent table presence', () => {
+  //  browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
+  //  LOGIN_BUTTON.click();
+  //  expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
+  //  EMAIL_FIELD.sendKeys(LoginData.correct_login);
+  //  PASSWORD_FIELD.sendKeys(LoginData.correct_password);
+  //  expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
+  //  LOGIN_FORM_BUTTON.click();
+  //  browser.sleep(2000);
+  //  browser.wait(until.presenceOf(SETTINGS_BUTTON), 5000, 'settings table not available');
+  //  SETTINGS_BUTTON.click();
+  //  browser.wait(until.presenceOf(SETTINGS_TABLE), 5000, 'settings table not available');
+  //});
 
 });

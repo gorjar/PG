@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" id="navbarComponent" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" id="navbarComponent" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -11,30 +11,29 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul id="nav1" class="nav navbar-nav navbar-left" >
-        <li class="nav-item"><a class="nav-link" id="schedule"  [routerLink]="['/schedule']" routerLinkActive="active">Plan zajęć</a></li>
+        <li class="nav-item"><a class="nav-link" id="about"  [routerLink]="['/about']" routerLinkActive="active">O aplikacji</a></li>
       </ul>
       <ul *ngIf="serverService.currentUserRole==='admin'" id="nav1" class="nav navbar-nav navbar-left" >
           <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="students"  [routerLink]="['/students']" routerLinkActive="active">Studenci</a></li>
           <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="subjects"  [routerLink]="['/subjects']" routerLinkActive="active">Przedmioty</a></li>
+        <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="schedule"  [routerLink]="['/schedule']">Plan zajęć</a></li>
           <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="settings"  [routerLink]="['/settings']" routerLinkActive="active">Ustawienia</a></li>
-          <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="about"  [routerLink]="['/about']" routerLinkActive="active">O aplikacji</a></li>
           <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="chat"  [routerLink]="['/chat']" routerLinkActive="active">Chat</a></li>
       </ul>
       <ul *ngIf="serverService.currentUserRole==='student'" id="nav1" class="nav navbar-nav navbar-left" >
         <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="subjects"  [routerLink]="['/subjects']" routerLinkActive="active">Przedmioty</a></li>
-        <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="about"  [routerLink]="['/about']" routerLinkActive="active">O aplikacji</a></li>
+        <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="schedule"  [routerLink]="['/schedule']">Plan zajęć</a></li>
         <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="chat"  [routerLink]="['/chat']" routerLinkActive="active">Chat</a></li>
       </ul>
       <ul *ngIf="serverService.currentUserRole==='lecturer'" id="nav1" class="nav navbar-nav navbar-left" >
         <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="students"  [routerLink]="['/students']" routerLinkActive="active">Studenci</a></li>
         <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="subjects"  [routerLink]="['/subjects']" routerLinkActive="active">Przedmioty</a></li>
-        <li class="nav-item" ><a class="nav-link" id="schedule"  [routerLink]="['/schedule']">Plan zajęć</a></li>
-        <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="about"  [routerLink]="['/about']" routerLinkActive="active">O aplikacji</a></li>
+        <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="schedule"  [routerLink]="['/schedule']">Plan zajęć</a></li>
         <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" id="chat"  [routerLink]="['/chat']" routerLinkActive="active">Chat</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item" *ngIf="!(afAuth.authState | async)"><a class="nav-link" [routerLink]="['/login']" id="login" routerLinkActive="active">Zaloguj</a></li>
-        <li class="vertical_line"></li>
+        <!--<li class="vertical_line"></li>-->
         <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" [routerLink]="['/login']" (click)="onLogout()" id="logout" routerLinkActive="active">Wyloguj <b>{{ serverService.currentUserName }} {{ serverService.currentUserLastname }}</b></a></li>
         <li class="nav-item" *ngIf="!(afAuth.authState | async)"><a class="nav-link" [routerLink]="['/register']" id="register" routerLinkActive="active">Zarejestruj</a></li>
       </ul>

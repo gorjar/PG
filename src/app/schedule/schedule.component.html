@@ -1,4 +1,4 @@
-<div class="container" id="scheduleComponent">
+<div *ngIf="serverService.currentUserMail!='0'" class="container" id="scheduleComponent">
   <h2>Studia Podyplomowe</h2>
   <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
   <table id="schedule_table" class="table table-bordered table-striped">

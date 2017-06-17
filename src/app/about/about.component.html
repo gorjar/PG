@@ -1,3 +1,37 @@
-<div *ngIf="serverService.currentUserMail!='0'" class="container">
-about works
+<div class="container">
+  <div class="col-xs-12">
+    <h2>eDziennik Lekcyjny</h2>
+    <h3>1. Co to jest eDziennik Lekcyjny?</h3>
+    <p>Aplikacja przeznaczona przede wszystkim dla Studiów Podyplomowych, która umożliwia dostęp online do ocen i do planu zajęć.</p>
+    <h3>2. Jakie możliwości daje eDziennik Lekcyjny?</h3>
+    <p>Dla studenta:</p>
+    <ul>
+      <li>Sprawdzanie ocen przez internet</li>
+      <li>Przeglądanie planu zajęć</li>
+    </ul>
+    <p>Dla wykładowcy:</p>
+    <ul>
+      <li>Wystawianie ocen przez internet</li>
+      <li>Przeglądanie planu zajęć</li>
+    </ul>
+    <h3>3. Jak używać eDziennik Lekcyjny?</h3>
+    <p>Należy zarejestrować się przy użyciu zakładki <i><b>Zarejestruj</b></i> następnie zgłosić się do sekretariatu o nadanie uprawnień.</p>
+    <p>Użytkownik w zależności od uprawnień, po zalogowaniu ma dostęp do różnych zakładek.</p>
+    <p>Dostęp do funkcjonalności jest podzielony na role: <b>STUDENT, WYKŁADOWCA, ADMINISTRATOR.</b></p>
+    <ul>
+      <li><b>STUDENT</b> ma dostęp do odczytu do zakładek: <i><b>Plan zajęć</b></i> oraz <i><b>Przedmioty</b></i>.
+        <br> W zakładce <i>Przedmioty</i> student po kliknięciu na przedmiot widzi własne oceny.</li>
+      <li>
+        <b>WYKŁADOWCA</b> ma dostęp do odczytu do zakładki <i><b>Plan zajęć</b></i> oraz do modyfikacji <i><b>Przedmioty</b></i>.
+        <br> W zakładce <i><b>Przedmioty</b></i> wykładowca po kliknięciu na przedmiot widzi oceny wszystkich studentów,
+        <br> ponandto może usunąć ocenę poprzez dwukrotne kliknięcie lub dodać ocenę klikając <i>"Dodaj ocenę"</i>.
+      </li>
+      <li>
+        <b>ADMINISTRATOR</b> ma dostęp taki jak <b>WYKŁADOWCA</b> oraz do modyfikacji <i><b>Plan zajęć</b></i>, <i><b>Ustawienia</b></i> i <i><b>Studenci</b></i>.
+        <br> W zakładce <i><b>Plan zajęć</b></i> administrator ma możliwość modyfikacji planu zajęć.
+        <br> W zakładce <i><b>Ustawienia</b></i> administrator ma możliwość modyfikacji praw dostępu użytkowników.
+        <br> W zakładce <i><b>Studenci</b></i> administrator ma możliwość modyfikacji listy studentów.
+      </li>
+    </ul>
+  </div>
 </div>

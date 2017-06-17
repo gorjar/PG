@@ -1,5 +1,5 @@
-/**
- * Created by Maciej Galka on 08.06.17.
+/*
+ * Copyright 2017 GMO. All Rights Reserved
  */
 
 import { browser } from "protractor";

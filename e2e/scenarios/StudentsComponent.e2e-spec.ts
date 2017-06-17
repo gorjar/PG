@@ -1,5 +1,5 @@
-/**
- * Created by adam on 06.06.17.
+/*
+ * Copyright 2017 GMO. All Rights Reserved
  */
 
 import { browser } from "protractor";

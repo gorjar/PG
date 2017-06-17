@@ -49,7 +49,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
         navbarComponent.waitForScheduleButton();
     });
 
-    fit('Verify that all menu components are displayed after successful login for LECTURER', () => {
+    it('Verify that all menu components are displayed after successful login for LECTURER', () => {
        loginComponent.typeInEmailField(LoginData.correct_lecturer_login);
        loginComponent.typeInPasswordField(LoginData.correct_lecturer_password);
        loginComponent.clickSubmitButton();

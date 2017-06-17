@@ -37,6 +37,10 @@ export class NavbarComponent extends BaseWebCOntrol {
         return this.clickElement(this.SCHEDULE_BUTTON);
     }
 
+    public clickSubjectsButton(){
+      return this.clickElement(this.SUBJECTS_BUTTON);
+    }
+
     public clickStudentsButton() {
         return this.clickElement(this.STUDENTS_BUTTON);
     }

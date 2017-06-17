@@ -8,7 +8,7 @@ import { NavbarComponent } from "../components/NavbarComponent/NavbarComponent.p
 import { LoginComponent } from "../components/LoginComponent/LoginComponent.po";
 import { SettingsComponent } from "../components/SettingsComponent/SettingsComponent.po";
 
-fdescribe('Dziennik Lekcyjny SettingsComponent', () => {
+describe('Dziennik Lekcyjny SettingsComponent', () => {
 
   let navbarComponent = NavbarComponent.buildNavbarComponent();
   let loginComponent = LoginComponent.buildLoginComponent();

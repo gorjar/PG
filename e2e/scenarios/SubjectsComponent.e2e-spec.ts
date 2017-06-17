@@ -2,17 +2,18 @@
  * Copyright 2017 GMO. All Rights Reserved
  */
 
-import { browser } from "protractor";
+import {browser, by, element} from "protractor";
 import { LoginData } from "../feed/test_data"
 import { NavbarComponent } from "../components/NavbarComponent/NavbarComponent.po";
 import { LoginComponent } from "../components/LoginComponent/LoginComponent.po";
-import { SettingsComponent } from "../components/SettingsComponent/SettingsComponent.po";
+import {SubjectsComponent} from "../components/SubjectsComponent/SubjectsComponent.po";
 
 describe('Dziennik Lekcyjny SubjectsComponent', () => {
 
   let navbarComponent = NavbarComponent.buildNavbarComponent();
   let loginComponent = LoginComponent.buildLoginComponent();
-  let settingsComponent = SettingsComponent.buildSettingsComponent();
+  let subjectsComponent = SubjectsComponent.buildSubjectsComponent();
+  let ALL_ROWS = element.all(by.id('subjects_row'));
 
   beforeEach(() => {
     browser.get(browser.baseUrl);
@@ -30,34 +31,33 @@ describe('Dziennik Lekcyjny SubjectsComponent', () => {
     navbarComponent.waitForLoginButton();
   });
 
-  //it('SubjectsComponent table presence', () => {
-  //  expect(LOGIN_BUTTON.isPresent()).toBe(true);
-  //  LOGIN_BUTTON.click();
-  //  expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-  //  EMAIL_FIELD.sendKeys(LoginData.correct_login);
-  //  PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-  //  expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-  //  LOGIN_FORM_BUTTON.click();
-  //  browser.sleep(2000);
-  //  browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'student dropdown not available');
-  //  SUBJECTS_BUTTON.click();
-  //  browser.wait(until.presenceOf(SUBJECTS_TABLE), 5000, 'subjects table not available');
-  //});
-  //
-  //it('SubjectsComponent adding  functionality presence', () => {
-  //  browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-  //  LOGIN_BUTTON.click();
-  //  expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-  //  EMAIL_FIELD.sendKeys(LoginData.correct_login);
-  //  PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-  //  expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-  //  LOGIN_FORM_BUTTON.click();
-  //  browser.sleep(2000);
-  //  browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'subjects button not available');
-  //  SUBJECTS_BUTTON.click();
-  //  browser.wait(until.presenceOf(SUBJECTS_ADD_BUTTON), 5000, 'add button not available');
-  //  SUBJECTS_ADD_BUTTON.click();
-  //});
+  it('Adding and deleting functionality', () => {
+    navbarComponent.clickSubjectsButton();
+    subjectsComponent.waitForAddSubjectButton();
+    subjectsComponent.waitForSubjectsRow();
+    expect(ALL_ROWS.count()).toEqual(1, 'Number of rows before adding');
+    subjectsComponent.clickAddSubjectButton();
+    subjectsComponent.typeInSubjectField('test-subject');
+    subjectsComponent.typeInLecturerField('');
+    subjectsComponent.clickAddButton();
+    expect(ALL_ROWS.count()).toEqual(2, 'Number of rows after adding');
+    subjectsComponent.clickDeleteButton();
+    expect(ALL_ROWS.count()).toEqual(1, 'Number of rows after deleting');
+  });
 
-
+  it('Edit element functionality', () => {
+    navbarComponent.clickSubjectsButton();
+    subjectsComponent.waitForAddSubjectButton();
+    subjectsComponent.waitForSubjectsRow();
+    expect(subjectsComponent.getLecturerContent()).toEqual('');
+    subjectsComponent.clickEditButton();
+    subjectsComponent.editLecturerField('edited');
+    subjectsComponent.clickEditSubmitButton();
+    expect(subjectsComponent.getLecturerContent()).toEqual('edited');
+    subjectsComponent.clickEditButton();
+    subjectsComponent.clearLecturerField();
+    subjectsComponent.editLecturerField(' ');
+    subjectsComponent.clickEditSubmitButton();
+    subjectsComponent.waitForSubjectsRow();
+  });
 });

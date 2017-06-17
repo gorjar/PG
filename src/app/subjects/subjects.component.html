@@ -11,11 +11,11 @@
       </tr>
     </thead>
     <tbody *ngFor="let subject of subjects" [class.selected]="subject === selectedSubject">
-      <tr>
+      <tr id="subjects_row">
         <td (click)="onSelect(subject)" style="cursor: pointer">{{subject.name}}</td>
-        <td>{{subject.lecturer}}</td>
-        <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-warning btn-sm" (click)="onEditClick(subject)">Edycja</button></td>
-        <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(subject.$key)">Usuń</button></td>
+        <td id="lecturer_content_field">{{subject.lecturer}}</td>
+        <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-warning btn-sm" id="edit_button" (click)="onEditClick(subject)">Edycja</button></td>
+        <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" id="delete_button" (click)="onDeleteClick(subject.$key)">Usuń</button></td>
       </tr>
     </tbody>
   </table>
@@ -131,10 +131,10 @@
           <input [(ngModel)]="selectedSubject.name" placeholder="name" class="form-control" id="ex1" type="text"/>
         </div>
         <div class="col-xs-12">
-          <label for="ex2">Wykładowca</label>
-          <input [(ngModel)]="selectedSubject.lecturer" placeholder="lecturer" class="form-control" id="ex2" type="text">
+          <label for="edit_lecturer">Wykładowca</label>
+          <input [(ngModel)]="selectedSubject.lecturer" placeholder="lecturer" class="form-control" id="edit_lecturer" type="text">
         </div>
-        <button type="button" class="gmo-btn btn btn-success" (click)="onEditSubmit(selectedSubject.$key, selectedSubject)">Zapisz zmiany</button>
+        <button type="button" class="gmo-btn btn btn-success" id="edit_submit_button" (click)="onEditSubmit(selectedSubject.$key, selectedSubject)">Zapisz zmiany</button>
         <button type="button" class="gmo-btn btn btn-basic" (click)="CancelEdit()">Anuluj</button>
       </div>
     </div>
@@ -149,14 +149,14 @@
 
       <div class="form-group">
         <div class="col-xs-12">
-          <label for="ex1">Przedmiot</label>
-          <input [(ngModel)]="addedSubject.name" placeholder="Przedmiot" class="form-control" id="ex11" type="text"/>
+          <label for="subject_field">Przedmiot</label>
+          <input [(ngModel)]="addedSubject.name" placeholder="Przedmiot" class="form-control" id="subject_field" type="text"/>
         </div>
         <div class="col-xs-12">
-          <label for="ex2">Wykładowca</label>
-          <input [(ngModel)]="addedSubject.lecturer" placeholder="Wykładowca" class="form-control" id="ex12" type="text">
+          <label for="lecturer_field">Wykładowca</label>
+          <input [(ngModel)]="addedSubject.lecturer" placeholder="Wykładowca" class="form-control" id="lecturer_field" type="text">
         </div>
-        <button type="button" class="gmo-btn btn btn-success" (click)="onAddSubmit(addedSubject)">Dodaj</button>
+        <button type="button" class="gmo-btn btn btn-success" id="add_button" (click)="onAddSubmit(addedSubject)">Dodaj</button>
         <button type="button" class="gmo-btn btn btn-basic" (click)="CancelAdd()">Anuluj</button>
       </div>
     </div>

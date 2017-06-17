@@ -23,6 +23,7 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
     loginComponent.typeInPasswordField(LoginData.correct_admin_password);
     loginComponent.clickSubmitButton();
     navbarComponent.waitForLogoutButton();
+    navbarComponent.waitForScheduleButton();
   });
 
   afterEach(() => {
@@ -38,11 +39,12 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
       scheduleComponent.clickAddButton();
       scheduleComponent.typeInDateField('01/01/2018');
       scheduleComponent.typeInDurationField('test-duration');
-      scheduleComponent.typeInLecturerField('');
       scheduleComponent.typeInRoomField('test-room');
       scheduleComponent.typeInSubjectField('test-subject');
       scheduleComponent.typeInTimeField('test-time');
       scheduleComponent.typeInTypeField('test-type');
+      scheduleComponent.typeInLecturerField('');
+      scheduleComponent.scrollToFormEnd();
       scheduleComponent.clickSubmitButton();
       expect(ALL_ROWS.count()).toEqual(2, 'Number of rows after adding');
       scheduleComponent.clickDeleteButton();
@@ -55,11 +57,13 @@ describe('Dziennik Lekcyjny ScheduleComponent', () => {
       expect(scheduleComponent.getLecturerContent()).toEqual('');
       scheduleComponent.clickEditButton();
       scheduleComponent.editLecturerField('edited');
+      scheduleComponent.scrollToFormEnd();
       scheduleComponent.clickEditSubmitButton();
       expect(scheduleComponent.getLecturerContent()).toEqual('edited');
       scheduleComponent.clickEditButton();
       scheduleComponent.clearLecturerField();
       scheduleComponent.editLecturerField(' ');
+      scheduleComponent.scrollToFormEnd();
       scheduleComponent.clickEditSubmitButton();
       scheduleComponent.waitForScheduleRow();
   });

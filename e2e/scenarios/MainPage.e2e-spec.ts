@@ -7,7 +7,7 @@ import { LoginData } from "../feed/test_data"
 import { NavbarComponent } from '../components/NavbarComponent/NavbarComponent.po';
 import { LoginComponent } from '../components/LoginComponent/LoginComponent.po'
 
-fdescribe('Dziennik Lekcyjny Main Page', () => {
+describe('Dziennik Lekcyjny Main Page', () => {
 
     let navbarComponent = NavbarComponent.buildNavbarComponent();
     let loginComponent = LoginComponent.buildLoginComponent();
@@ -23,18 +23,18 @@ fdescribe('Dziennik Lekcyjny Main Page', () => {
         navbarComponent.waitForLoginButton();
     });
 
-    fit('Verify that all menu components are displayed after successful login for ADMIN', () => {
+    it('Verify that all menu components are displayed after successful login for ADMIN', () => {
         loginComponent.typeInEmailField(LoginData.correct_admin_login);
         loginComponent.typeInPasswordField(LoginData.correct_admin_password);
         loginComponent.clickSubmitButton();
         browser.sleep(3000);
         navbarComponent.waitForLogoutButton();
         navbarComponent.waitForChatButton();
-        navbarComponent.waitForStudentsButton();
-        //navbarComponent.waitForSubjectsButton();
-        //navbarComponent.waitForAboutButton();
-        //navbarComponent.waitForSettingsButton();
-        //navbarComponent.waitForScheduleButton();
+        expect(navbarComponent.checkStudentsButtonPresence()).toBe(true);
+        expect(navbarComponent.checkSettingsButtonPresence()).toBe(true);
+        navbarComponent.waitForSubjectsButton();
+        navbarComponent.waitForAboutButton();
+        navbarComponent.waitForScheduleButton();
     });
 
     it('Verify that all menu components are displayed after successful login for STUDENT', () => {

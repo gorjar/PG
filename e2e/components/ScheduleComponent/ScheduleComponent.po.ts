@@ -1,4 +1,4 @@
-import { by } from 'protractor';
+import {by, browser, element} from 'protractor';
 import { By } from 'selenium-webdriver';
 import { BaseWebCOntrol } from '../base/BaseWebControl';
 
@@ -7,6 +7,7 @@ export class ScheduleComponent extends BaseWebCOntrol {
     private ADD_BUTTON = by.id('add-button');
     private EDIT_BUTTON = by.id('edit_button');
     private ADD_SUBMIT = by.id('addsubmit');
+    private CANCEL_BUTTON = element(by.id('cancel_button'));
     private EDIT_SUBMIT = by.id('edit_submit');
     private DELETE_BUTTON = by.id('delete_button');
     private ADD_DATE_FIELD = by.id('add-date');
@@ -17,7 +18,7 @@ export class ScheduleComponent extends BaseWebCOntrol {
     private ADD_TIME_FIELD = by.id('add-time');
     private ADD_TYPE_FIELD = by.id('add-type');
     private TABLE_ROW = by.id('schedule_row');
-    private LECTURER_SCHEDULE_FIELD = by.id('schedlecturer')
+    private LECTURER_SCHEDULE_FIELD = by.id('schedlecturer');
     private EDIT_LECTURER = by.id('edit_lecturer');
 
     constructor(public rootLocator: By) {
@@ -50,6 +51,10 @@ export class ScheduleComponent extends BaseWebCOntrol {
 
     public clickEditButton() {
         return this.clickElement(this.EDIT_BUTTON);
+    }
+
+    public scrollToFormEnd() {
+        browser.executeScript("arguments[0].scrollIntoView();", this.CANCEL_BUTTON.getWebElement());
     }
 
     public typeInDateField(date) {

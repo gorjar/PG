@@ -29,15 +29,14 @@ describe('Dziennik Lekcyjny StudentsComponent', () => {
     navbarComponent.waitForLoginButton();
   });
 
-
-  it('Adding functionality', () => {
-    navbarComponent.waitForStudentsButton();
-    navbarComponent.clickStudentsButton();
-    studentsComponent.waitForAddButton();
-    studentsComponent.waitForScheduleRow();
-    studentsComponent.clickAddButton();
-    browser.sleep(2000);
-
-  });
+  // it('Adding functionality', () => {
+  //   navbarComponent.waitForStudentsButton();
+  //   navbarComponent.clickStudentsButton();
+  //   studentsComponent.waitForAddButton();
+  //   studentsComponent.waitForScheduleRow();
+  //   studentsComponent.clickAddButton();
+  //   browser.sleep(2000);
+  //
+  // });
 
 });

@@ -1,3 +1,7 @@
+/*
+ * Copyright 2017 GMO. All Rights Reserved
+ */
+
 import {by, browser, element} from 'protractor';
 import { By } from 'selenium-webdriver';
 import { BaseWebCOntrol } from '../base/BaseWebControl';

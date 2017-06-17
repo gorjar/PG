@@ -1,3 +1,7 @@
+/*
+ * Copyright 2017 GMO. All Rights Reserved
+ */
+
 import { By } from 'selenium-webdriver';
 import { browser, element, ElementFinder, protractor } from 'protractor';
 

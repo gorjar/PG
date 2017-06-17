@@ -1,3 +1,7 @@
+/*
+ * Copyright 2017 GMO. All Rights Reserved
+ */
+
 import { by, element } from 'protractor';
 import { By } from 'selenium-webdriver';
 import { BaseWebCOntrol } from '../base/BaseWebControl';
@@ -35,6 +39,10 @@ export class NavbarComponent extends BaseWebCOntrol {
 
     public clickStudentsButton() {
         return this.clickElement(this.STUDENTS_BUTTON);
+    }
+
+    public clickSettingsButton() {
+      return this.clickElement(by.id('settings'));
     }
 
     public waitForLoginButton(){

@@ -27,7 +27,6 @@ describe('Dziennik Lekcyjny Main Page', () => {
         loginComponent.typeInEmailField(LoginData.correct_admin_login);
         loginComponent.typeInPasswordField(LoginData.correct_admin_password);
         loginComponent.clickSubmitButton();
-        browser.sleep(3000);
         navbarComponent.waitForLogoutButton();
         navbarComponent.waitForChatButton();
         expect(navbarComponent.checkStudentsButtonPresence()).toBe(true);
@@ -50,15 +49,16 @@ describe('Dziennik Lekcyjny Main Page', () => {
         navbarComponent.waitForScheduleButton();
     });
 
-    //fit('Verify that all menu components are displayed after successful login for LECTURER', () => {
-    //    loginComponent.typeInEmailField(LoginData.correct_lecturer_login);
-    //    loginComponent.typeInPasswordField(LoginData.correct_lecturer_password);
-    //    navbarComponent.waitForLogoutButton();
-    //    navbarComponent.waitForChatButton();
-    //    navbarComponent.waitForStudentsButton();
-    //    navbarComponent.waitForSubjectsButton();
-    //    navbarComponent.waitForAboutButton();
-    //    expect(navbarComponent.checkSettingsButtonPresence()).not.toBe(true);
-    //    navbarComponent.waitForScheduleButton();
-    //});
+    fit('Verify that all menu components are displayed after successful login for LECTURER', () => {
+       loginComponent.typeInEmailField(LoginData.correct_lecturer_login);
+       loginComponent.typeInPasswordField(LoginData.correct_lecturer_password);
+       loginComponent.clickSubmitButton();
+       navbarComponent.waitForLogoutButton();
+       navbarComponent.waitForChatButton();
+       expect(navbarComponent.checkStudentsButtonPresence()).toBe(true);
+       navbarComponent.waitForSubjectsButton();
+       navbarComponent.waitForAboutButton();
+       expect(navbarComponent.checkSettingsButtonPresence()).not.toBe(true);
+       navbarComponent.waitForScheduleButton();
+    });
 });

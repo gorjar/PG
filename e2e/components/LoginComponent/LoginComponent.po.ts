@@ -1,3 +1,6 @@
+/*
+ * Copyright 2017 GMO. All Rights Reserved
+ */
 
 import { by } from 'protractor';
 import { By } from 'selenium-webdriver';

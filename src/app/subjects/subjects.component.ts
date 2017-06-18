@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
 import { Subject } from './subject';
-import { Grade } from './grade';
 
 @Component({
   selector: 'app-subjects',

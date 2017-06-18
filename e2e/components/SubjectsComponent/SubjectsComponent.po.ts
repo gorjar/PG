@@ -2,14 +2,13 @@
  * Copyright 2017 GMO. All Rights Reserved
  */
 
-import {by, browser, element} from 'protractor';
+import { by } from 'protractor';
 import { By } from 'selenium-webdriver';
 import { BaseWebCOntrol } from '../base/BaseWebControl';
 
 export class SubjectsComponent extends BaseWebCOntrol {
 
   private ADD_BUTTON = by.id('add_button');
-  private ADD_SUBMIT = by.id('add-submit');
   private SUBJECTS_ADD_BUTTON = by.id('add-subject-button');
   private ADD_LECTURER_FIELD = by.id('lecturer_field');
   private ADD_SUBJECT_FIELD = by.id('subject_field');

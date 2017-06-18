@@ -57,20 +57,12 @@ export class NavbarComponent extends BaseWebCOntrol {
         this.waitForElementToBeDisplayedInRootElement(this.LOGOUT_BUTTON);
     }
 
-    public waitForStudentsButton(){
-        this.waitForElementToBeDisplayedInRootElement(this.STUDENTS_BUTTON);
-    }
-
     public waitForSubjectsButton(){
         this.waitForElementToBeDisplayedInRootElement(this.SUBJECTS_BUTTON);
     }
 
     public waitForScheduleButton(){
         this.waitForElementToBeDisplayedInRootElement(this.SCHEDULE_BUTTON);
-    }
-
-    public waitForSettingsButton(){
-        this.waitForElementToBeDisplayedInRootElement(this.SETTINGS_BUTTON);
     }
 
     public waitForChatButton(){

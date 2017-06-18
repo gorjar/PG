@@ -8,7 +8,7 @@ import { ServerService } from '../server.service'; //used within html
 })
 export class AboutComponent implements OnInit {
 
-  constructor(private serverService:ServerService ) {}
+  constructor() {}
 
   ngOnInit() {
 

@@ -5,7 +5,6 @@ import { BaseWebCOntrol } from '../base/BaseWebControl';
 export class StudentsComponent extends BaseWebCOntrol {
 
     private ADD_BUTTON = by.id('add-button');
-    private STUDENT_ROW = by.id('student_row');
     private ADD_STUDENT_NAME_FIELD = by.id('add_name_field');
     private ADD_STUDENT_LASTNAME_FIELD = by.id('add_lastname_field');
     private ADD_STUDENT_EMAIL_FIELD = by.id('add_email_field');

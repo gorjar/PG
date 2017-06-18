@@ -16,14 +16,7 @@ describe('Dziennik Lekcyjny LoginComponent', () => {
     browser.get(browser.baseUrl);
   });
 
-  it('Should check if user can successfully login and logout from application', () => {
-    navbarComponent.waitForElementToBeVisible();
-    navbarComponent.clickLoginButton();
-    loginComponent.typeInEmailField(LoginData.correct_admin_login);
-    loginComponent.typeInPasswordField(LoginData.correct_admin_password);
-    loginComponent.clickSubmitButton();
-    navbarComponent.waitForLogoutButton();
-    navbarComponent.clickLogoutButton();
-    navbarComponent.waitForLoginButton();
-  });
+  //it('Should check application behaviour with false creditentials', () => {
+    // TODO add test case here when functionality implemented
+  //});
 });

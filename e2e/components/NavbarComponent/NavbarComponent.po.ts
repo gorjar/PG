@@ -42,7 +42,7 @@ export class NavbarComponent extends BaseWebCOntrol {
     }
 
     public clickStudentsButton() {
-        return this.clickElement(this.STUDENTS_BUTTON);
+        return this.clickElement(by.id('students'));
     }
 
     public clickSettingsButton() {

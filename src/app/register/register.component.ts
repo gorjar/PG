@@ -17,22 +17,27 @@ export class RegisterComponent implements  OnInit {
   name:string='';
   nameMsg:string;
   nameB:boolean;
+  nameC:number=0;
 
   lastname:string='';
   lastnameMsg:string;
   lastnameB:boolean;
+  lastnameC:number=0;
 
   email:string='';
   emailMsg:string='';
   emailB:boolean;
+  emailC:number=0;
 
   password:string='';
   passwordMsg:string='';
   passwordB:boolean;
+  passwordC:number=0;
 
   confirmpassword:string='';
   confirmpasswordMsg:string='';
   confirmpasswordB:boolean;
+  confirmpasswordC:number=0;
 
 
   allValidator:boolean;
@@ -59,6 +64,7 @@ export class RegisterComponent implements  OnInit {
     if (this.name.length<3){
       this.nameMsg='Imię jest za krótkie';
       this.nameB=true;
+      this.nameC = this.nameC+1;
       this.allValidatorF();
     }
     else {
@@ -72,6 +78,7 @@ export class RegisterComponent implements  OnInit {
     if (this.lastname.length<3){
       this.lastnameMsg='Nazwisko jest za krótkie';
       this.lastnameB=true;
+      this.lastnameC = this.lastnameC+1;
       this.allValidatorF();
     }
     else {
@@ -82,20 +89,11 @@ export class RegisterComponent implements  OnInit {
   }
 
   emailValidator(){
-    if (this.email.length<3){
-      this.emailMsg='Email jest nieprawidłowy';
-      this.emailB=true;
-      this.allValidatorF();
-    }
-    else {
-      this.emailMsg='';
-      this.emailB=false;
-      this.allValidatorF();
-    }
     if (!this.email.match(
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
       this.emailMsg='Email jest nieprawidłowy';
       this.emailB=true;
+      this.emailC = this.emailC+1;
       this.allValidatorF();
     }
     else {
@@ -109,6 +107,7 @@ export class RegisterComponent implements  OnInit {
     if (this.password.length<6){
       this.passwordMsg='Hasło jest za krótkie';
       this.passwordB=true;
+      this.passwordC = this.passwordC+1;
       this.allValidatorF();
     }
     else {
@@ -122,6 +121,7 @@ export class RegisterComponent implements  OnInit {
     if (this.confirmpassword.length<6){
       this.confirmpasswordMsg='Hasło jest za krótkie';
       this.confirmpasswordB=true;
+      this.confirmpasswordC = this.confirmpasswordC+1;
       this.allValidatorF();
     }
     else {

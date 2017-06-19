@@ -1,5 +1,5 @@
 .carousel-inner {
-  height: 85vh;
+  height: 90vh;
 }
 
 .item img {
@@ -30,7 +30,7 @@
 }
 
 
-@media (max-width: 1024px) and (min-height: 1366px) {
+@media (max-width: 1024px) {
   #sm-display {
     display: inline;
   }
@@ -45,12 +45,5 @@
 
   #myCarousel {
     display: none;
-  }
-}
-
-
-@media (max-width: 2560px) {
-  #myCarousel{
-    margin-top: 2.5%;
   }
 }

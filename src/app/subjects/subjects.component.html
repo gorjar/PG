@@ -12,7 +12,7 @@
     </thead>
     <tbody *ngFor="let subject of subjects" [class.selected]="subject === selectedSubject">
       <tr>
-        <td (click)="onSelect(subject)">{{subject.name}}</td>
+        <td (click)="onSelect(subject)" style="cursor: pointer">{{subject.name}}</td>
         <td>{{subject.lecturer}}</td>
         <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-warning btn-sm" (click)="onEditClick(subject)">Edycja</button></td>
         <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(subject.$key)">Usuń</button></td>

@@ -1,6 +1,14 @@
+.navbar {
+  margin-bottom: 0;
+}
+
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover, .active {
   color: #000 !important;
   background-color: #e7e7e7;
+}
+
+.navbar-nav > li > a {
+  text-align: center;
 }
 
 #welcome {
@@ -9,6 +17,10 @@
   padding-bottom: 15px;
 }
 
-.vertical_line{
-  height:50px; width:1px;background:gainsboro;
-}
+
+/*.vertical_line{*/
+/*height:50px;*/
+/*width:1px;*/
+/*background:gainsboro;*/
+/*}*/
+

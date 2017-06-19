@@ -16,11 +16,13 @@ export class ChatComponent implements OnInit {
   constructor(private serverService: ServerService) {
   }
 
-  ngOnInit() {
-    this.serverService.getChat().subscribe(chat => {
-      this.chat = chat;
-    });
-  }
+  constructor(public serverService: ServerService) {}
+
+    ngOnInit() {
+      this.serverService.getChat().subscribe(chat =>{
+        this.chat = chat;
+      })
+    }
 
   onSubmit() {
     this.datetime = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString();

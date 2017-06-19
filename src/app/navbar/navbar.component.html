@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -33,7 +33,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item" *ngIf="!(afAuth.authState | async)"><a class="nav-link" [routerLink]="['/login']" id="login" routerLinkActive="active">Zaloguj</a></li>
-        <li class="vertical_line"></li>
+        <!--<li class="vertical_line"></li>-->
         <li class="nav-item" *ngIf="(afAuth.authState | async)"><a class="nav-link" [routerLink]="['/login']" (click)="onLogout()" id="logout" routerLinkActive="active">Wyloguj <b>{{ serverService.currentUserName }} {{ serverService.currentUserLastname }}</b></a></li>
         <li class="nav-item" *ngIf="!(afAuth.authState | async)"><a class="nav-link" [routerLink]="['/register']" id="register" routerLinkActive="active">Zarejestruj</a></li>
       </ul>

@@ -110,4 +110,7 @@ export class SubjectsComponent implements OnInit {
     this.initSubject = false;
   }
 
+  CancelAddGrade(){
+    this.addGradeInit = false;
+  }
 }

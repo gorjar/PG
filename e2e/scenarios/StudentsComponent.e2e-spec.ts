@@ -40,6 +40,7 @@ describe('Dziennik Lekcyjny StudentsComponent', () => {
     studentsComponent.typeInNameField('Test Name');
     studentsComponent.typeInLastnameField('Test Lastname');
     studentsComponent.typeInEmailField('');
+    studentsComponent.scrollToFormEnd();
     studentsComponent.clickAddStudentButton();
     expect(ALL_ROWS.count()).toEqual(2, 'Number of rows after adding');
     studentsComponent.clickDeleteStudentButton();
@@ -52,11 +53,13 @@ describe('Dziennik Lekcyjny StudentsComponent', () => {
     expect(studentsComponent.getEmailContent()).toEqual('');
     studentsComponent.clickEditButton();
     studentsComponent.editEmailField('edited');
+    studentsComponent.scrollToFormEnd();
     studentsComponent.clickEditSubmitButton();
     expect(studentsComponent.getEmailContent()).toEqual('edited');
     studentsComponent.clickEditButton();
     studentsComponent.clearEmailField();
     studentsComponent.editEmailField(' ');
+    studentsComponent.scrollToFormEnd();
     studentsComponent.clickEditSubmitButton();
     studentsComponent.waitForStudentsRow();
   });

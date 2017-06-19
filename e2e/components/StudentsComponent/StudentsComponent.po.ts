@@ -1,4 +1,4 @@
-import { by } from 'protractor';
+import {by, browser, element} from 'protractor';
 import { By } from 'selenium-webdriver';
 import { BaseWebCOntrol } from '../base/BaseWebControl';
 
@@ -15,6 +15,7 @@ export class StudentsComponent extends BaseWebCOntrol {
     private EDIT_BUTTON = by.id('edit_button');
     private EDIT_STUDENT_EMAIL_FIELD = by.id('email_student_field');
     private EDIT_SUBMIT_BUTTON = by.id('edit_submit_button');
+    private PAGE_END = element(by.id('end'));
 
     constructor(public rootLocator: By) {
         super(rootLocator);
@@ -74,5 +75,9 @@ export class StudentsComponent extends BaseWebCOntrol {
 
     public clearEmailField() {
       this.removeTextFromElement(this.EDIT_STUDENT_EMAIL_FIELD);
+    }
+
+    public scrollToFormEnd() {
+      browser.executeScript("arguments[0].scrollIntoView();", this.PAGE_END.getWebElement());
     }
 }

@@ -68,9 +68,17 @@ export class RegisterComponent implements  OnInit {
       this.allValidatorF();
     }
     else {
-      this.nameMsg='';
-      this.nameB=false;
-      this.allValidatorF();
+      if (!this.name.match(/^[a-zA-Z]+$/)){
+        this.nameMsg='Imię zawiera niedozwolone znaki';
+        this.nameB=true;
+        this.nameC = this.nameC+1;
+        this.allValidatorF();
+      }
+      else {
+        this.nameMsg='';
+        this.nameB=false;
+        this.allValidatorF();
+      }
     }
   }
 
@@ -82,9 +90,17 @@ export class RegisterComponent implements  OnInit {
       this.allValidatorF();
     }
     else {
-      this.lastnameMsg='';
-      this.lastnameB=false;
-      this.allValidatorF();
+      if (!this.lastname.match(/^[a-zA-Z]+$/)){
+        this.lastnameMsg='Nazwisko zawiera niedozwolone znaki';
+        this.lastnameB=true;
+        this.lastnameC = this.lastnameC+1;
+        this.allValidatorF();
+      }
+      else {
+        this.lastnameMsg='';
+        this.lastnameB=false;
+        this.allValidatorF();
+      }
     }
   }
 
@@ -105,21 +121,29 @@ export class RegisterComponent implements  OnInit {
 
   passwordValidator(){
     if (this.password.length<6){
-      this.passwordMsg='Hasło jest za krótkie';
+      this.passwordMsg='Hasło powinno zawierać conajmniej 6 znaków';
       this.passwordB=true;
       this.passwordC = this.passwordC+1;
       this.allValidatorF();
     }
     else {
-      this.passwordMsg='';
-      this.passwordB=false;
-      this.allValidatorF();
+      if (!this.password.match(/^[a-z0-9]+$/i)){
+        this.passwordMsg='Hasło powinno składać się jedynie ze znaków alfanumerycznych';
+        this.passwordB=true;
+        this.passwordC = this.passwordC+1;
+        this.allValidatorF();
+      }
+      else {
+        this.passwordMsg='';
+        this.passwordB=false;
+        this.allValidatorF();
+      }
     }
   }
 
   confirmpasswordValidator(){
     if (this.confirmpassword.length<6){
-      this.confirmpasswordMsg='Hasło jest za krótkie';
+      this.confirmpasswordMsg='Hasła są niezgodne';
       this.confirmpasswordB=true;
       this.confirmpasswordC = this.confirmpasswordC+1;
       this.allValidatorF();
@@ -130,9 +154,9 @@ export class RegisterComponent implements  OnInit {
         this.confirmpasswordB=true;
         this.allValidatorF();
       } else {
-      this.confirmpasswordMsg='';
-      this.confirmpasswordB=false;
-      this.allValidatorF();
+        this.confirmpasswordMsg='';
+        this.confirmpasswordB=false;
+        this.allValidatorF();
       }
     }
   }

@@ -24,6 +24,7 @@ export class ScheduleComponent extends BaseWebCOntrol {
     private TABLE_ROW = by.id('schedule_row');
     private LECTURER_SCHEDULE_FIELD = by.id('schedlecturer');
     private EDIT_LECTURER = by.id('edit_lecturer');
+    private PAGE_END = element(by.id('end'));
 
     constructor(public rootLocator: By) {
         super(rootLocator);
@@ -58,7 +59,7 @@ export class ScheduleComponent extends BaseWebCOntrol {
     }
 
     public scrollToFormEnd() {
-        browser.executeScript("arguments[0].scrollIntoView();", this.CANCEL_BUTTON.getWebElement());
+        browser.executeScript("arguments[0].scrollIntoView();", this.PAGE_END.getWebElement());
     }
 
     public typeInDateField(date) {

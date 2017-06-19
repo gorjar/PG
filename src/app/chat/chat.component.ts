@@ -13,9 +13,6 @@ export class ChatComponent implements OnInit {
   datetime: any;
   author: string;
 
-  constructor(private serverService: ServerService) {
-  }
-
   constructor(public serverService: ServerService) {}
 
     ngOnInit() {

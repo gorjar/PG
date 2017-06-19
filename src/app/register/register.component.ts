@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
@@ -10,55 +9,146 @@ import {FlashMessagesService} from 'angular2-flash-messages';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements  OnInit {
 
-  myForm: FormGroup;
+
   users:any;
+
+  name:string='';
+  nameMsg:string;
+  nameB:boolean;
+
+  lastname:string='';
+  lastnameMsg:string;
+  lastnameB:boolean;
+
+  email:string='';
+  emailMsg:string='';
+  emailB:boolean;
+
+  password:string='';
+  passwordMsg:string='';
+  passwordB:boolean;
+
+  confirmpassword:string='';
+  confirmpasswordMsg:string='';
+  confirmpasswordB:boolean;
+
+
+  allValidator:boolean;
+
   role:string='guest';
 
   constructor(
     private afAuth: AngularFireAuth,
     private serverService: ServerService,
     private router:Router,
-    private fb: FormBuilder,
     public flashMessage:FlashMessagesService
   ) { }
 
-  ngOnInit(): any {
-    this.myForm = this.fb.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      email: ['', Validators.compose([
-        Validators.required,
-        this.isEmail
-      ])],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.compose([
-        Validators.required,
-        this.isEqualPassword.bind(this)
-      ])],
-    });
+  ngOnInit() {
+    this.nameValidator();
+    this.lastnameValidator();
+    this.emailValidator();
+    this.passwordValidator();
+    this.confirmpasswordValidator();
+
   }
 
-  isEmail(control: FormControl): { [s: string]: boolean } {
-    if (!control.value.match(
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-      return {noEmail: true};
+  nameValidator(){
+    if (this.name.length<3){
+      this.nameMsg='Imię jest za krótkie';
+      this.nameB=true;
+      this.allValidatorF();
+    }
+    else {
+      this.nameMsg='';
+      this.nameB=false;
+      this.allValidatorF();
     }
   }
 
-  isEqualPassword(control: FormControl): { [s: string]: boolean } {
-    if (!this.myForm) {
-      return {passwordsNotMatch: true};
-
+  lastnameValidator(){
+    if (this.lastname.length<3){
+      this.lastnameMsg='Nazwisko jest za krótkie';
+      this.lastnameB=true;
+      this.allValidatorF();
     }
-    if (control.value !== this.myForm.controls['password'].value) {
-      return {passwordsNotMatch: true};
+    else {
+      this.lastnameMsg='';
+      this.lastnameB=false;
+      this.allValidatorF();
     }
   }
+
+  emailValidator(){
+    if (this.email.length<3){
+      this.emailMsg='Email jest nieprawidłowy';
+      this.emailB=true;
+      this.allValidatorF();
+    }
+    else {
+      this.emailMsg='';
+      this.emailB=false;
+      this.allValidatorF();
+    }
+    if (!this.email.match(
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+      this.emailMsg='Email jest nieprawidłowy';
+      this.emailB=true;
+      this.allValidatorF();
+    }
+    else {
+      this.emailMsg='';
+      this.emailB=false;
+      this.allValidatorF();
+    }
+  }
+
+  passwordValidator(){
+    if (this.password.length<6){
+      this.passwordMsg='Hasło jest za krótkie';
+      this.passwordB=true;
+      this.allValidatorF();
+    }
+    else {
+      this.passwordMsg='';
+      this.passwordB=false;
+      this.allValidatorF();
+    }
+  }
+
+  confirmpasswordValidator(){
+    if (this.confirmpassword.length<6){
+      this.confirmpasswordMsg='Hasło jest za krótkie';
+      this.confirmpasswordB=true;
+      this.allValidatorF();
+    }
+    else {
+      if(!(this.confirmpassword==this.password)){
+        this.confirmpasswordMsg='Hasła są niezgodne';
+        this.confirmpasswordB=true;
+        this.allValidatorF();
+      } else {
+      this.confirmpasswordMsg='';
+      this.confirmpasswordB=false;
+      this.allValidatorF();
+      }
+    }
+  }
+
+
+  allValidatorF(){
+    if (this.nameB == true || this.lastnameB==true || this.emailB==true || this.passwordB==true || this.confirmpasswordB==true){
+      this.allValidator=true
+    } else {
+      this.allValidator=false;
+    }
+  }
+
 
   onRegisterSubmit( email, password) {
-    if (this.myForm.value.password === this.myForm.value.confirmPassword){
+    if (this.password === this.confirmpassword){
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .catch(function (error) {
         //console.log(error);
@@ -83,9 +173,9 @@ export class RegisterComponent implements OnInit {
           });
           this.serverService.addUser(
             {
-              name: this.myForm.value.name,
-              lastname: this.myForm.value.lastname,
-              email: this.myForm.value.email,
+              name: this.name,
+              lastname: this.lastname,
+              email: this.email,
               role: this.role
             }
           );

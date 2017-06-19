@@ -14,16 +14,6 @@ export class ScheduleComponent implements OnInit {
   editInit:boolean;
   initSched: boolean;
   addedSched: Schedule;
-  emptySched:Schedule = {
-    date:'',
-    duration:'',
-    lecturer:'',
-    room:'',
-    subject:'',
-    time:'',
-    type:''
-  };
-
 
   constructor(
     public serverService:ServerService
@@ -48,7 +38,15 @@ export class ScheduleComponent implements OnInit {
 
   onAddInit(){
     this.initSched = true;
-    this.addedSched = this.emptySched;
+    this.addedSched = {
+      date:'',
+      duration:'',
+      lecturer:'',
+      room:'',
+      subject:'',
+      time:'',
+      type:''
+    };
 }
 
   onAddSubmit(sched){

@@ -33,7 +33,7 @@
   <p>L - Laboratorium</p>
   <p>P - Projekty</p>
   <hr>
-  <button *ngIf="serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-success" (click)="onAddInit()">Dodaj pozycję</button>
+  <button *ngIf="serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
   <div *ngIf="editInit">
     <div class="container">
 

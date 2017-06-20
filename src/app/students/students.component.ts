@@ -10,8 +10,6 @@ import { Student } from './student';
 export class StudentsComponent implements OnInit {
 
   students:any;
-  detailsInit:boolean =false;
-
   selectedStudent:Student;
   editInit:boolean;
   initStudent: boolean;
@@ -27,7 +25,6 @@ export class StudentsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.serverService.getStudents().subscribe(students =>{
       this.students = students;
     })
@@ -45,7 +42,11 @@ export class StudentsComponent implements OnInit {
 
   onAddInit(){
     this.initStudent = true;
-    this.addedStudent = this.emptyStudent;
+    this.addedStudent = {
+      name:'',
+      lastname:'',
+      email:''
+    };
   }
 
   onAddSubmit(student){
@@ -59,6 +60,9 @@ export class StudentsComponent implements OnInit {
 
   CancelEdit() {
     this.editInit=false;
+    this.serverService.getStudents().subscribe(students =>{
+      this.students = students;
+    })
   }
 
   CancelAdd() {

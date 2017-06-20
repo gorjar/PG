@@ -1,22 +1,29 @@
   <div class="container">
     <h3>Rejestracja</h3>
-    <div class="form-group">
-      <div class="col-xs-12">
+    <div >
+
+      <div class="form-group">
         <label for="ex1">Imię</label>
-        <input [(ngModel)]="name" placeholder="imię" class="form-control" id="ex1" type="text"/>
+        <input [(ngModel)]="name" placeholder="Podaj imię" class="form-control" id="ex1" type="text" (input)="nameValidator()"  /><span *ngIf="nameB && nameC>1" class="msg"> {{nameMsg}}</span>
       </div>
-      <div class="col-xs-12">
+
+      <div class="form-group">
         <label for="ex2">Nazwisko</label>
-        <input [(ngModel)]="lastname" placeholder="nazwisko" class="form-control" id="ex2" type="text">
+        <input [(ngModel)]="lastname" placeholder="Podaj nazwisko" class="form-control" id="ex2" type="text" (input)="lastnameValidator()"><span *ngIf="lastnameB && lastnameC>1" class="msg"> {{lastnameMsg}}</span>
       </div>
-      <div class="col-xs-12">
+      <div class="form-group">
         <label for="ex3">E-mail</label>
-        <input [(ngModel)]="email" placeholder="e-mail" class="form-control" id="ex3" type="text" autocomplete="off">
+        <input [(ngModel)]="email" placeholder="Podaj e-mail" class="form-control" id="ex3" type="text" (input)="emailValidator()"><span *ngIf="emailB && emailC>1" class="msg"> {{emailMsg}}</span>
       </div>
-      <div class="col-xs-12">
+      <div class="form-group">
         <label for="ex4">Hasło</label>
-        <input [(ngModel)]="password" placeholder="hasło" class="form-control" id="ex4" type="password" autocomplete="off">
+        <input [(ngModel)]="password" placeholder="Podaj hasło" class="form-control" id="ex4" type="password" (input)="passwordValidator()"><span *ngIf="passwordB && passwordC>1" class="msg"> {{passwordMsg}}</span>
       </div>
-      <button type="button" class="gmo-btn btn btn-success" (click)="onRegisterSubmit(email, password)">Zarejestruj</button>
+      <div class="form-group">
+        <label for="ex5">Powtórz hasło</label>
+        <input [(ngModel)]="confirmpassword" placeholder="Powtórz hasło" class="form-control" id="ex5" type="password" (input)="confirmpasswordValidator()"><span *ngIf="confirmpasswordB && confirmpasswordC>1" class="msg"> {{confirmpasswordMsg}}</span>
+      </div>
+      <button type="submit" [disabled]="allValidator" class="gmo-btn btn btn-success" (click)="onRegisterSubmit(email, password)">Zarejestruj</button>
     </div>
+
   </div>

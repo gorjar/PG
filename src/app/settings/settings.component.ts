@@ -36,4 +36,11 @@ export class SettingsComponent implements OnInit {
     this.serverService.deleteUser(id);
   }
 
+  CancelEdit(){
+    this.editInit = false;
+    this.serverService.getUsers().subscribe(users =>{
+      this.users = users;
+    })
+  }
+
 }

@@ -13,8 +13,7 @@
     <div class="container" id="message_field">
       <div class="form-group">
         <label>Wiadomość</label>
-        <input [(ngModel)]="text" placeholder="text" class="form-control" id="ex2" type="text">
-        <button class="btn btn-success" id="send_button" (click)="onSubmit(newMessage)">Wyślij</button>
+        <input [(ngModel)]="text" placeholder="Nowa wiadomosc" class="form-control" id="ex2" type="text" (keyup.enter)="onSubmit(newMessage)">
       </div>
       <br>
       <br>

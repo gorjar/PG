@@ -5,3 +5,8 @@
 .form-control {
   width: 100%;
 }
+
+.msg{
+  color:red;
+  font-size: small;
+}

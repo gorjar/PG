@@ -52,6 +52,7 @@ export class RegisterComponent implements  OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.serverService.currentUserMail='0'){this.router.navigate(['']);}
     this.nameValidator();
     this.lastnameValidator();
     this.emailValidator();

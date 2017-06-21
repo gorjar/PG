@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  if (this.serverService.currentUserMail='0'){this.router.navigate(['']);}
 
   }
 

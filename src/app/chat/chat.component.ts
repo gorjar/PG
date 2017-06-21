@@ -8,11 +8,10 @@ import { ServerService } from '../server.service';
 })
 export class ChatComponent implements OnInit {
 
-  chat:any;
-  text:string;
-  datetime:any;
-  author:string;
-
+  chat: any;
+  text: string;
+  datetime: any;
+  author: string;
 
   constructor(public serverService: ServerService) {}
 
@@ -22,8 +21,9 @@ export class ChatComponent implements OnInit {
       })
     }
 
-  onSubmit(){
-    this.datetime = new Date().toLocaleDateString() +' '+ new Date().toLocaleTimeString();
+  onSubmit() {
+    this.datetime = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString();
+    if (this.text) {
     this.serverService.addMessage(
       {
         text: this.text,
@@ -31,13 +31,14 @@ export class ChatComponent implements OnInit {
         datetime: this.datetime
       }
     );
-    this.text='';
+    this.text = '';
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+  window.scrollTo(0, document.body.scrollHeight);
   }
 
-  onDeleteClick(id){
+  onDeleteClick(id) {
     this.serverService.deleteMessage(id);
+    window.scrollTo(0, document.body.scrollHeight);
   }
-
-
-
 }

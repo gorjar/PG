@@ -18,12 +18,14 @@ export class LoginComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private router: Router,
     private serverService: ServerService,
-    public flashMessage:FlashMessagesService
+    public flashMessage:FlashMessagesService,
+
   ) { }
 
   ngOnInit() {
-  if (this.serverService.currentUserMail='0'){this.router.navigate(['']);}
-
+    setTimeout(()=>{
+      if (this.serverService.currentUserMail!='0'){this.router.navigate(['']);}
+    },2000);
   }
 
   onLoginSubmit(){

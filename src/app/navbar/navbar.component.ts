@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   };
 
   onLogout(){
-    this.serverService.currentUserMail='';
+    this.serverService.currentUserMail='0';
     this.serverService.currentUserRole='';
     this.afAuth.auth.signOut();
     this.flashMessage.show('Nastąpiło poprawne wylogowanie',

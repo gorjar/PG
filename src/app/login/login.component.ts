@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
+  showloginform:boolean=false;
+
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
@@ -25,7 +27,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     setTimeout(()=>{
       if (this.serverService.currentUserMail!='0'){this.router.navigate(['']);}
-    },2000);
+      this.showloginform=true;
+    },400);
   }
 
   onLoginSubmit(){

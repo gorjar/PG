@@ -11,6 +11,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 })
 export class RegisterComponent implements  OnInit {
 
+  showregisterform:boolean=false;
 
   users:any;
 
@@ -54,7 +55,8 @@ export class RegisterComponent implements  OnInit {
   ngOnInit() {
     setTimeout(()=>{
       if (this.serverService.currentUserMail!='0'){this.router.navigate(['']);}
-    },2000);
+      this.showregisterform=true;
+    },400);
     this.nameValidator();
     this.lastnameValidator();
     this.emailValidator();

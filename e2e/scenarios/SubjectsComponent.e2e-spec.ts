@@ -1,73 +1,63 @@
-/**
- * Created by adam on 06.06.17.
+/*
+ * Copyright 2017 GMO. All Rights Reserved
  */
 
-import {browser, element, by, protractor} from "protractor";
-import {LoginData} from "../feed/test_data"
+import {browser, by, element} from "protractor";
+import { LoginData } from "../feed/test_data"
+import { NavbarComponent } from "../components/NavbarComponent/NavbarComponent.po";
+import { LoginComponent } from "../components/LoginComponent/LoginComponent.po";
+import {SubjectsComponent} from "../components/SubjectsComponent/SubjectsComponent.po";
 
 describe('Dziennik Lekcyjny SubjectsComponent', () => {
 
-  let LOGIN_BUTTON = element(by.id('login'));
-  let LOGOUT_BUTTON = element(by.id('logout'));
-  let EMAIL_FIELD = element(by.id('email'));
-  let LOGIN_FORM_BUTTON = element(by.id('login_form'));
-  let REGISTER_BUTTON = element(by.id('register'));
-  let PASSWORD_FIELD = element(by.id('password'));
-  let STUDENTS_BUTTON = element(by.id('students'));
-  let SUBJECTS_BUTTON = element(by.id('subjects'));
-  let SCHEDULE_BUTTON = element(by.id('schedule'));
-  let SETTINGS_BUTTON = element(by.id('settings'));
-  let ABOUT_BUTTON = element(by.id('about'));
-  let ADD_BUTTON = element(by.id('add-button'));
-  let ADD_SUBMIT = element(by.id('add-submit'));
-  let SUBJECTS_ADD_BUTTON = element(by.id('add-subject-button'));
-  let STUDENTS_TABLE = element(by.id('students_table'));
-  let SUBJECTS_TABLE = element(by.id('subjects_table'));
-  let SCHEDULE_TABLE = element(by.id('schedule_table'));
-  let SETTINGS_TABLE = element(by.id('settings_table'));
-  let ADD_DATE_FIELD = element(by.id('add-date'));
-  let ADD_DURATION_FIELD = element(by.id('add-duration'));
-  let ADD_LECTURER_FIELD = element(by.id('add-lecturer'));
-  let ADD_ROOM_FIELD = element(by.id('add-room'));
-  let ADD_SUBJECT_FIELD = element(by.id('add-subject'));
-  let ADD_TIME_FIELD = element(by.id('add-time'));
-  let ADD_TYPE_FIELD = element(by.id('add-type'));
-
-
-  let until = protractor.ExpectedConditions;
+  let navbarComponent = NavbarComponent.buildNavbarComponent();
+  let loginComponent = LoginComponent.buildLoginComponent();
+  let subjectsComponent = SubjectsComponent.buildSubjectsComponent();
+  let ALL_ROWS = element.all(by.id('subjects_row'));
 
   beforeEach(() => {
     browser.get(browser.baseUrl);
+    navbarComponent.waitForElementToBeVisible();
+    navbarComponent.clickLoginButton();
+    loginComponent.typeInEmailField(LoginData.correct_admin_login);
+    loginComponent.typeInPasswordField(LoginData.correct_admin_password);
+    loginComponent.clickSubmitButton();
+    navbarComponent.waitForLogoutButton();
+    navbarComponent.waitForScheduleButton();
   });
 
-  it('SubjectsComponent table presence', () => {
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'student dropdown not available');
-    SUBJECTS_BUTTON.click();
-    browser.wait(until.presenceOf(SUBJECTS_TABLE), 5000, 'subjects table not available');
+  afterEach(() => {
+    navbarComponent.clickLogoutButton();
+    navbarComponent.waitForLoginButton();
   });
 
-  it('SubjectsComponent adding  functionality presence', () => {
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(SUBJECTS_BUTTON), 5000, 'subjects button not available');
-    SUBJECTS_BUTTON.click();
-    browser.wait(until.presenceOf(SUBJECTS_ADD_BUTTON), 5000, 'add button not available');
-    SUBJECTS_ADD_BUTTON.click();
+  it('Adding and deleting functionality', () => {
+    navbarComponent.clickSubjectsButton();
+    subjectsComponent.waitForAddSubjectButton();
+    subjectsComponent.waitForSubjectsRow();
+    expect(ALL_ROWS.count()).toEqual(1, 'Number of rows before adding');
+    subjectsComponent.clickAddSubjectButton();
+    subjectsComponent.typeInSubjectField('test-subject');
+    subjectsComponent.typeInLecturerField('');
+    subjectsComponent.clickAddButton();
+    expect(ALL_ROWS.count()).toEqual(2, 'Number of rows after adding');
+    subjectsComponent.clickDeleteButton();
+    expect(ALL_ROWS.count()).toEqual(1, 'Number of rows after deleting');
   });
 
-
+  it('Edit element functionality', () => {
+    navbarComponent.clickSubjectsButton();
+    subjectsComponent.waitForAddSubjectButton();
+    subjectsComponent.waitForSubjectsRow();
+    expect(subjectsComponent.getLecturerContent()).toEqual('');
+    subjectsComponent.clickEditButton();
+    subjectsComponent.editLecturerField('edited');
+    subjectsComponent.clickEditSubmitButton();
+    expect(subjectsComponent.getLecturerContent()).toEqual('edited');
+    subjectsComponent.clickEditButton();
+    subjectsComponent.clearLecturerField();
+    subjectsComponent.editLecturerField(' ');
+    subjectsComponent.clickEditSubmitButton();
+    subjectsComponent.waitForSubjectsRow();
+  });
 });

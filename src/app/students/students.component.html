@@ -1,4 +1,4 @@
-<div *ngIf="serverService.currentUserMail!='0' && serverService.currentUserRole!='student'" class="container">
+<div *ngIf="serverService.currentUserMail!='0' && serverService.currentUserRole!='student'" class="container" id="studentsComponent">
   <h2>Studia Podyplomowe</h2>
   <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
   <table id="students_table" class="table table-bordered table-striped ">
@@ -12,12 +12,12 @@
     </tr>
     </thead>
     <tbody *ngFor="let student of students">
-    <tr>
+    <tr id="student_row">
       <td>{{student.name}}</td>
       <td>{{student.lastname}}</td>
-      <td>{{student.email}}</td>
-      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-warning btn-sm" (click)="onEditClick(student)">Edycja</button></td>
-      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(student.$key)">Usuń</button></td>
+      <td id="email_content">{{student.email}}</td>
+      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-warning btn-sm" id="edit_button" (click)="onEditClick(student)">Edycja</button></td>
+      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" id="delete_student_button" (click)="onDeleteClick(student.$key)">Usuń</button></td>
     </tr>
     </tbody>
   </table>
@@ -39,10 +39,10 @@
           <input [(ngModel)]="selectedStudent.lastname" placeholder="Nazwisko" class="form-control" id="ex2" type="text">
         </div>
         <div class="col-xs-12">
-          <label for="ex3">E-mail</label>
-          <input [(ngModel)]="selectedStudent.email" placeholder="email" class="form-control" id="ex3" type="text">
+          <label for="email_student_field">E-mail</label>
+          <input [(ngModel)]="selectedStudent.email" placeholder="email" class="form-control" id="email_student_field" type="text">
         </div>
-        <button type="button" class="gmo-btn btn btn-success" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
+        <button type="button" class="gmo-btn btn btn-success" id="edit_submit_button" (click)="onEditSubmit(selectedStudent.$key, selectedStudent)">Zapisz zmiany</button>
         <button type="button" class="gmo-btn btn btn-basic" (click)="CancelEdit()">Anuluj</button>
 
       </div>
@@ -59,19 +59,20 @@
       <div class="form-group">
         <div class="col-xs-12">
           <label for="ex1">Imię</label>
-          <input [(ngModel)]="addedStudent.name" placeholder="Imię" class="form-control" id="ex1" type="text"/>
+          <input [(ngModel)]="addedStudent.name" placeholder="Imię" class="form-control" id="add_name_field" type="text"/>
         </div>
         <div class="col-xs-12">
           <label for="ex2">Nazwisko</label>
-          <input [(ngModel)]="addedStudent.lastname" placeholder="Nazwisko" class="form-control" id="ex2" type="text">
+          <input [(ngModel)]="addedStudent.lastname" placeholder="Nazwisko" class="form-control" id="add_lastname_field" type="text">
         </div>
         <div class="col-xs-12">
-          <label for="ex3">E-mail</label>
-          <input [(ngModel)]="addedStudent.email" placeholder="email" class="form-control" id="ex3" type="text">
+          <label for="add_email_field">E-mail</label>
+          <input [(ngModel)]="addedStudent.email" placeholder="email" class="form-control" id="add_email_field" type="text">
         </div>
-        <button type="button" class="gmo-btn btn btn-success" (click)="onAddSubmit(addedStudent)">Dodaj</button>
+        <button type="button" class="gmo-btn btn btn-success" id="add_student_button" (click)="onAddSubmit(addedStudent)">Dodaj</button>
         <button type="button" class="gmo-btn btn btn-basic" (click)="CancelAdd()">Anuluj</button>
       </div>
     </div>
   </div>
 </div>
+<br id="end">

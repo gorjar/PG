@@ -1,37 +1,38 @@
-/**
- * Created by adam on 06.06.17.
+/*
+ * Copyright 2017 GMO. All Rights Reserved
  */
 
-import {browser, element, by, protractor} from "protractor";
-import {LoginData} from "../feed/test_data"
+import { browser } from "protractor";
+import { LoginData } from "../feed/test_data"
+import { NavbarComponent } from "../components/NavbarComponent/NavbarComponent.po";
+import { LoginComponent } from "../components/LoginComponent/LoginComponent.po";
+import { SettingsComponent } from "../components/SettingsComponent/SettingsComponent.po";
 
 describe('Dziennik Lekcyjny SettingsComponent', () => {
 
-  let LOGIN_BUTTON = element(by.id('login'));
-  let EMAIL_FIELD = element(by.id('email'));
-  let LOGIN_FORM_BUTTON = element(by.id('login_form'));
-  let PASSWORD_FIELD = element(by.id('password'));
-  let SETTINGS_BUTTON = element(by.id('settings'));
-  let SETTINGS_TABLE = element(by.id('settings_table'));
-
-  let until = protractor.ExpectedConditions;
+  let navbarComponent = NavbarComponent.buildNavbarComponent();
+  let loginComponent = LoginComponent.buildLoginComponent();
+  let settingsComponent = SettingsComponent.buildSettingsComponent();
 
   beforeEach(() => {
     browser.get(browser.baseUrl);
+    navbarComponent.waitForElementToBeVisible();
+    navbarComponent.clickLoginButton();
+    loginComponent.typeInEmailField(LoginData.correct_admin_login);
+    loginComponent.typeInPasswordField(LoginData.correct_admin_password);
+    loginComponent.clickSubmitButton();
+    navbarComponent.waitForLogoutButton();
+    navbarComponent.waitForScheduleButton();
   });
 
-  it('SettingsComponent table presence', () => {
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(SETTINGS_BUTTON), 5000, 'settings table not available');
-    SETTINGS_BUTTON.click();
-    browser.wait(until.presenceOf(SETTINGS_TABLE), 5000, 'settings table not available');
+  afterEach(() => {
+    navbarComponent.clickLogoutButton();
+    navbarComponent.waitForLoginButton();
+  });
+
+  it('Settings component content presence', () => {
+    navbarComponent.clickSettingsButton();
+    settingsComponent.waitForSettingsTable();
   });
 
 });

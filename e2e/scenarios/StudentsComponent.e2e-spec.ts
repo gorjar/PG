@@ -1,53 +1,67 @@
-/**
- * Created by adam on 06.06.17.
+/*
+ * Copyright 2017 GMO. All Rights Reserved
  */
 
-import {browser, element, by, protractor} from "protractor";
-import {LoginData} from "../feed/test_data"
+import {browser, by, element} from "protractor";
+import { LoginData } from "../feed/test_data"
+import { NavbarComponent } from '../components/NavbarComponent/NavbarComponent.po';
+import { StudentsComponent } from '../components/StudentsComponent/StudentsComponent.po';
+import { LoginComponent } from '../components/LoginComponent/LoginComponent.po';
 
 describe('Dziennik Lekcyjny StudentsComponent', () => {
 
-  let LOGIN_BUTTON = element(by.id('login'));
-  let EMAIL_FIELD = element(by.id('email'));
-  let LOGIN_FORM_BUTTON = element(by.id('login_form'));
-  let PASSWORD_FIELD = element(by.id('password'));
-  let STUDENTS_BUTTON = element(by.id('students'));
-  let ADD_BUTTON = element(by.id('add-button'));
-  let STUDENTS_TABLE = element(by.id('students_table'));
-
-  let until = protractor.ExpectedConditions;
+  let navbarComponent = NavbarComponent.buildNavbarComponent();
+  let loginComponent = LoginComponent.buildLoginComponent();
+  let studentsComponent = StudentsComponent.buildStudentsComponent();
+  let ALL_ROWS = element.all(by.id('student_row'));
 
   beforeEach(() => {
     browser.get(browser.baseUrl);
+    navbarComponent.waitForElementToBeVisible();
+    navbarComponent.clickLoginButton();
+    loginComponent.typeInEmailField(LoginData.correct_admin_login);
+    loginComponent.typeInPasswordField(LoginData.correct_admin_password);
+    loginComponent.clickSubmitButton();
+    navbarComponent.waitForLogoutButton();
+    navbarComponent.waitForScheduleButton();
   });
 
-  it('StudentsComponent table presence', () => {
-    expect(LOGIN_BUTTON.isPresent()).toBe(true);
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'student button not available');
-    STUDENTS_BUTTON.click();
-    browser.wait(until.presenceOf(STUDENTS_TABLE), 5000, 'students table not available');
+  afterEach(() => {
+    navbarComponent.clickLogoutButton();
+    navbarComponent.waitForLoginButton();
   });
 
-  it('StudentsComponent adding  functionality presence', () => {
-    browser.wait(until.presenceOf(LOGIN_BUTTON), 5000, 'Taking too long to load element');
-    LOGIN_BUTTON.click();
-    expect(EMAIL_FIELD.isPresent()).toBe(true, "Display email field");
-    EMAIL_FIELD.sendKeys(LoginData.correct_login);
-    PASSWORD_FIELD.sendKeys(LoginData.correct_password);
-    expect(LOGIN_FORM_BUTTON.isPresent()).toBe(true);
-    LOGIN_FORM_BUTTON.click();
-    browser.sleep(2000);
-    browser.wait(until.presenceOf(STUDENTS_BUTTON), 5000, 'students button not available');
-    STUDENTS_BUTTON.click();
-    browser.wait(until.presenceOf(ADD_BUTTON), 5000, 'add button not available');
-    ADD_BUTTON.click();
+  it('Adding and deleting functionality', () => {
+    navbarComponent.clickStudentsButton();
+    studentsComponent.waitForAddButton();
+    studentsComponent.waitForStudentsRow();
+    expect(ALL_ROWS.count()).toEqual(1, 'Number of rows before adding');
+    studentsComponent.clickAddButton();
+    studentsComponent.typeInNameField('Test Name');
+    studentsComponent.typeInLastnameField('Test Lastname');
+    studentsComponent.typeInEmailField('');
+    studentsComponent.scrollToFormEnd();
+    studentsComponent.clickAddStudentButton();
+    expect(ALL_ROWS.count()).toEqual(2, 'Number of rows after adding');
+    studentsComponent.clickDeleteStudentButton();
+    expect(ALL_ROWS.count()).toEqual(1, 'Number of rows after deleting');
+  });
+
+  it('Edit element functionality', () => {
+    navbarComponent.clickStudentsButton();
+    studentsComponent.waitForStudentsRow();
+    expect(studentsComponent.getEmailContent()).toEqual('');
+    studentsComponent.clickEditButton();
+    studentsComponent.editEmailField('edited');
+    studentsComponent.scrollToFormEnd();
+    studentsComponent.clickEditSubmitButton();
+    expect(studentsComponent.getEmailContent()).toEqual('edited');
+    studentsComponent.clickEditButton();
+    studentsComponent.clearEmailField();
+    studentsComponent.editEmailField(' ');
+    studentsComponent.scrollToFormEnd();
+    studentsComponent.clickEditSubmitButton();
+    studentsComponent.waitForStudentsRow();
   });
 
 });

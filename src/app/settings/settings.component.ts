@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
 import { User } from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -14,9 +15,15 @@ export class SettingsComponent implements OnInit {
   selectedUser: User;
 
 
-  constructor(public serverService: ServerService) {}
+  constructor(
+    public serverService: ServerService,
+    private router:Router,
+  ) {}
 
   ngOnInit() {
+    setTimeout(()=>{
+      if (!(this.serverService.currentUserMail!='0' && this.serverService.currentUserRole=='admin')){this.router.navigate(['']);}
+    },2000);
     this.serverService.getUsers().subscribe(users =>{
       this.users = users;
     })

@@ -2,10 +2,14 @@
   background-color: #e7e7e7;
 }
 .gmo-cont {
-  padding-bottom: 204px;
+  padding-bottom: 195px;
 }
 .gmo-msg {
-  height: 109px;
+  height: 95px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  background-color: white;
+  z-index: auto;
 }
 .form-group {
   background-color: white;

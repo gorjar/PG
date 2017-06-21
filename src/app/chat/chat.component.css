@@ -4,11 +4,13 @@
 .gmo-cont {
   padding-bottom: 195px;
 }
+#message_field {
+  background-color: white;
+}
 .gmo-msg {
   height: 95px;
   padding-bottom: 5px;
   padding-top: 5px;
-  background-color: white;
   z-index: auto;
 }
 .form-group {

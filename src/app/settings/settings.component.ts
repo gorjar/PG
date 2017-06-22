@@ -22,7 +22,7 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(()=>{
-      if (!(this.serverService.currentUserMail!='0' && this.serverService.currentUserRole=='admin')){this.router.navigate(['']);}
+      if (!(this.serverService.currentUserRole=='admin')){this.router.navigate(['']);}
     },2000);
     this.serverService.getUsers().subscribe(users =>{
       this.users = users;

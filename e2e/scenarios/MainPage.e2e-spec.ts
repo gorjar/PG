@@ -16,6 +16,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
         browser.get(browser.baseUrl);
         navbarComponent.waitForElementToBeVisible();
         navbarComponent.clickLoginButton();
+        browser.sleep(2000);
     });
 
     afterEach(() => {

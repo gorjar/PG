@@ -175,9 +175,7 @@ export class RegisterComponent implements  OnInit {
     if (this.password === this.confirmpassword){
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .catch(function (error) {
-        //console.log(error);
-        var errorMessage = error.message;
-        console.log(errorMessage);
+        let errorMessage = error.message;
         if (errorMessage == "Password should be at least 6 characters") {
           alert('Hasło powinno składać się z co najmniej 6 znaków');
         }
@@ -192,7 +190,6 @@ export class RegisterComponent implements  OnInit {
     setTimeout(()=>{
       if(this.serverService.currentUserMail.length>2){
           this.serverService.getUsers().subscribe(users => {
-            console.log(users);
             this.users = users;
           });
           this.serverService.addUser(

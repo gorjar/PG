@@ -10,6 +10,7 @@ export class ChatComponent implements OnInit {
 
   chat: any;
   text: string;
+  trimedtext:string;
   datetime: any;
   author: string;
 
@@ -23,7 +24,8 @@ export class ChatComponent implements OnInit {
 
   onSubmit() {
     this.datetime = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString();
-    if (this.text) {
+    this.trimedtext=this.text.trim();
+    if (this.trimedtext) {
     this.serverService.addMessage(
       {
         text: this.text,

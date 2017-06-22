@@ -30,11 +30,17 @@ export class LoginComponent implements OnInit {
 
     setTimeout(()=>{
       if(this.serverService.currentUserMail.length>2){
+
+        this.flashMessage.show('Logowanie zakończone sukcesem',
+          {cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['']);
       } else {
+        this.flashMessage.show('Logowanie zakończone niepowodzeniem',
+          {cssClass: 'alert-danger', timeout: 3000});
         this.router.navigate(['login']);
       }
     },1000);
+
 
   }
 

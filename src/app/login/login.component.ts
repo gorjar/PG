@@ -11,6 +11,9 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 })
 export class LoginComponent implements OnInit {
 
+  showloginform:boolean=false;
+
+
   email:string='';
   emailMsgL:string='';
   emailBL:boolean;
@@ -31,6 +34,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    setTimeout(()=>{
+      if (this.serverService.currentUserMail!='0'){this.router.navigate(['']);}
+      this.showloginform=true;
+    },400);
     this.emailValidatorL();
     this.passwordValidatorL();
 

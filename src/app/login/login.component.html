@@ -3,13 +3,13 @@
   <form (submit)="onLoginSubmit()">
   <div class="form-group">
     <label>E-mail</label>
-    <input class="form-control"  type="email" id="email" [(ngModel)]="email" placeholder="e-mail" name="email">
+    <input class="form-control"  type="email" id="email" [(ngModel)]="email" placeholder="e-mail" name="email"(input)="emailValidatorL()" ><span *ngIf="emailBL && emailCL>1" class="msg"> {{emailMsgL}}</span>
   </div>
     <div class="form-group">
     <label>Hasło</label>
-    <input class="form-control"  type="password" id="password"  [(ngModel)]="password" placeholder="hasło" name="password">
+    <input class="form-control"  type="password" id="password"  [(ngModel)]="password" placeholder="hasło" name="password" (input)="passwordValidatorL()"><span *ngIf="passwordBL && passwordCL>1" class="msg"> {{passwordMsgL}}</span>
   </div>
-  <button type="submit" value="submit" class="gmo-btn btn btn-success" id="login_form">Zaloguj się</button>
+  <button type="submit" [disabled]="allValidatorL" value="submit" class="gmo-btn btn btn-success" id="login_form">Zaloguj się</button>
 
   </form>
 </div>

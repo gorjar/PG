@@ -32,4 +32,8 @@ export class LoginComponent extends BaseWebCOntrol{
     public static buildLoginComponent() {
         return new LoginComponent(by.id('loginComponent'));
     }
+
+    public waitForEmailField(){
+      this.waitForElementToBeDisplayedInRootElement(this.EMAIL_FIELD);
+    }
 }

@@ -16,6 +16,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
         browser.get(browser.baseUrl);
         navbarComponent.waitForElementToBeVisible();
         navbarComponent.clickLoginButton();
+        browser.sleep(2000);
     });
 
     afterEach(() => {
@@ -24,6 +25,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     });
 
     it('Verify that all menu components are displayed after successful login for ADMIN', () => {
+        loginComponent.waitForEmailField();
         loginComponent.typeInEmailField(LoginData.correct_admin_login);
         loginComponent.typeInPasswordField(LoginData.correct_admin_password);
         loginComponent.clickSubmitButton();
@@ -37,6 +39,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     });
 
     it('Verify that all menu components are displayed after successful login for STUDENT', () => {
+        loginComponent.waitForEmailField();
         loginComponent.typeInEmailField(LoginData.correct_student_login);
         loginComponent.typeInPasswordField(LoginData.correct_student_password);
         loginComponent.clickSubmitButton();
@@ -50,6 +53,7 @@ describe('Dziennik Lekcyjny Main Page', () => {
     });
 
     it('Verify that all menu components are displayed after successful login for LECTURER', () => {
+       loginComponent.waitForEmailField();
        loginComponent.typeInEmailField(LoginData.correct_lecturer_login);
        loginComponent.typeInPasswordField(LoginData.correct_lecturer_password);
        loginComponent.clickSubmitButton();

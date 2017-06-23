@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ServerService } from '../server.service'; //used within html
 
 @Component({
   selector: 'app-about',
@@ -8,7 +7,7 @@ import { ServerService } from '../server.service'; //used within html
 })
 export class AboutComponent implements OnInit {
 
-  constructor(private serverService:ServerService ) {}
+  constructor() {}
 
   ngOnInit() {
 

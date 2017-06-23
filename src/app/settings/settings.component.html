@@ -1,4 +1,4 @@
-<div *ngIf="serverService.currentUserMail!='0' && serverService.currentUserRole=='admin'" class="container">
+<div *ngIf="serverService.currentUserMail!='0' && serverService.currentUserRole=='admin'" class="container" id="settingsComponent">
   <h2>Studia Podyplomowe</h2>
   <h3>Zarejestrowani użytkownicy serwisu</h3>
   <table id="settings_table" class="table table-bordered table-striped ">
@@ -54,6 +54,7 @@
           </select>
         </div>
         <button type="button" class="gmo-btn btn btn-success" (click)="onEditSubmit(selectedUser.$key, selectedUser)">Zapisz zmiany</button>
+        <button type="button" class="gmo-btn btn btn-basic" (click)="CancelEdit()">Anuluj</button>
       </div>
     </div>
   </div>

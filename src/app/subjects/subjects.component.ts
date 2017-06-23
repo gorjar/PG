@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
 import { Subject } from './subject';
-import { Grade } from './grade';
 
 @Component({
   selector: 'app-subjects',
@@ -15,7 +14,6 @@ export class SubjectsComponent implements OnInit {
   students:any;
   detailsInit:boolean;
 
-  addSubjectId:string;
   addStudentId:string;
   addSemester:string;
   addValue:string;
@@ -27,13 +25,9 @@ export class SubjectsComponent implements OnInit {
   addGradeInit:boolean;
   initSubject: boolean;
   addedSubject: Subject;
-  emptySubject:Subject = {
-    name:'',
-    lecturer:''
-  };
 
   constructor(
-    private serverService:ServerService
+    public serverService:ServerService
   ) {}
 
   ngOnInit() {
@@ -46,7 +40,6 @@ export class SubjectsComponent implements OnInit {
     });
     this.serverService.getGrades().subscribe(grades =>{
       this.grades = grades;
-      console.log(this.grades);
     })
   }
 
@@ -62,7 +55,10 @@ export class SubjectsComponent implements OnInit {
 
   onAddInit(){
     this.initSubject = true;
-    this.addedSubject = this.emptySubject;
+    this.addedSubject = {
+      name:'',
+      lecturer:''
+    };
   }
 
   onAddGradeInit(){
@@ -104,10 +100,16 @@ export class SubjectsComponent implements OnInit {
 
   CancelEdit() {
     this.editInit = false;
+    this.serverService.getSubjects().subscribe(subjects =>{
+      this.subjects = subjects;
+    });
   }
 
   CancelAdd() {
     this.initSubject = false;
   }
 
+  CancelAddGrade(){
+    this.addGradeInit = false;
+  }
 }

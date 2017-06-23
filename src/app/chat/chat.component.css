@@ -1,3 +1,29 @@
 #chat_message {
   background-color: #e7e7e7;
 }
+.gmo-cont {
+  padding-bottom: 195px;
+}
+#message_field {
+  background-color: white;
+}
+.gmo-msg {
+  height: 95px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  z-index: auto;
+}
+.form-group {
+  background-color: white;
+}
+@media (max-width: 768px) {
+  .gmo-msg {
+    position: static;
+    bottom: 0;
+    width: 100%;
+  }
+  .gmo-msg, .gmo-cont {
+    height: auto;
+    padding-bottom: 0;
+  }
+}

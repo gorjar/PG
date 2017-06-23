@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="serverService.currentUserMail!='0'" class="container" id="scheduleComponent">
   <h2>Studia Podyplomowe</h2>
   <h3>"Aplikacje i usługi internetowe", 2016/2017, semestr II</h3>
   <table id="schedule_table" class="table table-bordered table-striped">
@@ -16,16 +16,16 @@
     </tr>
     </thead>
     <tbody *ngFor="let sched of schedule" >
-    <tr>
-      <td>{{sched.date}}</td>
-      <td>{{sched.time}}</td>
-      <td>{{sched.duration}}</td>
-      <td>{{sched.subject}}</td>
-      <td>{{sched.type}}</td>
-      <td>{{sched.room}}</td>
-      <td>{{sched.lecturer}}</td>
-      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-warning btn-sm" (click)="onEditClick(sched)">Edycja</button></td>
-      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" (click)="onDeleteClick(sched.$key)">Usuń</button></td>
+    <tr id="schedule_row">
+      <td id="scheddate" >{{sched.date}}</td>
+      <td id="schedtime">{{sched.time}}</td>
+      <td id="schedduration">{{sched.duration}}</td>
+      <td id="schedsubject">{{sched.subject}}</td>
+      <td id="schedtype">{{sched.type}}</td>
+      <td id="schedroom">{{sched.room}}</td>
+      <td id="schedlecturer">{{sched.lecturer}}</td>
+      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-warning btn-sm" id="edit_button" (click)="onEditClick(sched)">Edycja</button></td>
+      <td *ngIf="serverService.currentUserRole==='admin'" class="text-center"><button type="button" class="btn btn-danger btn-sm" id="delete_button" (click)="onDeleteClick(sched.$key)">Usuń</button></td>
     </tr>
     </tbody>
   </table>
@@ -33,7 +33,7 @@
   <p>L - Laboratorium</p>
   <p>P - Projekty</p>
   <hr>
-  <button *ngIf="serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-success" (click)="onAddInit()">Dodaj pozycję</button>
+  <button *ngIf="serverService.currentUserRole==='admin'" type="button" id="add-button" class="btn btn-primary" (click)="onAddInit()">Dodaj pozycję</button>
   <div *ngIf="editInit">
     <div class="container">
 
@@ -66,11 +66,11 @@
             <input [(ngModel)]="selectedSched.room" placeholder="room" class="form-control" id="ex6" type="text">
           </div>
           <div class="col-xs-12">
-            <label for="ex7">Prowadzący</label>
-            <input [(ngModel)]="selectedSched.lecturer" placeholder="lecturer" class="form-control" id="ex7" type="text">
+            <label for="edit_lecturer">Prowadzący</label>
+            <input [(ngModel)]="selectedSched.lecturer" placeholder="lecturer" class="form-control" id="edit_lecturer" type="text">
           </div>
-          <button type="button" class="gmo-btn btn btn-success" (click)="onEditSubmit(selectedSched.$key, selectedSched)">Zapisz zmiany</button>
-          <button type="button" class="gmo-btn btn btn-basic" (click)="CancelEdit()">Anuluj</button>
+          <button type="button" class="gmo-btn btn btn-success" id="edit_submit" (click)="onEditSubmit(selectedSched.$key, selectedSched)">Zapisz zmiany</button>
+          <button type="button" class="gmo-btn btn btn-basic" id="cancel_button" (click)="CancelEdit()">Anuluj</button>
 
         </div>
     </div>
@@ -87,39 +87,38 @@
       <div class="form-group">
         <div class="col-xs-12">
           <label for="ex1">Data</label>
-          <input [(ngModel)]="addedSched.date" placeholder="date" class="form-control" id="ex11" type="Date"/>
+          <input [(ngModel)]="addedSched.date" placeholder="date" class="form-control" id="add-date" type="Date"/>
         </div>
         <div class="col-xs-12">
           <label for="ex2">Godziny</label>
-          <input [(ngModel)]="addedSched.time" placeholder="time" class="form-control" id="ex12" type="text">
+          <input [(ngModel)]="addedSched.time" placeholder="time" class="form-control" id="add-time" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex3">L. godz.</label>
-          <input [(ngModel)]="addedSched.duration" placeholder="duration" class="form-control" id="ex13" type="text">
+          <input [(ngModel)]="addedSched.duration" placeholder="duration" class="form-control" id="add-duration" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex4">Przedmiot</label>
-          <input [(ngModel)]="addedSched.subject" placeholder="subject" class="form-control" id="ex14" type="text">
+          <input [(ngModel)]="addedSched.subject" placeholder="subject" class="form-control" id="add-subject" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex5">Typ</label>
-          <input [(ngModel)]="addedSched.type" placeholder="time" class="form-control" id="ex15" type="text">
+          <input [(ngModel)]="addedSched.type" placeholder="time" class="form-control" id="add-type" type="text">
         </div>
         <div class="col-xs-12">
           <label for="ex6">Sala</label>
-          <input [(ngModel)]="addedSched.room" placeholder="room" class="form-control" id="ex16" type="text">
+          <input [(ngModel)]="addedSched.room" placeholder="room" class="form-control" id="add-room" type="text">
         </div>
         <div class="col-xs-12">
-          <label for="ex7">Prowadzący</label>
-          <input [(ngModel)]="addedSched.lecturer" placeholder="lecturer" class="form-control" id="ex17" type="text">
+          <label for="add-lecturer">Prowadzący</label>
+          <input [(ngModel)]="addedSched.lecturer" placeholder="lecturer" class="form-control" id="add-lecturer" type="text">
         </div>
-        <button type="button" class="gmo-btn btn btn-success" (click)="onAddSubmit(addedSched)">Dodaj</button>
-        <button type="button" class="gmo-btn btn btn-basic" (click)="CancelAdd()">Anuluj</button>
-
+        <button type="button" id="addsubmit" class="gmo-btn btn btn-success" (click)="onAddSubmit(addedSched)">Dodaj</button>
+        <button type="button" id="cancel_button" class="gmo-btn btn btn-basic" (click)="CancelAdd()">Anuluj</button>
       </div>
     </div>
-
   </div>
-
-
 </div>
+<br>
+<br>
+<br id="end">

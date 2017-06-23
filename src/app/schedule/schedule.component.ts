@@ -14,25 +14,13 @@ export class ScheduleComponent implements OnInit {
   editInit:boolean;
   initSched: boolean;
   addedSched: Schedule;
-  emptySched:Schedule = {
-    date:'',
-    duration:'',
-    lecturer:'',
-    room:'',
-    subject:'',
-    time:'',
-    type:''
-  };
-
 
   constructor(
-    private serverService:ServerService
+    public serverService:ServerService
   ) {}
 
   ngOnInit() {
-
     this.serverService.getSchedule().subscribe(schedule =>{
-      console.log(schedule);
       this.schedule = schedule;
     })
   }
@@ -49,7 +37,15 @@ export class ScheduleComponent implements OnInit {
 
   onAddInit(){
     this.initSched = true;
-    this.addedSched = this.emptySched;
+    this.addedSched = {
+      date:'',
+      duration:'',
+      lecturer:'',
+      room:'',
+      subject:'',
+      time:'',
+      type:''
+    };
 }
 
   onAddSubmit(sched){
@@ -63,6 +59,9 @@ export class ScheduleComponent implements OnInit {
 
   CancelEdit(){
     this.editInit = false;
+    this.serverService.getSchedule().subscribe(schedule =>{
+      this.schedule = schedule;
+    })
   }
 
   CancelAdd(){

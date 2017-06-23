@@ -1,10 +1,10 @@
 .carousel-inner {
-  height: 85vh;
+  height: 90vh;
 }
 
 .item img {
   width: 100%;
-  margin: 0px;
+  margin: 0;
 }
 
 #sm-display {
@@ -21,7 +21,7 @@
     padding-bottom: 20px;
     align-items: center;
     display: block;
-    margin: 0px auto;
+    margin: 0 auto;
   }
 
   #myCarousel {
@@ -30,7 +30,7 @@
 }
 
 
-@media (max-width: 1024px) and (min-height: 1366px) {
+@media (max-width: 1024px) {
   #sm-display {
     display: inline;
   }
@@ -40,17 +40,10 @@
     padding-bottom: 20px;
     align-items: center;
     display: block;
-    margin: 0px auto;
+    margin: 0 auto;
   }
 
   #myCarousel {
     display: none;
-  }
-}
-
-
-@media (max-width: 2560px) {
-  #myCarousel{
-    margin-top: 2.5%;
   }
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ServerService } from '../server.service';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,9 @@ export class NavbarComponent implements OnInit {
 
 
   constructor(
-    private serverService: ServerService, //don't delete, used within component.html
-    public afAuth:AngularFireAuth
+    public serverService: ServerService, //don't delete, used within component.html
+    public afAuth:AngularFireAuth,
+    public flashMessage:FlashMessagesService
   ){}
 
 
@@ -20,9 +22,11 @@ export class NavbarComponent implements OnInit {
   };
 
   onLogout(){
-    this.serverService.currentUserMail='';
+    this.serverService.currentUserMail='0';
     this.serverService.currentUserRole='';
     this.afAuth.auth.signOut();
+    this.flashMessage.show('Nastąpiło poprawne wylogowanie',
+      {cssClass: 'alert-success', timeout: 3000});
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
 import { User } from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -14,9 +15,15 @@ export class SettingsComponent implements OnInit {
   selectedUser: User;
 
 
-  constructor(private serverService: ServerService) {}
+  constructor(
+    public serverService: ServerService,
+    private router:Router,
+  ) {}
 
   ngOnInit() {
+    setTimeout(()=>{
+      if (!(this.serverService.currentUserRole=='admin')){this.router.navigate(['']);}
+    },2000);
     this.serverService.getUsers().subscribe(users =>{
       this.users = users;
     })
@@ -34,6 +41,13 @@ export class SettingsComponent implements OnInit {
 
   onDeleteClick(id){
     this.serverService.deleteUser(id);
+  }
+
+  CancelEdit(){
+    this.editInit = false;
+    this.serverService.getUsers().subscribe(users =>{
+      this.users = users;
+    })
   }
 
 }

@@ -24,6 +24,7 @@ describe('Dziennik Lekcyjny SubjectsComponent', () => {
     loginComponent.clickSubmitButton();
     navbarComponent.waitForLogoutButton();
     navbarComponent.waitForScheduleButton();
+    browser.sleep(2000);
   });
 
   afterEach(() => {

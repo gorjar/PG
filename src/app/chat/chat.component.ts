@@ -12,7 +12,6 @@ export class ChatComponent implements OnInit {
   text: string;
   trimedtext:string;
   datetime: any;
-  author: string;
 
   constructor(public serverService: ServerService) {}
 

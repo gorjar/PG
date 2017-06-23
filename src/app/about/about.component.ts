@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ServerService } from '../server.service'; //used within html
 
 @Component({
   selector: 'app-about',

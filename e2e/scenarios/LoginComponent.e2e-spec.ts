@@ -3,7 +3,6 @@
  */
 
 import { browser } from "protractor";
-import { LoginData } from "../feed/test_data"
 import { LoginComponent } from "../components/LoginComponent/LoginComponent.po"
 import { NavbarComponent } from '../components/NavbarComponent/NavbarComponent.po';
 

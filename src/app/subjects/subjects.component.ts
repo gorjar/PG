@@ -40,7 +40,6 @@ export class SubjectsComponent implements OnInit {
     });
     this.serverService.getGrades().subscribe(grades =>{
       this.grades = grades;
-      console.log(this.grades);
     })
   }
 

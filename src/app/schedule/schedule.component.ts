@@ -21,7 +21,6 @@ export class ScheduleComponent implements OnInit {
 
   ngOnInit() {
     this.serverService.getSchedule().subscribe(schedule =>{
-      console.log(schedule);
       this.schedule = schedule;
     })
   }
@@ -61,7 +60,6 @@ export class ScheduleComponent implements OnInit {
   CancelEdit(){
     this.editInit = false;
     this.serverService.getSchedule().subscribe(schedule =>{
-      console.log(schedule);
       this.schedule = schedule;
     })
   }

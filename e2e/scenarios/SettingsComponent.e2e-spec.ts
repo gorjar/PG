@@ -18,6 +18,7 @@ describe('Dziennik Lekcyjny SettingsComponent', () => {
     browser.get(browser.baseUrl);
     navbarComponent.waitForElementToBeVisible();
     navbarComponent.clickLoginButton();
+    loginComponent.waitForEmailField();
     loginComponent.typeInEmailField(LoginData.correct_admin_login);
     loginComponent.typeInPasswordField(LoginData.correct_admin_password);
     loginComponent.clickSubmitButton();
